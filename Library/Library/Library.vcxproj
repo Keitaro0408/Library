@@ -10,6 +10,18 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Library\DSoundManager.cpp" />
+    <ClCompile Include="Library\Event.cpp" />
+    <ClCompile Include="Library\EventManager.cpp" />
+    <ClCompile Include="Library\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Library\DSoundManager.h" />
+    <ClInclude Include="Library\Event.h" />
+    <ClInclude Include="Library\EventManager.h" />
+    <ClInclude Include="Library\Window.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65480EA8-8D64-4328-A73F-671C0487AA00}</ProjectGuid>
     <RootNamespace>Library</RootNamespace>
@@ -63,14 +75,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Event.h" />
-    <ClInclude Include="EventManager.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Event.cpp" />
-    <ClCompile Include="EventManager.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

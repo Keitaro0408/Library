@@ -1,4 +1,4 @@
-#ifndef EVENTMANAGER_H
+﻿#ifndef EVENTMANAGER_H
 #define EVENTMANAGER_H
 
 #include <map>

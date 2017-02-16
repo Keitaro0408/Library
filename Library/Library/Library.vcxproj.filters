@@ -7,30 +7,45 @@
     <Filter Include="Library\EventManager">
       <UniqueIdentifier>{f00fad0d-b2ba-4bb1-84b4-7b368a7cd38f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\EventManager\EventManager">
-      <UniqueIdentifier>{4b4dc82b-b860-4696-8fe8-cf4ca9a3f021}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Library\EventManager\EventManager\Event">
-      <UniqueIdentifier>{062ba0ee-4c43-47df-ac3a-8fc33890748c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Library\DxInput">
       <UniqueIdentifier>{9fb95544-b193-4b23-bd30-8137bee4d26b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library\DSoundManager">
+      <UniqueIdentifier>{a8d298c3-d599-48c8-8a09-e2435f63e18d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Window">
+      <UniqueIdentifier>{3a65740c-7e23-497b-9f36-ba7495bc9172}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\EventManager\Event">
+      <UniqueIdentifier>{062ba0ee-4c43-47df-ac3a-8fc33890748c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Event.cpp">
-      <Filter>Library\EventManager\EventManager\Event</Filter>
+    <ClCompile Include="Library\EventManager.cpp">
+      <Filter>Library\EventManager</Filter>
     </ClCompile>
-    <ClCompile Include="EventManager.cpp">
-      <Filter>Library\EventManager\EventManager</Filter>
+    <ClCompile Include="Library\Event.cpp">
+      <Filter>Library\EventManager\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\DSoundManager.cpp">
+      <Filter>Library\DSoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Window.cpp">
+      <Filter>Library\Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Event.h">
-      <Filter>Library\EventManager\EventManager\Event</Filter>
+    <ClInclude Include="Library\EventManager.h">
+      <Filter>Library\EventManager</Filter>
     </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>Library\EventManager\EventManager</Filter>
+    <ClInclude Include="Library\Event.h">
+      <Filter>Library\EventManager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DSoundManager.h">
+      <Filter>Library\DSoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Window.h">
+      <Filter>Library\Window</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
