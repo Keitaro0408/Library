@@ -6,34 +6,42 @@
 #include "Window.h"
 
 
-Lib::Window::Window() : 
-m_hWnd(NULL)
-{
-}
+//----------------------------------------------------------------------------------------------------
+// Public Functions
+//----------------------------------------------------------------------------------------------------
 
-Lib::Window::~Window()
+HRESULT Lib::Window::DispWindow(HINSTANCE _hInstance, INT _width, INT _height, LPCTSTR _windowName, LRESULT CALLBACK _wndProc(HWND, UINT, WPARAM, LPARAM))
 {
-}
+	m_hInstance = _hInstance;
 
-HRESULT Lib::Window::InitWindow(HINSTANCE _hInstance, INT _width, INT _height, LPCTSTR _windowName)
-{
 	// ウィンドウの定義
-	WNDCLASSEX  windowClass;
-	ZeroMemory(&windowClass, sizeof(windowClass));
-	windowClass.cbSize = sizeof(windowClass);
-	windowClass.style = CS_HREDRAW | CS_VREDRAW;
-	windowClass.lpfnWndProc = WindowProc;
-	windowClass.hInstance = _hInstance;
-	windowClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-	windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
-	windowClass.hbrBackground = (HBRUSH)GetStockObject(LTGRAY_BRUSH);
-	windowClass.lpszClassName = TEXT(_windowName);
-	windowClass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
-	RegisterClassEx(&windowClass);
+	WNDCLASSEX  Wndclass;
+	ZeroMemory(&Wndclass, sizeof(Wndclass));
+	Wndclass.cbSize = sizeof(Wndclass);
+	Wndclass.style = CS_HREDRAW | CS_VREDRAW;
+	Wndclass.lpfnWndProc = _wndProc;
+	Wndclass.hInstance = _hInstance;
+	Wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	Wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	Wndclass.hbrBackground = (HBRUSH)GetStockObject(LTGRAY_BRUSH);
+	Wndclass.lpszClassName = TEXT(_windowName);
+	Wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+	RegisterClassEx(&Wndclass);
 
 	//ウィンドウの作成
-	m_hWnd = CreateWindow(_windowName, _windowName, WS_OVERLAPPEDWINDOW,
-		0, 0, _width, _height, 0, 0, _hInstance, 0);
+	m_hWnd = CreateWindow(
+		_windowName,
+		_windowName,
+		WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MINIMIZEBOX & ~WS_MAXIMIZEBOX | WS_VISIBLE,
+		0,
+		0,
+		_width,
+		_height,
+		NULL,
+		NULL,
+		_hInstance,
+		NULL);
+
 	if (!m_hWnd)
 	{
 		return E_FAIL;
@@ -45,26 +53,39 @@ HRESULT Lib::Window::InitWindow(HINSTANCE _hInstance, INT _width, INT _height, L
 	return S_OK;
 }
 
-HRESULT Lib::Window::InitWindow(HINSTANCE _hInstance, INT _width, INT _height, LPCTSTR _windowName, LPCTSTR _iconName)
+HRESULT Lib::Window::DispWindow(HINSTANCE _hInstance, INT _width, INT _height, LPCTSTR _windowName, LPCTSTR _iconName, LRESULT CALLBACK _wndProc(HWND, UINT, WPARAM, LPARAM))
 {
+	m_hInstance = _hInstance;
+
 	// ウィンドウの定義
-	WNDCLASSEX  wc;
-	ZeroMemory(&wc, sizeof(wc));
-	wc.cbSize = sizeof(wc);
-	wc.style = CS_HREDRAW | CS_VREDRAW;
-	wc.lpfnWndProc = WindowProc;
-	wc.hInstance = _hInstance;
+	WNDCLASSEX  Wndclass;
+	ZeroMemory(&Wndclass, sizeof(Wndclass));
+	Wndclass.cbSize = sizeof(Wndclass);
+	Wndclass.style = CS_HREDRAW | CS_VREDRAW;
+	Wndclass.lpfnWndProc = _wndProc;
+	Wndclass.hInstance = _hInstance;
 	//アイコン読み込み
-	wc.hIcon = (HICON)LoadImage(NULL, _iconName, IMAGE_ICON, 0, 0, LR_SHARED | LR_LOADFROMFILE);
-	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wc.hbrBackground = (HBRUSH)GetStockObject(LTGRAY_BRUSH);
-	wc.lpszClassName = _windowName;
-	wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
-	RegisterClassEx(&wc);
+	Wndclass.hIcon = (HICON)LoadImage(NULL, _iconName, IMAGE_ICON, 0, 0, LR_SHARED | LR_LOADFROMFILE);
+	Wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	Wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	Wndclass.lpszClassName = _windowName;
+	Wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+	RegisterClassEx(&Wndclass);
 
 	//ウィンドウの作成
-	m_hWnd = CreateWindow(_windowName, _windowName, WS_OVERLAPPEDWINDOW,
-		0, 0, _width, _height, 0, 0, _hInstance, 0);
+	m_hWnd = CreateWindow(
+		_windowName,
+		_windowName,
+		WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MINIMIZEBOX & ~WS_MAXIMIZEBOX | WS_VISIBLE,
+		0,
+		0,
+		_width,
+		_height,
+		NULL,
+		NULL,
+		_hInstance,
+		NULL);
+
 	if (!m_hWnd)
 	{
 		return E_FAIL;
@@ -75,26 +96,3 @@ HRESULT Lib::Window::InitWindow(HINSTANCE _hInstance, INT _width, INT _height, L
 
 	return S_OK;
 }
-
-LRESULT CALLBACK Lib::Window::WindowProc(HWND _hwnd, UINT _message, WPARAM _wParam, LPARAM _lParam)
-{
-	switch (_message)
-	{
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		return 0;
-		break;
-	case WM_KEYDOWN:
-		switch (static_cast<CHAR>(_wParam))
-		{
-		case VK_ESCAPE:
-			PostQuitMessage(0);
-			return 0;
-			break;
-		}
-		break;
-	}
-
-	return DefWindowProc(_hwnd, _message, _wParam, _lParam);
-}
-

@@ -6,21 +6,22 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 #include <windows.h>
+#include "SingletonWrapper.h"
 
 namespace Lib
 {
 	class Window
 	{
+		friend SingletonWrapper<Window>;
 	public:
-		inline static Window* GetInstance()
-		{
-			static Window Instance;
-			return &Instance;
-		}
-
 		inline HWND GetWindowHandle() const
 		{
 			return m_hWnd;
+		}
+
+		inline HINSTANCE GetInstanceHandle() const
+		{
+			return m_hInstance;
 		}
 
 		/**
@@ -29,9 +30,10 @@ namespace Lib
 		 * @param[in] _width ウィンドウの横幅
 		 * @param[in] _height ウィンドウの縦幅
 		 * @param[in] _windowName ウィンドウの名前
+		 * @param[in] _wndProc ウィンドウプロシージャの関数ポインタ
 		 * @return 成功したらS_OK
 		 */
-		HRESULT InitWindow(HINSTANCE _hInstance, INT _width, INT _height, LPCTSTR _windowName);
+		HRESULT DispWindow(HINSTANCE _hInstance, INT _width, INT _height, LPCTSTR _windowName,LRESULT CALLBACK _wndProc(HWND, UINT, WPARAM, LPARAM));
 
 		/**
 		 * ウィンドウの生成(アイコンあり)
@@ -40,15 +42,18 @@ namespace Lib
 		 * @param[in] _height ウィンドウの縦幅
 		 * @param[in] _windowName ウィンドウの名前
 		 * @param[in] _iconName アイコンのパス
+		 * @param[in] _wndProc ウィンドウプロシージャの関数ポインタ
 		 * @return 成功したらS_OK
 		 */
-		HRESULT InitWindow(HINSTANCE _hInstance, INT _width, INT _height, LPCTSTR _windowName, LPCTSTR _iconName);
+		HRESULT DispWindow(HINSTANCE _hInstance, INT _width, INT _height, LPCTSTR _windowName, LPCTSTR _iconName, LRESULT CALLBACK _wndProc(HWND, UINT, WPARAM, LPARAM));
 
 	private:
-		Window();
-		~Window();
+		Window() :
+			m_hInstance(NULL),
+			m_hWnd(NULL){};
+		~Window(){};
 
-		static LRESULT CALLBACK WindowProc(HWND _hwnd, UINT _message, WPARAM _wParam, LPARAM _lParam);
+		HINSTANCE m_hInstance;
 		HWND m_hWnd;
 
 	};

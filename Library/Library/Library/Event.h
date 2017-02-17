@@ -1,4 +1,9 @@
-﻿#ifndef EVENT_H
+﻿/**
+ * @file   Event.h
+ * @brief  Eventクラスのヘッダファイル
+ * @author kotani
+ */
+#ifndef EVENT_H
 #define EVENT_H
 
 namespace Lib

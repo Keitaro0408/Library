@@ -1,13 +1,15 @@
-﻿#include "EventManager.h"
+﻿/**
+ * @file   EventManager.cpp
+ * @brief  EventManagerクラスの実装
+ * @author kotani
+ */
+#include "EventManager.h"
 #include "Event.h"
 
-Lib::EventManager::EventManager()
-{
-}
 
-Lib::EventManager::~EventManager()
-{
-}
+//----------------------------------------------------------------------------------------------------
+// Public Functions
+//----------------------------------------------------------------------------------------------------
 
 bool Lib::EventManager::AddEvent(std::string _eventName,Event* _pEvent)
 {

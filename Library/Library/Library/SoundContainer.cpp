@@ -1,82 +1,18 @@
 ﻿/**
- * @file   DSoundManager.cpp
- * @brief  DSoundManagerクラスの実装
+ * @file   SoundContainer.h
+ * @brief  SoundContainerクラスの実装
  * @author kotani
  */
-#include "DSoundManager.h"
-#include <mmsystem.h>
-
-Lib::DSoundManager* Lib::DSoundManager::m_pSoundManager = NULL;
+#include "SoundContainer.h"
 
 
-Lib::DSoundManager::DSoundManager() :
-m_pDSound8(NULL),
-m_hWnd(NULL)
+void Lib::SoundContainer::Init(HWND _hWnd, IDirectSound8* _pDSound8)
 {
-}
-
-Lib::DSoundManager::~DSoundManager()
-{
-}
-
-bool Lib::DSoundManager::Init(HWND _hWnd)
-{
-	if (m_pDSound8 != NULL)
-	{
-		MessageBox(_hWnd, TEXT("DSoundManagerはすでに初期化されています"), TEXT("エラー"), MB_ICONSTOP);
-		return false;
-	}
-
 	m_hWnd = _hWnd;
-
-	if (FAILED(DirectSoundCreate8(NULL, &m_pDSound8, NULL)))
-	{
-		MessageBox(m_hWnd, TEXT("サウンドデバイスの生成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
-		return false;
-	}
-
-	if (FAILED(m_pDSound8->SetCooperativeLevel(m_hWnd, DSSCL_NORMAL)))
-	{
-		MessageBox(m_hWnd, TEXT("協調レベルの設定に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
-		m_pDSound8->Release();
-		return false;
-	}
-	return true;
+	m_pDSound8 = _pDSound8;
 }
 
-void Lib::DSoundManager::Release()
-{
-	if (m_pDSound8 != NULL)
-	{
-		m_pDSound8->Release();
-		m_pDSound8 = NULL;
-	}
-}
-
-void Lib::DSoundManager::SoundOperation(int _index, SOUND_OPERATION _operation)
-{
-	switch (_operation)
-	{
-	case SOUND_PLAY:
-		m_pSound[_index]->Play(0, 0, 0);
-		break;
-	case SOUND_LOOP:
-		m_pSound[_index]->Play(0, 0, DSBPLAY_LOOPING);
-		break;
-	case SOUND_STOP:
-		m_pSound[_index]->Stop();
-		break;
-	case SOUND_RESET:
-		m_pSound[_index]->SetCurrentPosition(0);
-		break;
-	case SOUND_STOP_RESET:
-		m_pSound[_index]->Stop();
-		m_pSound[_index]->SetCurrentPosition(0);
-		break;
-	}
-}
-
-bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
+bool Lib::SoundContainer::LoadSound(LPSTR _pFileName, int* _pIndex)
 {
 	WAVEFORMATEX WaveFormat;
 	BYTE* pWaveData = NULL;
@@ -90,7 +26,7 @@ bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 
 	DSBUFFERDESC DSBufferDesc;
 	DSBufferDesc.dwSize = sizeof(DSBUFFERDESC);
-	DSBufferDesc.dwFlags = 0;
+	DSBufferDesc.dwFlags = DSBCAPS_CTRLVOLUME;
 	DSBufferDesc.dwBufferBytes = WaveSize;
 	DSBufferDesc.dwReserved = 0;
 	DSBufferDesc.lpwfxFormat = &WaveFormat;
@@ -104,7 +40,6 @@ bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 
 	if (pDSBuffer == NULL)
 	{
-		m_pDSound8->Release();
 		MessageBox(m_hWnd, TEXT("サウンドバッファ作成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
 		return false;
 	}
@@ -113,7 +48,6 @@ bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 	DWORD WriteDataLength = 0;
 	if (FAILED(pDSBuffer->Lock(0, 0, &pWriteData, &WriteDataLength, NULL, NULL, DSBLOCK_ENTIREBUFFER)))
 	{
-		m_pDSound8->Release();
 		delete[] pWaveData;
 		MessageBox(m_hWnd, TEXT("サウンドバッファのロックに失敗しました"), TEXT("エラー"), MB_ICONSTOP);
 		return false;
@@ -129,7 +63,7 @@ bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 	return true;
 }
 
-void Lib::DSoundManager::ReleaseSound(int _index)
+void Lib::SoundContainer::ReleaseSound(int _index)
 {
 	if (m_pSound[_index] != NULL)
 	{
@@ -143,7 +77,7 @@ void Lib::DSoundManager::ReleaseSound(int _index)
 // Private Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::DSoundManager::ReadWave(LPSTR _pFileName, WAVEFORMATEX* _pWaveFormat, BYTE** _pWaveData, DWORD* _pWaveSize)
+bool Lib::SoundContainer::ReadWave(LPSTR _pFileName, WAVEFORMATEX* _pWaveFormat, BYTE** _pWaveData, DWORD* _pWaveSize)
 {
 	if (_pFileName == NULL)
 	{

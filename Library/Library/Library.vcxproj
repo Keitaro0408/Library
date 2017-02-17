@@ -11,16 +11,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Library\DSoundManager.cpp" />
-    <ClCompile Include="Library\Event.cpp" />
+    <ClCompile Include="Library\DXInputDevice.cpp" />
+    <ClCompile Include="Library\DSound.cpp" />
+    <ClCompile Include="Library\DX11Manager.cpp" />
     <ClCompile Include="Library\EventManager.cpp" />
+    <ClCompile Include="Library\KeyDevice.cpp" />
     <ClCompile Include="Library\Window.cpp" />
+    <ClCompile Include="Library\MouseDevice.cpp" />
+    <ClCompile Include="Library\SoundContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Library\DSoundManager.h" />
+    <ClInclude Include="Library\DXInputDevice.h" />
+    <ClInclude Include="Library\DSound.h" />
+    <ClInclude Include="Library\DX11Manager.h" />
     <ClInclude Include="Library\Event.h" />
     <ClInclude Include="Library\EventManager.h" />
+    <ClInclude Include="Library\KeyDevice.h" />
     <ClInclude Include="Library\Window.h" />
+    <ClInclude Include="Library\MouseDevice.h" />
+    <ClInclude Include="Library\SingletonWrapper.h" />
+    <ClInclude Include="Library\SoundContainer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65480EA8-8D64-4328-A73F-671C0487AA00}</ProjectGuid>
@@ -56,10 +66,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4005;4717;4006;4221;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
