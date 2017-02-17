@@ -1,5 +1,5 @@
 ﻿/**
- * @file   SoundContainer.h
+ * @file   SoundContainer.cpp
  * @brief  SoundContainerクラスの実装
  * @author kotani
  */
