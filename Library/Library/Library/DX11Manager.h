@@ -1,8 +1,8 @@
 ﻿/**
-* @file   DX11Manager.h
-* @brief  DX11Managerクラスのヘッダファイル
-* @author kotani
-*/
+ * @file   DX11Manager.h
+ * @brief  DX11Managerクラスのヘッダファイル
+ * @author kotani
+ */
 #ifndef DX11MANAGER_H
 #define DX11MANAGER_H
 #include <D3D11.h>

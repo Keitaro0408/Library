@@ -6,6 +6,7 @@
 #ifndef SINGLETON_H
 #define SINGLETON_H
 #include <windows.h>
+
 #define	SINGLETON_CREATE(InstanceType)	 Lib::Singleton<InstanceType>::Create()
 #define	SINGLETON_DELETE(InstanceType)	 Lib::Singleton<InstanceType>::Delete()
 #define	SINGLETON_INSTANCE(InstanceType) Lib::Singleton<InstanceType>::GetInstance()

@@ -67,7 +67,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="SceneBase\GameScene\GameScene.cpp" />
+    <ClCompile Include="SceneBase\SceneBase.cpp" />
+    <ClCompile Include="SceneBase\TitleScene\TitleScene.cpp" />
+    <ClCompile Include="SceneFactory\SceneFactory.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SceneBase\GameScene\GameScene.h" />
+    <ClInclude Include="SceneBase\SceneBase.h" />
+    <ClInclude Include="SceneBase\TitleScene\TitleScene.h" />
+    <ClInclude Include="SceneFactory\SceneFactory.h" />
+    <ClInclude Include="SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

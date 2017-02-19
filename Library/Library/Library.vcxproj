@@ -11,26 +11,36 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Library\CollisionBase.cpp" />
     <ClCompile Include="Library\DXInputDevice.cpp" />
     <ClCompile Include="Library\DSound.cpp" />
     <ClCompile Include="Library\DX11Manager.cpp" />
     <ClCompile Include="Library\EventManager.cpp" />
     <ClCompile Include="Library\KeyDevice.cpp" />
+    <ClCompile Include="Library\TextureManager.cpp" />
+    <ClCompile Include="Library\Vertex2D.cpp" />
     <ClCompile Include="Library\Window.cpp" />
     <ClCompile Include="Library\MouseDevice.cpp" />
-    <ClCompile Include="Library\SoundContainer.cpp" />
+    <ClCompile Include="Library\DSoundContainer.cpp" />
+    <ClCompile Include="Library\TextureLoader.cpp" />
+    <ClCompile Include="Library\DSoundLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\CollisionBase.h" />
     <ClInclude Include="Library\DXInputDevice.h" />
     <ClInclude Include="Library\DSound.h" />
     <ClInclude Include="Library\DX11Manager.h" />
     <ClInclude Include="Library\Event.h" />
     <ClInclude Include="Library\EventManager.h" />
     <ClInclude Include="Library\KeyDevice.h" />
+    <ClInclude Include="Library\TextureManager.h" />
+    <ClInclude Include="Library\Vertex2D.h" />
     <ClInclude Include="Library\Window.h" />
     <ClInclude Include="Library\MouseDevice.h" />
     <ClInclude Include="Library\Singleton.h" />
-    <ClInclude Include="Library\SoundContainer.h" />
+    <ClInclude Include="Library\DSoundContainer.h" />
+    <ClInclude Include="Library\TextureLoader.h" />
+    <ClInclude Include="Library\DSoundLoader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65480EA8-8D64-4328-A73F-671C0487AA00}</ProjectGuid>

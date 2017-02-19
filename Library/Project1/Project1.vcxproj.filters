@@ -13,10 +13,57 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\SceneManager">
+      <UniqueIdentifier>{d08c3af2-d4e9-4c48-a375-28cf42b4de01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\SceneBase">
+      <UniqueIdentifier>{d9d71ff9-da90-4e41-ba2e-7d0791082da8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\SceneBase\GameScene">
+      <UniqueIdentifier>{c047443c-6dde-4ee1-9101-40bcacce881f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\SceneBase\TitleScene">
+      <UniqueIdentifier>{45b05f27-4f03-4944-a4c1-b1ae482c0553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneManager\SceneFactory">
+      <UniqueIdentifier>{eb979a4b-6fbf-4cc2-b8d7-b391d1a16d16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase\SceneBase.cpp">
+      <Filter>ソース ファイル\SceneManager\SceneBase</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase\GameScene\GameScene.cpp">
+      <Filter>ソース ファイル\SceneManager\SceneBase\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase\TitleScene\TitleScene.cpp">
+      <Filter>ソース ファイル\SceneManager\SceneBase\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneFactory\SceneFactory.cpp">
+      <Filter>ソース ファイル\SceneManager\SceneFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SceneManager.h">
+      <Filter>ソース ファイル\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBase\SceneBase.h">
+      <Filter>ソース ファイル\SceneManager\SceneBase</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBase\GameScene\GameScene.h">
+      <Filter>ソース ファイル\SceneManager\SceneBase\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBase\TitleScene\TitleScene.h">
+      <Filter>ソース ファイル\SceneManager\SceneBase\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneFactory\SceneFactory.h">
+      <Filter>ソース ファイル\SceneManager\SceneFactory</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

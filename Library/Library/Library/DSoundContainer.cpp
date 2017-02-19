@@ -1,18 +1,18 @@
 ﻿/**
- * @file   SoundContainer.cpp
- * @brief  SoundContainerクラスの実装
+ * @file   DSoundContainer.cpp
+ * @brief  DSoundContainerクラスの実装
  * @author kotani
  */
-#include "SoundContainer.h"
+#include "DSoundContainer.h"
 
 
-void Lib::SoundContainer::Init(HWND _hWnd, IDirectSound8* _pDSound8)
+void Lib::DSoundContainer::Init(HWND _hWnd, IDirectSound8& _pDSound8)
 {
 	m_hWnd = _hWnd;
-	m_pDSound8 = _pDSound8;
+	m_pDSound8 = &_pDSound8;
 }
 
-bool Lib::SoundContainer::LoadSound(LPSTR _pFileName, int* _pIndex)
+bool Lib::DSoundContainer::LoadSound(LPSTR _pFileName, int* _pIndex)
 {
 	WAVEFORMATEX WaveFormat;
 	BYTE* pWaveData = NULL;
@@ -63,7 +63,7 @@ bool Lib::SoundContainer::LoadSound(LPSTR _pFileName, int* _pIndex)
 	return true;
 }
 
-void Lib::SoundContainer::ReleaseSound(int _index)
+void Lib::DSoundContainer::ReleaseSound(int _index)
 {
 	if (m_pSound[_index] != NULL)
 	{
@@ -77,7 +77,7 @@ void Lib::SoundContainer::ReleaseSound(int _index)
 // Private Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::SoundContainer::ReadWave(LPSTR _pFileName, WAVEFORMATEX* _pWaveFormat, BYTE** _pWaveData, DWORD* _pWaveSize)
+bool Lib::DSoundContainer::ReadWave(LPSTR _pFileName, WAVEFORMATEX* _pWaveFormat, BYTE** _pWaveData, DWORD* _pWaveSize)
 {
 	if (_pFileName == NULL)
 	{

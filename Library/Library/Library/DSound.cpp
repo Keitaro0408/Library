@@ -45,7 +45,7 @@ void Lib::DSound::Release()
 	}
 }
 
-void Lib::DSound::SoundOperation(LPDIRECTSOUNDBUFFER8 _pSoundBuffer, SOUND_OPERATION _operation)
+void Lib::DSound::SoundOperation(LPDIRECTSOUNDBUFFER8& _pSoundBuffer, SOUND_OPERATION _operation)
 {
 	switch (_operation)
 	{
@@ -68,7 +68,7 @@ void Lib::DSound::SoundOperation(LPDIRECTSOUNDBUFFER8 _pSoundBuffer, SOUND_OPERA
 	}
 }
 
-void Lib::DSound::SetVolume(LPDIRECTSOUNDBUFFER8 _pSoundBuffer, int _volume)
+void Lib::DSound::SetVolume(LPDIRECTSOUNDBUFFER8& _pSoundBuffer, int _volume)
 {
 	if (_volume > DSBVOLUME_MAX)
 	{

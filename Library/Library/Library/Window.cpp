@@ -23,7 +23,7 @@ HRESULT Lib::Window::DispWindow(HINSTANCE _hInstance, INT _width, INT _height, L
 	Wndclass.hInstance = _hInstance;
 	Wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	Wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
-	Wndclass.hbrBackground = (HBRUSH)GetStockObject(LTGRAY_BRUSH);
+	Wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	Wndclass.lpszClassName = TEXT(_windowName);
 	Wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 	RegisterClassEx(&Wndclass);

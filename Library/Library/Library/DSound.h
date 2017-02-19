@@ -48,23 +48,23 @@ namespace Lib
 		 * @param[in] _pSoundBuffer 操作するサウンドバッファー
 		 * @param[in] _operation どのような操作をするか
 		 */
-		void SoundOperation(LPDIRECTSOUNDBUFFER8 _pSoundBuffer, SOUND_OPERATION _operation);
+		void SoundOperation(LPDIRECTSOUNDBUFFER8& _pSoundBuffer, SOUND_OPERATION _operation);
 
 		/**
 		 * サウンドの音量調節
 		 * @param[in] _pSoundBuffer 操作するサウンドバッファー
 		 * @param[in] _volume 音量の数値(0が最大音で-10000が無音)
 		 */
-		void SetVolume(LPDIRECTSOUNDBUFFER8 _pSoundBuffer, int _volume);
+		void SetVolume(LPDIRECTSOUNDBUFFER8& _pSoundBuffer, int _volume);
 
 
 		/**
 		 * directsoundのインターフェイスを取得する
 		 * @return directsoundのインターフェイス
 		 */
-		inline IDirectSound8* const GetIDSound()  const
+		inline IDirectSound8& GetIDSound()
 		{
-			return m_pDSound8;
+			return *m_pDSound8;
 		}
 
 	private:

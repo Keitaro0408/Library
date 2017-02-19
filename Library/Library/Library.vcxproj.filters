@@ -37,6 +37,30 @@
     <Filter Include="Library\Singleton">
       <UniqueIdentifier>{8f857bc4-93e8-4c88-85ac-45dd07e0fa2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library\Vertex2D">
+      <UniqueIdentifier>{d0ee1969-bc25-431d-a921-b1450e77efe1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Collision">
+      <UniqueIdentifier>{8e879c7e-6e16-4b3b-8183-1d3f666864ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Collision\CollisionBase">
+      <UniqueIdentifier>{9aa4a595-d106-4b03-b713-f50d4c0a5a64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Collision\CollisionManager">
+      <UniqueIdentifier>{805db5b1-3170-475f-a16b-23c6cb05451b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Texture">
+      <UniqueIdentifier>{3bc1bfef-d8ae-43aa-9aea-3d2850df3a69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Texture\TextureContainer">
+      <UniqueIdentifier>{416f24df-d46c-4a7e-91a8-80d628358949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Texture\TextureLoader">
+      <UniqueIdentifier>{b0a8d34f-c598-4b8f-998f-1ddd3fa0c8e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\DirectSound\SoundLoader">
+      <UniqueIdentifier>{6ad76f63-2cc1-487c-bca1-324ecceadda4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\EventManager.cpp">
@@ -57,11 +81,26 @@
     <ClCompile Include="Library\KeyDevice.cpp">
       <Filter>Library\DXInputDevice\KeyDevice</Filter>
     </ClCompile>
-    <ClCompile Include="Library\SoundContainer.cpp">
-      <Filter>Library\DirectSound\SoundContainer</Filter>
-    </ClCompile>
     <ClCompile Include="Library\DSound.cpp">
       <Filter>Library\DirectSound\DSound</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Vertex2D.cpp">
+      <Filter>Library\Vertex2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\CollisionBase.cpp">
+      <Filter>Library\Collision\CollisionBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TextureManager.cpp">
+      <Filter>Library\Texture\TextureContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TextureLoader.cpp">
+      <Filter>Library\Texture\TextureLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\DSoundLoader.cpp">
+      <Filter>Library\DirectSound\SoundLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\DSoundContainer.cpp">
+      <Filter>Library\DirectSound\SoundContainer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,14 +125,29 @@
     <ClInclude Include="Library\KeyDevice.h">
       <Filter>Library\DXInputDevice\KeyDevice</Filter>
     </ClInclude>
-    <ClInclude Include="Library\SoundContainer.h">
-      <Filter>Library\DirectSound\SoundContainer</Filter>
-    </ClInclude>
     <ClInclude Include="Library\DSound.h">
       <Filter>Library\DirectSound\DSound</Filter>
     </ClInclude>
     <ClInclude Include="Library\Singleton.h">
       <Filter>Library\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Vertex2D.h">
+      <Filter>Library\Vertex2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\CollisionBase.h">
+      <Filter>Library\Collision\CollisionBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TextureManager.h">
+      <Filter>Library\Texture\TextureContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TextureLoader.h">
+      <Filter>Library\Texture\TextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DSoundLoader.h">
+      <Filter>Library\DirectSound\SoundLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DSoundContainer.h">
+      <Filter>Library\DirectSound\SoundContainer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

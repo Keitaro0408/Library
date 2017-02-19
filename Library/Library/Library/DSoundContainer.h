@@ -1,6 +1,6 @@
 ﻿/**
- * @file   SoundContainer.h
- * @brief  SoundContainerクラスのヘッダファイル
+ * @file   DSoundContainer.h
+ * @brief  DSoundContainerクラスのヘッダファイル
  * @author kotani
  */
 #ifndef SOUNDCONTAINER_H
@@ -11,16 +11,16 @@
 
 namespace Lib
 {
-	class SoundContainer
+	class DSoundContainer
 	{
-		friend Singleton<SoundContainer>;
+		friend Singleton<DSoundContainer>;
 	public:
 		/**
 		 * 初期化処理
 		 * @param[in] _hWnd ウィンドウハンドル
 		 * @param[in] _pDSound8 directsoundのインターフェイス
 		 */
-		void Init(HWND _hWnd,IDirectSound8* _pDSound8);
+		void Init(HWND _hWnd,IDirectSound8& _pDSound8);
 
 		/**
 		 * 音声の読み込み
@@ -29,6 +29,8 @@ namespace Lib
 		 * @return 成功したらtrue
 		 */
 		bool LoadSound(LPSTR _pFileName, int* _pIndex);
+
+		void Add();
 
 		/**
 		 * 音声の開放
@@ -41,7 +43,7 @@ namespace Lib
 		 * @param[in] _index 格納先のインデックス
 		 * @return 読み込んだサウンドバッファー
 		 */
-		inline LPDIRECTSOUNDBUFFER8 GetSound(int _index) const
+		inline LPDIRECTSOUNDBUFFER8& GetSound(int _index)
 		{
 			return m_pSound[_index];
 		}
@@ -55,10 +57,10 @@ namespace Lib
 		}
 
 	private:
-		SoundContainer() :
+		DSoundContainer() :
 			m_hWnd(NULL),
 			m_pDSound8(NULL){};
-		~SoundContainer(){};
+		~DSoundContainer(){};
 
 		/**
 		 * waveファイル内のデータを読み出す関数
