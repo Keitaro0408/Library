@@ -29,7 +29,7 @@
     <ClInclude Include="Library\KeyDevice.h" />
     <ClInclude Include="Library\Window.h" />
     <ClInclude Include="Library\MouseDevice.h" />
-    <ClInclude Include="Library\SingletonWrapper.h" />
+    <ClInclude Include="Library\Singleton.h" />
     <ClInclude Include="Library\SoundContainer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

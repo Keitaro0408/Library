@@ -8,13 +8,13 @@
 
 #include <map>
 #include "Event.h"
-#include "SingletonWrapper.h"
+#include "Singleton.h"
 
 namespace Lib
 {
 	class EventManager
 	{
-		friend SingletonWrapper<EventManager>;
+		friend Singleton<EventManager>;
 	public:
 		bool AddEvent(std::string _eventName, Event* _pEvent);
 		bool CallEvent(std::string _eventName,int _eventId);

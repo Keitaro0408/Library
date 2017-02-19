@@ -7,13 +7,13 @@
 #define SOUNDCONTAINER_H
 #include <dsound.h>
 #include <vector>
-#include "SingletonWrapper.h"
+#include "Singleton.h"
 
 namespace Lib
 {
 	class SoundContainer
 	{
-		friend SingletonWrapper<SoundContainer>;
+		friend Singleton<SoundContainer>;
 	public:
 		/**
 		 * 初期化処理

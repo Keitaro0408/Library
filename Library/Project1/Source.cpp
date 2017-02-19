@@ -4,7 +4,7 @@
 #include <Library\DX11Manager.h>
 #include <Library\DSound.h>
 #include <Library\SoundContainer.h>
-#include <Library\SingletonWrapper.h>
+#include <Library\Singleton.h>
 #include <Library\DXInputDevice.h>
 
 #define WINDOW_WIDTH 1280

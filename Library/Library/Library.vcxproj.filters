@@ -25,9 +25,6 @@
     <Filter Include="Library\DXInputDevice\KeyDevice">
       <UniqueIdentifier>{0bea345b-3758-4ec2-8d7d-5d9a41d2476e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\SingletonWrapper">
-      <UniqueIdentifier>{8f857bc4-93e8-4c88-85ac-45dd07e0fa2f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Library\DirectSound">
       <UniqueIdentifier>{ed512f04-b94e-4f0d-9f39-d6f298a7800f}</UniqueIdentifier>
     </Filter>
@@ -36,6 +33,9 @@
     </Filter>
     <Filter Include="Library\DirectSound\DSound">
       <UniqueIdentifier>{a8d298c3-d599-48c8-8a09-e2435f63e18d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Singleton">
+      <UniqueIdentifier>{8f857bc4-93e8-4c88-85ac-45dd07e0fa2f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -86,14 +86,14 @@
     <ClInclude Include="Library\KeyDevice.h">
       <Filter>Library\DXInputDevice\KeyDevice</Filter>
     </ClInclude>
-    <ClInclude Include="Library\SingletonWrapper.h">
-      <Filter>Library\SingletonWrapper</Filter>
-    </ClInclude>
     <ClInclude Include="Library\SoundContainer.h">
       <Filter>Library\DirectSound\SoundContainer</Filter>
     </ClInclude>
     <ClInclude Include="Library\DSound.h">
       <Filter>Library\DirectSound\DSound</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Singleton.h">
+      <Filter>Library\Singleton</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

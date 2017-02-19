@@ -8,7 +8,7 @@
 #include <windows.h>
 #include <dsound.h>
 #include <vector>
-#include "SingletonWrapper.h"
+#include "Singleton.h"
 
 namespace Lib
 {
@@ -29,7 +29,7 @@ namespace Lib
 	 */
 	class DSound
 	{
-		friend SingletonWrapper<DSound>;
+		friend Singleton<DSound>;
 	public:
 		/**
 		 * DSoundManagerクラスの初期化関数

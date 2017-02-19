@@ -6,7 +6,7 @@
 #ifndef MOUSEDEVICE_H
 #define MOUSEDEVICE_H
 #include <dinput.h>	
-#include "SingletonWrapper.h"
+#include "Singleton.h"
 
 namespace Lib
 {
@@ -47,7 +47,7 @@ namespace Lib
 
 	class MouseDevice
 	{
-		friend SingletonWrapper<MouseDevice>;
+		friend Singleton<MouseDevice>;
 	public:
 		/**
 		 * 初期化関数

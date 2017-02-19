@@ -1,14 +1,14 @@
 ﻿/**
- * @file   SingletonWrapper.h
- * @brief  SingletonWrapperクラスのヘッダファイル
+ * @file   Singleton.h
+ * @brief  Singletonクラスのヘッダファイル
  * @author kotani
  */
-#ifndef SINGLETONBASE_H
-#define SINGLETONBASE_H
+#ifndef SINGLETON_H
+#define SINGLETON_H
 #include <windows.h>
-#define	SINGLETON_CREATE(InstanceType)	 Lib::SingletonWrapper<InstanceType>::Create()
-#define	SINGLETON_DELETE(InstanceType)	 Lib::SingletonWrapper<InstanceType>::Delete()
-#define	SINGLETON_INSTANCE(InstanceType) Lib::SingletonWrapper<InstanceType>::GetInstance()
+#define	SINGLETON_CREATE(InstanceType)	 Lib::Singleton<InstanceType>::Create()
+#define	SINGLETON_DELETE(InstanceType)	 Lib::Singleton<InstanceType>::Delete()
+#define	SINGLETON_INSTANCE(InstanceType) Lib::Singleton<InstanceType>::GetInstance()
 
 namespace Lib
 {
@@ -16,7 +16,7 @@ namespace Lib
 	 * シングルトンクラスを使う際にこいつを使う
 	 */
 	template <class T> 
-	class SingletonWrapper {
+	class Singleton {
 	public:
 		//typedefをしないとクラステンプレート外からは使えない
 		typedef T InstanceType;
@@ -49,18 +49,18 @@ namespace Lib
 		}
 
 	private:
-		SingletonWrapper(const SingletonWrapper& obj);
-		SingletonWrapper& operator=(const SingletonWrapper& obj);
+		Singleton(const Singleton& obj);
+		Singleton& operator=(const Singleton& obj);
 
-		SingletonWrapper(){};
-		virtual ~SingletonWrapper(){};
+		Singleton(){};
+		virtual ~Singleton(){};
 		static T* m_Instance;
 
 	};
 
 	template <class Type>
-	//SingletonWrapper<Type>::InstanceTypeを型と明示的に宣言する
-	typename SingletonWrapper<Type>::InstanceType* SingletonWrapper<Type>::m_Instance = NULL;
+	//Singleton<Type>::InstanceTypeを型と明示的に宣言している
+	typename Singleton<Type>::InstanceType* Singleton<Type>::m_Instance = NULL;
 }
 
 #endif

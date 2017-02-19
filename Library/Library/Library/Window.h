@@ -6,13 +6,13 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 #include <windows.h>
-#include "SingletonWrapper.h"
+#include "Singleton.h"
 
 namespace Lib
 {
 	class Window
 	{
-		friend SingletonWrapper<Window>;
+		friend Singleton<Window>;
 	public:
 		inline HWND GetWindowHandle() const
 		{

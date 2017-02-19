@@ -7,13 +7,13 @@
 #define DX11MANAGER_H
 #include <D3D11.h>
 #include <Windows.h>
-#include "SingletonWrapper.h"
+#include "Singleton.h"
 
 namespace Lib
 {
 	class DX11Manager
 	{
-		friend SingletonWrapper<DX11Manager>;
+		friend Singleton<DX11Manager>;
 	public:
 		/**
 		 * スクリーンの設定を切り替える関数

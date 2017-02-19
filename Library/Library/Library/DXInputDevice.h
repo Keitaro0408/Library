@@ -7,13 +7,13 @@
 #define DXINPUTDEVICE_H
 #include "MouseDevice.h"
 #include "KeyDevice.h"
-#include "SingletonWrapper.h"
+#include "Singleton.h"
 
 namespace Lib
 {
 	class DXInputDevice
 	{
-		friend SingletonWrapper<DXInputDevice>;
+		friend Singleton<DXInputDevice>;
 	public:
 		/**
 		 * 初期化処理

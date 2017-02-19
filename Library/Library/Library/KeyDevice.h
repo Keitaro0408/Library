@@ -6,7 +6,7 @@
 #ifndef KEYDEVICE_H
 #define KEYDEVICE_H
 #include <dinput.h>	
-#include "SingletonWrapper.h"
+#include "Singleton.h"
 
 namespace Lib
 {
@@ -23,7 +23,7 @@ namespace Lib
 
 	class KeyDevice
 	{
-		friend SingletonWrapper<KeyDevice>;
+		friend Singleton<KeyDevice>;
 	public:
 		/**
 		 * KeyDeviceの初期化関数
