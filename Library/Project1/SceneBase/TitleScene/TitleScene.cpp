@@ -4,6 +4,9 @@
  * @author kotani
  */
 #include "TitleScene.h"
+#include <Library\DSound.h>
+#include <Library\DSoundContainer.h>
+#include <Library\DSoundLoader.h>
 
 
 TitleScene::TitleScene() :
@@ -19,6 +22,7 @@ SceneBase::SceneID TitleScene::Control()
 {
 	SceneID NextSceneID = m_SceneID;
 
+	NextSceneID = SCENE_GAME;
 	return NextSceneID;
 }
 

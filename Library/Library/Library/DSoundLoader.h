@@ -46,7 +46,6 @@ namespace Lib
 	};
 }
 
-IDirectSound8* Lib::DSoundLoader::m_pDSound8 = NULL;
 
 
 #endif

@@ -38,6 +38,7 @@ public:
 private:
 	TitleScene(const TitleScene&);
 	void operator=(const TitleScene&);
+	int m_SoundIndex;
 
 };
 

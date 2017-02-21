@@ -22,7 +22,7 @@ namespace Lib
 		 * @param[in] _pDeviceContext 描画などに利用するDirectX11のデバイスコンテキスト
 		 * @param[in] _hWnd 2dの矩形を描画するウィンドウのハンドル
 		 */
-		Vertex2D(ID3D11Device& _pDevice, ID3D11DeviceContext& _pDeviceContext, HWND _hWnd);
+		Vertex2D(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext, HWND _hWnd);
 
 		/**
 		 * Vertex2Dクラスのデストラクタ

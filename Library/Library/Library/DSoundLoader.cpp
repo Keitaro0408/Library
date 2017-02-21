@@ -5,6 +5,8 @@
  */
 #include "DSoundLoader.h"
 
+IDirectSound8* Lib::DSoundLoader::m_pDSound8 = NULL;
+
 
 //----------------------------------------------------------------------------------------------------
 // Public Functions

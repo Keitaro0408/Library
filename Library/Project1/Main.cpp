@@ -9,6 +9,8 @@
 #include <Library\Singleton.h>
 #include <Library\DXInputDevice.h>
 #include <Library\DSoundLoader.h>
+#include <Library\TextureContainer.h>
+#include <Library\TextureLoader.h>
 
 #include "SceneManager.h"
 #define WINDOW_WIDTH 1280
@@ -29,7 +31,11 @@ void Init(HWND _hWnd)
 	SINGLETON_INSTANCE(Lib::DSound).Init(_hWnd);
 
 	SINGLETON_CREATE(Lib::DSoundContainer);
-	SINGLETON_INSTANCE(Lib::DSoundLoader).Init(SINGLETON_INSTANCE(Lib::DSound).GetIDSound());
+	Lib::DSoundLoader::Init(SINGLETON_INSTANCE(Lib::DSound).GetIDSound());
+
+	//テクスチャ
+	SINGLETON_CREATE(Lib::TextureContainer);
+	Lib::TextureLoader::Init(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice());
 
 	//DirectInput関係
 	SINGLETON_CREATE(Lib::DXInputDevice);
@@ -55,9 +61,9 @@ void Exit()
 	SINGLETON_INSTANCE(Lib::DXInputDevice).Release();
 	SINGLETON_DELETE(Lib::DXInputDevice);
 
-	SINGLETON_INSTANCE(Lib::DSoundContainer).ClearBuffer();
-	SINGLETON_DELETE(Lib::DSoundContainer);
+	SINGLETON_DELETE(Lib::TextureContainer);
 
+	SINGLETON_DELETE(Lib::DSoundContainer);
 	SINGLETON_INSTANCE(Lib::DSound).Release();
 	SINGLETON_DELETE(Lib::DSound);
 

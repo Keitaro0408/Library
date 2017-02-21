@@ -9,9 +9,9 @@
 const int  Lib::Vertex2D::m_VertexNum = 4;
 const UINT Lib::Vertex2D::m_ColorMask = 0xffffffff;
 
-Lib::Vertex2D::Vertex2D(ID3D11Device& _pDevice, ID3D11DeviceContext& _pDeviceContext, HWND _hWnd) :
-m_pDevice(&_pDevice),
-m_pDeviceContext(&_pDeviceContext),
+Lib::Vertex2D::Vertex2D(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext, HWND _hWnd) :
+m_pDevice(_pDevice),
+m_pDeviceContext(_pDeviceContext),
 m_hWnd(_hWnd),
 m_pVertexShader(NULL),
 m_pVertexCompiledShader(NULL),
@@ -198,7 +198,7 @@ bool Lib::Vertex2D::InitVertexShader()
 {
 	ID3DBlob* pErrors = NULL;
 	if (FAILED(D3DX11CompileFromFile(
-		TEXT("Library\\Vertex2D\\Effect\\Vertex2D.fx"),
+		TEXT("Effect\\Vertex2D.fx"),
 		NULL,
 		NULL,
 		"VS",
@@ -251,7 +251,7 @@ bool Lib::Vertex2D::InitPixelShader()
 	ID3DBlob* pCompiledShader = NULL;
 	ID3DBlob* pErrors = NULL;
 	if (FAILED(D3DX11CompileFromFile(
-		TEXT("Library\\Vertex2D\\Effect\\Vertex2D.fx"),
+		TEXT("Effect\\Vertex2D.fx"),
 		NULL,
 		NULL,
 		"PS",

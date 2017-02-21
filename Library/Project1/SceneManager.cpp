@@ -11,7 +11,7 @@
 SceneManager::SceneManager(HWND _hwnd) :
 m_pScene(NULL),
 m_State(SCENE_CREATE),
-m_NextSceneID(SceneBase::SCENE_GAME),
+m_NextSceneID(SceneBase::SCENE_TITLE),
 m_hWnd(_hwnd),
 m_IsGameEnd(false)
 {

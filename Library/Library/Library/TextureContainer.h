@@ -53,16 +53,12 @@ namespace Lib
 		}
 
 	private:
-		/**
-		 * TextureManagerクラスのコンストラクタ
-		 * @param[in] _pDevice テクスチャの読み込みに使用するDirectX11のデバイス
-		 */
-		TextureContainer(ID3D11Device* _pDevice);
+		TextureContainer(){};
 
 		/**
 		 * TextureManagerクラスのデストラクタ
 		 */
-		~TextureContainer();
+		~TextureContainer(){};
 
 		std::vector<ID3D11ShaderResourceView*>		m_pTextureResourceView;
 

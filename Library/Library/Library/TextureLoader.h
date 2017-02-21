@@ -28,7 +28,6 @@ namespace Lib
 	};
 }
 
-ID3D11Device* Lib::TextureLoader::m_pDevice = NULL;
 
 
 #endif

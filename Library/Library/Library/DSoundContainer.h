@@ -38,6 +38,11 @@ namespace Lib
 			return m_pSound[_index];
 		}
 
+		inline int GetSoundMaxNum()
+		{
+			return m_pSound.size();
+		}
+
 		/**
 		 * サウンドのバッファーを開放する
 		 */
@@ -48,13 +53,11 @@ namespace Lib
 
 	private:
 		DSoundContainer() :
-			m_hWnd(NULL),
-			m_pDSound8(NULL){};
+			m_hWnd(NULL){}
 		~DSoundContainer(){};
 
 		HWND m_hWnd;
 		std::vector<LPDIRECTSOUNDBUFFER8> m_pSound;
-		IDirectSound8* m_pDSound8;
 
 	};
 }

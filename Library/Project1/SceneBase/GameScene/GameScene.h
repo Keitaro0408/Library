@@ -6,7 +6,7 @@
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
 #include "..\SceneBase.h"
-
+#include <Library\Vertex2D.h>
 
 /**
  * ゲームシーンを管理するクラス
@@ -39,10 +39,9 @@ private:
 	GameScene(const GameScene&);
 	void operator=(const GameScene&);
 
-	/**
-	 * キーボードの状態更新
-	 */
-	void KeyUpdate();
+	int m_SoundIndex;
+	int m_TextureIndex;
+	Lib::Vertex2D* m_Vertex;
 
 };
 

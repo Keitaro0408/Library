@@ -1,5 +1,7 @@
 ﻿#include "TextureLoader.h"
 
+ID3D11Device* Lib::TextureLoader::m_pDevice = NULL;
+
 
 //----------------------------------------------------------------------------------------------------
 // Public Functions
