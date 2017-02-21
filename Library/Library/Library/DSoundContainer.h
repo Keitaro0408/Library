@@ -16,21 +16,11 @@ namespace Lib
 		friend Singleton<DSoundContainer>;
 	public:
 		/**
-		 * 初期化処理
-		 * @param[in] _hWnd ウィンドウハンドル
-		 * @param[in] _pDSound8 directsoundのインターフェイス
+		 * サウンドのリソースを追加
+		 * @param[in] _pSound 読み込んだサウンド(NULLだと追加されない)
+		 * @param[out] _index 読み込んだサウンドのインデックス
 		 */
-		void Init(HWND _hWnd,IDirectSound8& _pDSound8);
-
-		/**
-		 * 音声の読み込み
-		 * @param[in] _pFileName 読み込むファイルの名前
-		 * @param[out] _pIndex データの格納先のインデックス
-		 * @return 成功したらtrue
-		 */
-		bool LoadSound(LPSTR _pFileName, int* _pIndex);
-
-		void Add();
+		void Add(LPDIRECTSOUNDBUFFER8 _pSound, int* _index);
 
 		/**
 		 * 音声の開放
@@ -61,15 +51,6 @@ namespace Lib
 			m_hWnd(NULL),
 			m_pDSound8(NULL){};
 		~DSoundContainer(){};
-
-		/**
-		 * waveファイル内のデータを読み出す関数
-		 * @param[in] _pFileName 開くファイルの名前
-		 * @param[out] _pWaveFormat 読み込んだwaveファイルのフォーマット
-		 * @param[out] _pWaveData 読み込んだwaveファイルのデータ
-		 * @param[out] _pWaveSize 読み込んだwaveファイルのサイズ
-		 */
-		bool ReadWave(LPSTR _pFileName, WAVEFORMATEX* _pWaveFormat, BYTE** _pWaveData, DWORD* _pWaveSize);
 
 		HWND m_hWnd;
 		std::vector<LPDIRECTSOUNDBUFFER8> m_pSound;

@@ -1,6 +1,6 @@
 ﻿/**
- * @file   DSoundManager.h
- * @brief  DSoundManagerクラスのヘッダファイル
+ * @file   DSound.h
+ * @brief  DSoundクラスのヘッダファイル
  * @author kotani
  */
 #ifndef DXSOUNDMANAGER_H
@@ -62,9 +62,9 @@ namespace Lib
 		 * directsoundのインターフェイスを取得する
 		 * @return directsoundのインターフェイス
 		 */
-		inline IDirectSound8& GetIDSound()
+		inline IDirectSound8* GetIDSound() const
 		{
-			return *m_pDSound8;
+			return m_pDSound8;
 		}
 
 	private:

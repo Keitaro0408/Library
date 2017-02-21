@@ -1,6 +1,6 @@
 ﻿/**
- * @file   DSoundManager.cpp
- * @brief  DSoundManagerクラスの実装
+ * @file   DSound.cpp
+ * @brief  DSoundクラスの実装
  * @author kotani
  */
 #include "DSound.h"

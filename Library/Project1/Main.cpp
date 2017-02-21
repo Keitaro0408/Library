@@ -2,13 +2,13 @@
 #include <stdio.h>
 #include <thread>
 #include <Library\Window.h>
+#include <Library\TextureLoader.h>
 #include <Library\DX11Manager.h>
 #include <Library\DSound.h>
 #include <Library\DSoundContainer.h>
 #include <Library\Singleton.h>
 #include <Library\DXInputDevice.h>
 #include <Library\DSoundLoader.h>
-
 
 #include "SceneManager.h"
 #define WINDOW_WIDTH 1280
@@ -29,8 +29,7 @@ void Init(HWND _hWnd)
 	SINGLETON_INSTANCE(Lib::DSound).Init(_hWnd);
 
 	SINGLETON_CREATE(Lib::DSoundContainer);
-	SINGLETON_INSTANCE(Lib::DSoundContainer).Init(_hWnd,
-		SINGLETON_INSTANCE(Lib::DSound).GetIDSound());
+	SINGLETON_INSTANCE(Lib::DSoundLoader).Init(SINGLETON_INSTANCE(Lib::DSound).GetIDSound());
 
 	//DirectInput関係
 	SINGLETON_CREATE(Lib::DXInputDevice);
@@ -81,7 +80,6 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	SINGLETON_CREATE(Lib::Window);
 	SINGLETON_INSTANCE(Lib::Window).DispWindow(hInst, WINDOW_WIDTH, WINDOW_HEIGHT, "test", &WindowProc);
 	hWnd = SINGLETON_INSTANCE(Lib::Window).GetWindowHandle();
-
 	Init(hWnd);
 
 #if FULLSCREEN

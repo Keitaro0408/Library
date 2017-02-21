@@ -1,6 +1,6 @@
 ﻿/**
- * @file   TextureManager.h
- * @brief  TextureManagerクラスのヘッダファイル
+ * @file   TextureContainer.h
+ * @brief  TextureContainerクラスのヘッダファイル
  * @author kotani
  */
 #ifndef TEXTUREMANAGER_H
@@ -14,10 +14,15 @@ namespace Lib
 	/**
 	 * テクスチャの管理クラス
 	 */
-	class TextureManager
+	class TextureContainer
 	{
-		friend Singleton<TextureManager>;
+		friend Singleton<TextureContainer>;
 	public:
+		/**
+		 * テクスチャのリソースを追加
+		 * @param[in] _pTextureResourceView 読み込んだテクスチャ(NULLだと追加されない)
+		 * @param[out] _index 読み込んだテクスチャのインデックス
+		 */
 		void Add(ID3D11ShaderResourceView* _pTextureResourceView, int* _index);
 
 		/**
@@ -25,7 +30,7 @@ namespace Lib
 		 * @param[in] _index 取得したいテクスチャのインデックス
 		 * @return テクスチャのリソースビュー
 		 */
-		inline ID3D11ShaderResourceView* GetTexture(int _index)
+		inline ID3D11ShaderResourceView* GetTexture(int _index) const
 		{
 			return m_pTextureResourceView[_index];
 		}
@@ -47,21 +52,18 @@ namespace Lib
 			m_pTextureResourceView.clear();
 		}
 
-		static const int m_InvalidIndex;	//!< TextureManagerクラスがとるインデックスのエラー値
-
 	private:
 		/**
 		 * TextureManagerクラスのコンストラクタ
 		 * @param[in] _pDevice テクスチャの読み込みに使用するDirectX11のデバイス
 		 */
-		TextureManager(ID3D11Device* _pDevice);
+		TextureContainer(ID3D11Device* _pDevice);
 
 		/**
 		 * TextureManagerクラスのデストラクタ
 		 */
-		~TextureManager();
+		~TextureContainer();
 
-		static TextureManager*						m_pTextureManager;
 		std::vector<ID3D11ShaderResourceView*>		m_pTextureResourceView;
 
 	};

@@ -25,17 +25,23 @@ namespace Lib
 	class CollisionBase
 	{
 	public:
-		CollisionBase();
-		virtual ~CollisionBase();
+		CollisionBase(){};
+		virtual ~CollisionBase(){};
 
-		virtual void HitAction() = 0;
+		virtual void HitAction(std::string _CollisionName) = 0;
+
+		bool GetIsHitAction()
+		{
+			return m_isHitAction;
+		}
 
 	protected:
 		D3DXVECTOR2		m_Position;
 		COLLISION_TYPE  m_CollisionType;
 		SQUARE			m_Square;
 		std::string		m_CollisionName; //当たり判定の名前
-		bool			m_isEnable;
+		bool			m_isHitAction;   //当たった時にActionを行うか
+		bool			m_isEnable;		 //判定を行うか
 
 	};
 }

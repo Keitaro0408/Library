@@ -1,6 +1,10 @@
 ﻿#include "TextureLoader.h"
 
 
+//----------------------------------------------------------------------------------------------------
+// Public Functions
+//----------------------------------------------------------------------------------------------------
+
 ID3D11ShaderResourceView* Lib::TextureLoader::Load(LPCTSTR _pFileName)
 {
 	D3DX11_IMAGE_LOAD_INFO LoadInfo;
