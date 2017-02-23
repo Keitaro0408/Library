@@ -14,14 +14,16 @@
 #include <Library\DXInputDevice.h>
 #include <Library\TextureContainer.h>
 #include <Library\TextureLoader.h>
+#include <Library\DirectShowSound.h>
 
 
 GameScene::GameScene() :
 SceneBase(SCENE_GAME)
 {
-	SINGLETON_INSTANCE(Lib::DSoundContainer)
-		.Add(Lib::DSoundLoader::LoadWave("button01a.wav"),&m_SoundIndex);
+	//SINGLETON_INSTANCE(Lib::DSoundContainer)
+	//	.Add(Lib::DSoundLoader::LoadWave("button01a.wav"),&m_SoundIndex);
 
+	SINGLETON_INSTANCE(Lib::DirectShowSound).LoadMediaSound("test.mp3", &m_SoundIndex);
 	SINGLETON_INSTANCE(Lib::TextureContainer)
 		.Add(Lib::TextureLoader::Load("test2.jpg"), &m_TextureIndex);
 
@@ -40,12 +42,14 @@ SceneBase(SCENE_GAME)
 	m_Vertex->Init(&D3DXVECTOR2(1280, 720), uv);
 	m_Vertex->WriteConstantBuffer(&D3DXVECTOR2(640, 360));
 	m_Vertex->SetTexture(SINGLETON_INSTANCE(Lib::TextureContainer).GetTexture(m_TextureIndex));
+	SINGLETON_INSTANCE(Lib::DirectShowSound).SoundOperation(m_SoundIndex, Lib::SOUND_LOOP);
 
 }
 
 GameScene::~GameScene()
 {
 	m_Vertex->Release();
+	SINGLETON_INSTANCE(Lib::DirectShowSound).ReleaseMediaSound(m_SoundIndex);
 	delete m_Vertex;
 	SINGLETON_INSTANCE(Lib::TextureContainer).ReleaseTexture(m_TextureIndex);
 	int SoundMax = SINGLETON_INSTANCE(Lib::DSoundContainer).GetSoundMaxNum();
@@ -64,12 +68,20 @@ SceneBase::SceneID GameScene::Control()
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_PUSH)
 	{
 		isPlay =! isPlay;
-		SINGLETON_INSTANCE(Lib::DSound).SoundOperation(
-			SINGLETON_INSTANCE(Lib::DSoundContainer).GetSound(m_SoundIndex), Lib::SOUND_RESET);
-		SINGLETON_INSTANCE(Lib::DSound).SoundOperation(
-			SINGLETON_INSTANCE(Lib::DSoundContainer).GetSound(m_SoundIndex), Lib::SOUND_PLAY);
+		//SINGLETON_INSTANCE(Lib::DSound).SoundOperation(
+		//	SINGLETON_INSTANCE(Lib::DSoundContainer).GetSound(m_SoundIndex), Lib::SOUND_RESET);
+		//SINGLETON_INSTANCE(Lib::DSound).SoundOperation(
+		//	SINGLETON_INSTANCE(Lib::DSoundContainer).GetSound(m_SoundIndex), Lib::SOUND_PLAY);
+		if (isPlay)
+		{
+			SINGLETON_INSTANCE(Lib::DirectShowSound).SoundOperation(m_SoundIndex,Lib::SOUND_STOP);
+		}
+		else
+		{
+			SINGLETON_INSTANCE(Lib::DirectShowSound).SoundOperation(m_SoundIndex, Lib::SOUND_LOOP);
+		}
 	}
-	//sound.ChkRoop();
+	SINGLETON_INSTANCE(Lib::DirectShowSound).CheckLoop(m_SoundIndex);
 
 	return m_SceneID;
 }

@@ -5,6 +5,9 @@
 
 namespace Lib
 {
+	/**
+	 * テクスチャを読み込むクラス
+	 */
 	class TextureLoader
 	{
 	public:

@@ -17,11 +17,11 @@ namespace Lib
 	 */
 	enum SOUND_OPERATION
 	{
-		SOUND_PLAY,		//!< サウンドを再生する
-		SOUND_STOP,		//!< サウンドを停止する
-		SOUND_LOOP,		//!< サウンドをループ再生する
-		SOUND_RESET,	//!< サウンドをリセットする
-		SOUND_STOP_RESET//!< サウンドを停止してリセットする
+		SOUND_PLAY,		  //!< サウンドを再生する
+		SOUND_STOP,		  //!< サウンドを停止する
+		SOUND_LOOP,		  //!< サウンドをループ再生する
+		SOUND_START_PLAY, //!< サウンドをリセットして再生する
+		SOUND_STOP_RESET  //!< サウンドを停止してリセットする
 	};
 
 	/**

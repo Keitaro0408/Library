@@ -11,6 +11,9 @@
 
 namespace Lib
 {
+	/**
+	 * サウンドデータを入れておくクラス
+	 */
 	class DSoundContainer
 	{
 		friend Singleton<DSoundContainer>;

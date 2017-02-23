@@ -8,9 +8,12 @@
 #include <dsound.h>
 #include "Singleton.h"
 
-// TODO: 使いづらかったらUtilityでまとめよう
+// TODO: 使いづらかったらManagerでまとめよう
 namespace Lib
 {
+	/**
+	 * サウンドの読み込みをするクラス
+	 */
 	class DSoundLoader
 	{
 	public:

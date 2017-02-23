@@ -12,7 +12,7 @@
 namespace Lib
 {
 	/**
-	 * テクスチャの管理クラス
+	 * テクスチャのデータを入れておく
 	 */
 	class TextureContainer
 	{
@@ -54,10 +54,6 @@ namespace Lib
 
 	private:
 		TextureContainer(){};
-
-		/**
-		 * TextureManagerクラスのデストラクタ
-		 */
 		~TextureContainer(){};
 
 		std::vector<ID3D11ShaderResourceView*>		m_pTextureResourceView;

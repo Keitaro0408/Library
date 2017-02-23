@@ -58,7 +58,7 @@ void Lib::DSound::SoundOperation(LPDIRECTSOUNDBUFFER8& _pSoundBuffer, SOUND_OPER
 	case SOUND_STOP:
 		_pSoundBuffer->Stop();
 		break;
-	case SOUND_RESET:
+	case SOUND_START_PLAY:
 		_pSoundBuffer->SetCurrentPosition(0);
 		break;
 	case SOUND_STOP_RESET:
