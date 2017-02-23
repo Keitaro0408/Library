@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Library\DirectShowSound.cpp" />
     <ClCompile Include="Library\CollisionManager.cpp" />
     <ClCompile Include="Library\DXInputDevice.cpp" />
     <ClCompile Include="Library\DSound.cpp" />
@@ -26,6 +27,7 @@
     <ClCompile Include="Library\DSoundLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\DirectShowSound.h" />
     <ClInclude Include="Library\CollisionManager.h" />
     <ClInclude Include="Library\CollisionBase.h" />
     <ClInclude Include="Library\DXInputDevice.h" />

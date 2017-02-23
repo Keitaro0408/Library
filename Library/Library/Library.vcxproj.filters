@@ -61,7 +61,7 @@
     <Filter Include="Library\DirectSound\DSoundLoader">
       <UniqueIdentifier>{6ad76f63-2cc1-487c-bca1-324ecceadda4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\MediaPlayer">
+    <Filter Include="Library\DirectShowSound">
       <UniqueIdentifier>{7d69f67c-eb3b-48d5-bfda-63d8df39fa22}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -104,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="Library\CollisionManager.cpp">
       <Filter>Library\Collision\CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\DirectShowSound.cpp">
+      <Filter>Library\DirectShowSound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="Library\CollisionManager.h">
       <Filter>Library\Collision\CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DirectShowSound.h">
+      <Filter>Library\DirectShowSound</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
