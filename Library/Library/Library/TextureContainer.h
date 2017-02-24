@@ -3,8 +3,8 @@
  * @brief  TextureContainerクラスのヘッダファイル
  * @author kotani
  */
-#ifndef TEXTUREMANAGER_H
-#define TEXTUREMANAGER_H
+#ifndef TEXTURECONTAINER_H
+#define TEXTURECONTAINER_H
 #include <D3DX11.h>
 #include <vector>
 #include "Singleton.h"
@@ -20,7 +20,7 @@ namespace Lib
 	public:
 		/**
 		 * テクスチャのリソースを追加
-		 * @param[in] _pTextureResourceView 読み込んだテクスチャ(NULLだと追加されない)
+		 * @param[in] _pTextureResourceView 読み込んだテクスチャ
 		 * @param[out] _index 読み込んだテクスチャのインデックス
 		 */
 		void Add(ID3D11ShaderResourceView* _pTextureResourceView, int* _index);

@@ -12,11 +12,8 @@
 
 void Lib::TextureContainer::Add(ID3D11ShaderResourceView* _pTextureResourceView, int* _index)
 {
-	if (_pTextureResourceView != NULL)
-	{
-		*_index = m_pTextureResourceView.size();
-		m_pTextureResourceView.push_back(_pTextureResourceView);
-	}
+	*_index = m_pTextureResourceView.size();
+	m_pTextureResourceView.push_back(_pTextureResourceView);
 }
 
 void Lib::TextureContainer::ReleaseTexture(int _index)
