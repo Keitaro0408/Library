@@ -10,6 +10,9 @@
 
 namespace Lib
 {
+	/**
+	 * ウィンドウの生成をしてくれるクラス
+	 */
 	class Window
 	{
 		friend Singleton<Window>;

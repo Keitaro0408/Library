@@ -25,6 +25,7 @@
     <ClCompile Include="Library\DSoundContainer.cpp" />
     <ClCompile Include="Library\TextureLoader.cpp" />
     <ClCompile Include="Library\DSoundLoader.cpp" />
+    <ClCompile Include="Library\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Library\DirectShowSound.h" />
@@ -44,6 +45,7 @@
     <ClInclude Include="Library\DSoundContainer.h" />
     <ClInclude Include="Library\TextureLoader.h" />
     <ClInclude Include="Library\DSoundLoader.h" />
+    <ClInclude Include="Library\TextureManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65480EA8-8D64-4328-A73F-671C0487AA00}</ProjectGuid>
