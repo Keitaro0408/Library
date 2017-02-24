@@ -1,20 +1,15 @@
-﻿/**
- * @file   DSound.h
- * @brief  DSoundクラスのヘッダファイル
- * @author kotani
- */
-#ifndef DXSOUNDMANAGER_H
-#define DXSOUNDMANAGER_H
-#include <windows.h>
-#include <dsound.h>
-#include <vector>
+﻿#ifndef DSOUNDMANAGER_H
+#define DSOUNDMANAGER_H
 #include "Singleton.h"
+#include "DSound.h"
+#include "DSoundContainer.h"
+#include "DSoundLoader.h"
 
 namespace Lib
 {
 	/**
-	 * サウンドを操作するためのenum
-	 */
+	* サウンドを操作するためのenum
+	*/
 	enum SOUND_OPERATION
 	{
 		SOUND_PLAY,		  //!< サウンドを再生する
@@ -24,12 +19,9 @@ namespace Lib
 		SOUND_STOP_RESET  //!< サウンドを停止してリセットする
 	};
 
-	/**
-	 * サウンドの再生をするクラス
-	 */
-	class DSound
+	class DSoundManager
 	{
-		friend Singleton<DSound>;
+		friend Singleton<DSoundManager>;
 	public:
 		/**
 		 * DSoundManagerクラスの初期化関数
@@ -45,46 +37,45 @@ namespace Lib
 
 		/**
 		 * サウンドの操作関数
-		 * @param[in] _pSoundBuffer 操作するサウンドバッファー
+		 * @param[in] _pSoundBuffer 操作するサウンドのインデックス
 		 * @param[in] _operation どのような操作をするか
 		 */
-		void SoundOperation(LPDIRECTSOUNDBUFFER8& _pSoundBuffer, SOUND_OPERATION _operation);
+		void SoundOperation(int _index, SOUND_OPERATION _operation);
 
 		/**
 		 * サウンドの音量調節
-		 * @param[in] _pSoundBuffer 操作するサウンドバッファー
+		 * @param[in] _index 操作するサウンドのインデックス
 		 * @param[in] _volume 音量の数値(0が最大音で-10000が無音)
 		 */
-		void SetVolume(LPDIRECTSOUNDBUFFER8& _pSoundBuffer, int _volume);
-
+		void SetVolume(int _index, int _volume);
 
 		/**
-		 * directsoundのインターフェイスを取得する
-		 * @return directsoundのインターフェイス
+		 * サウンドの読み込み
+		 * @param[in] _pFileName 読み込むサウンドのパス
+		 * @param[out] _index 読み込んだサウンドへのインデックスが入る
+		 * @return 成功すればtrue
 		 */
-		inline IDirectSound8* GetIDSound() const
+		bool Load(LPCTSTR _pFileName, int* _index);
+
+		/**
+		 * サウンドの開放
+		 * @param[in] _index 開放するサウンドのインデックス
+		 */
+		inline void ReleaseSound(int _index)
 		{
-			return m_pDSound8;
+			SINGLETON_INSTANCE(DSoundContainer).ReleaseSound(_index);
 		}
 
 	private:
-		/**
-		 * DSoundクラスのコンストラクタ
-		 */
-		DSound() :
+		DSoundManager() :
 			m_pDSound8(NULL),
 			m_hWnd(NULL){};
-
-		/**
-		 * DSoundクラスのデストラクタ
-		 */
-		~DSound(){};
+		~DSoundManager(){};
 
 		IDirectSound8*					  m_pDSound8;
 		HWND							  m_hWnd;
 
 	};
 }
-
 
 #endif

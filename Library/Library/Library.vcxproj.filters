@@ -25,12 +25,6 @@
     <Filter Include="Library\DXInputDevice\KeyDevice">
       <UniqueIdentifier>{0bea345b-3758-4ec2-8d7d-5d9a41d2476e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\DirectSound">
-      <UniqueIdentifier>{ed512f04-b94e-4f0d-9f39-d6f298a7800f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Library\DirectSound\DSound">
-      <UniqueIdentifier>{a8d298c3-d599-48c8-8a09-e2435f63e18d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Library\Singleton">
       <UniqueIdentifier>{8f857bc4-93e8-4c88-85ac-45dd07e0fa2f}</UniqueIdentifier>
     </Filter>
@@ -46,26 +40,26 @@
     <Filter Include="Library\Collision\CollisionManager">
       <UniqueIdentifier>{805db5b1-3170-475f-a16b-23c6cb05451b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\Texture">
-      <UniqueIdentifier>{3bc1bfef-d8ae-43aa-9aea-3d2850df3a69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Library\DirectSound\DSoundContainer">
-      <UniqueIdentifier>{7f61d901-f568-4faf-bdd5-d4a6ea495727}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Library\DirectSound\DSoundLoader">
-      <UniqueIdentifier>{6ad76f63-2cc1-487c-bca1-324ecceadda4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Library\DirectShowSound">
       <UniqueIdentifier>{7d69f67c-eb3b-48d5-bfda-63d8df39fa22}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\Texture\TextureManager">
+    <Filter Include="Library\TextureManager">
       <UniqueIdentifier>{75a719a1-89b6-445a-878f-03059441a847}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\Texture\TextureManager\TextureContainer">
+    <Filter Include="Library\TextureManager\TextureContainer">
       <UniqueIdentifier>{416f24df-d46c-4a7e-91a8-80d628358949}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\Texture\TextureManager\TextureLoader">
+    <Filter Include="Library\TextureManager\TextureLoader">
       <UniqueIdentifier>{b0a8d34f-c598-4b8f-998f-1ddd3fa0c8e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\DSoundManager">
+      <UniqueIdentifier>{ed512f04-b94e-4f0d-9f39-d6f298a7800f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\DSoundManager\DSoundContainer">
+      <UniqueIdentifier>{7f61d901-f568-4faf-bdd5-d4a6ea495727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\DSoundManager\DSoundLoader">
+      <UniqueIdentifier>{6ad76f63-2cc1-487c-bca1-324ecceadda4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -87,23 +81,20 @@
     <ClCompile Include="Library\KeyDevice.cpp">
       <Filter>Library\DXInputDevice\KeyDevice</Filter>
     </ClCompile>
-    <ClCompile Include="Library\DSound.cpp">
-      <Filter>Library\DirectSound\DSound</Filter>
-    </ClCompile>
     <ClCompile Include="Library\Vertex2D.cpp">
       <Filter>Library\Vertex2D</Filter>
     </ClCompile>
     <ClCompile Include="Library\TextureLoader.cpp">
-      <Filter>Library\Texture\TextureManager\TextureLoader</Filter>
+      <Filter>Library\TextureManager\TextureLoader</Filter>
     </ClCompile>
     <ClCompile Include="Library\DSoundLoader.cpp">
-      <Filter>Library\DirectSound\DSoundLoader</Filter>
+      <Filter>Library\DSoundManager\DSoundLoader</Filter>
     </ClCompile>
     <ClCompile Include="Library\DSoundContainer.cpp">
-      <Filter>Library\DirectSound\DSoundContainer</Filter>
+      <Filter>Library\DSoundManager\DSoundContainer</Filter>
     </ClCompile>
     <ClCompile Include="Library\TextureContainer.cpp">
-      <Filter>Library\Texture\TextureManager\TextureContainer</Filter>
+      <Filter>Library\TextureManager\TextureContainer</Filter>
     </ClCompile>
     <ClCompile Include="Library\CollisionManager.cpp">
       <Filter>Library\Collision\CollisionManager</Filter>
@@ -112,7 +103,10 @@
       <Filter>Library\DirectShowSound</Filter>
     </ClCompile>
     <ClCompile Include="Library\TextureManager.cpp">
-      <Filter>Library\Texture\TextureManager</Filter>
+      <Filter>Library\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\DSoundManager.cpp">
+      <Filter>Library\DSoundManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,9 +131,6 @@
     <ClInclude Include="Library\KeyDevice.h">
       <Filter>Library\DXInputDevice\KeyDevice</Filter>
     </ClInclude>
-    <ClInclude Include="Library\DSound.h">
-      <Filter>Library\DirectSound\DSound</Filter>
-    </ClInclude>
     <ClInclude Include="Library\Singleton.h">
       <Filter>Library\Singleton</Filter>
     </ClInclude>
@@ -150,16 +141,16 @@
       <Filter>Library\Collision\CollisionBase</Filter>
     </ClInclude>
     <ClInclude Include="Library\TextureLoader.h">
-      <Filter>Library\Texture\TextureManager\TextureLoader</Filter>
+      <Filter>Library\TextureManager\TextureLoader</Filter>
     </ClInclude>
     <ClInclude Include="Library\DSoundLoader.h">
-      <Filter>Library\DirectSound\DSoundLoader</Filter>
+      <Filter>Library\DSoundManager\DSoundLoader</Filter>
     </ClInclude>
     <ClInclude Include="Library\DSoundContainer.h">
-      <Filter>Library\DirectSound\DSoundContainer</Filter>
+      <Filter>Library\DSoundManager\DSoundContainer</Filter>
     </ClInclude>
     <ClInclude Include="Library\TextureContainer.h">
-      <Filter>Library\Texture\TextureManager\TextureContainer</Filter>
+      <Filter>Library\TextureManager\TextureContainer</Filter>
     </ClInclude>
     <ClInclude Include="Library\CollisionManager.h">
       <Filter>Library\Collision\CollisionManager</Filter>
@@ -168,7 +159,10 @@
       <Filter>Library\DirectShowSound</Filter>
     </ClInclude>
     <ClInclude Include="Library\TextureManager.h">
-      <Filter>Library\Texture\TextureManager</Filter>
+      <Filter>Library\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DSoundManager.h">
+      <Filter>Library\DSoundManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

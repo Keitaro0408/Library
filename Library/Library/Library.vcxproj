@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Library\DSoundManager.cpp" />
     <ClCompile Include="Library\DirectShowSound.cpp" />
     <ClCompile Include="Library\CollisionManager.cpp" />
     <ClCompile Include="Library\DXInputDevice.cpp" />
-    <ClCompile Include="Library\DSound.cpp" />
     <ClCompile Include="Library\DX11Manager.cpp" />
     <ClCompile Include="Library\EventManager.cpp" />
     <ClCompile Include="Library\KeyDevice.cpp" />
@@ -28,11 +28,11 @@
     <ClCompile Include="Library\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\DSoundManager.h" />
     <ClInclude Include="Library\DirectShowSound.h" />
     <ClInclude Include="Library\CollisionManager.h" />
     <ClInclude Include="Library\CollisionBase.h" />
     <ClInclude Include="Library\DXInputDevice.h" />
-    <ClInclude Include="Library\DSound.h" />
     <ClInclude Include="Library\DX11Manager.h" />
     <ClInclude Include="Library\Event.h" />
     <ClInclude Include="Library\EventManager.h" />

@@ -1,17 +1,7 @@
-﻿/**
- * @file   DSound.cpp
- * @brief  DSoundクラスの実装
- * @author kotani
- */
-#include "DSound.h"
-#include <mmsystem.h>
+﻿#include "DSoundManager.h"
 
 
-//----------------------------------------------------------------------------------------------------
-// Public Functions
-//----------------------------------------------------------------------------------------------------
-
-bool Lib::DSound::Init(HWND _hWnd)
+bool Lib::DSoundManager::Init(HWND _hWnd)
 {
 	if (m_pDSound8 != NULL)
 	{
@@ -33,11 +23,13 @@ bool Lib::DSound::Init(HWND _hWnd)
 		m_pDSound8->Release();
 		return false;
 	}
+	SINGLETON_CREATE(DSoundContainer);
 	return true;
 }
 
-void Lib::DSound::Release()
+void Lib::DSoundManager::Release()
 {
+	SINGLETON_DELETE(DSoundContainer);
 	if (m_pDSound8 != NULL)
 	{
 		m_pDSound8->Release();
@@ -45,30 +37,30 @@ void Lib::DSound::Release()
 	}
 }
 
-void Lib::DSound::SoundOperation(LPDIRECTSOUNDBUFFER8& _pSoundBuffer, SOUND_OPERATION _operation)
+void Lib::DSoundManager::SoundOperation(int _index, SOUND_OPERATION _operation)
 {
 	switch (_operation)
 	{
 	case SOUND_PLAY:
-		_pSoundBuffer->Play(0, 0, 0);
+		SINGLETON_INSTANCE(DSoundContainer).GetSound(_index)->Play(0, 0, 0);
 		break;
 	case SOUND_LOOP:
-		_pSoundBuffer->Play(0, 0, DSBPLAY_LOOPING);
+		SINGLETON_INSTANCE(DSoundContainer).GetSound(_index)->Play(0, 0, DSBPLAY_LOOPING);
 		break;
 	case SOUND_STOP:
-		_pSoundBuffer->Stop();
+		SINGLETON_INSTANCE(DSoundContainer).GetSound(_index)->Stop();
 		break;
 	case SOUND_START_PLAY:
-		_pSoundBuffer->SetCurrentPosition(0);
+		SINGLETON_INSTANCE(DSoundContainer).GetSound(_index)->SetCurrentPosition(0);
 		break;
 	case SOUND_STOP_RESET:
-		_pSoundBuffer->Stop();
-		_pSoundBuffer->SetCurrentPosition(0);
+		SINGLETON_INSTANCE(DSoundContainer).GetSound(_index)->Stop();
+		SINGLETON_INSTANCE(DSoundContainer).GetSound(_index)->SetCurrentPosition(0);
 		break;
 	}
 }
 
-void Lib::DSound::SetVolume(LPDIRECTSOUNDBUFFER8& _pSoundBuffer, int _volume)
+void Lib::DSoundManager::SetVolume(int _index, int _volume)
 {
 	if (_volume > DSBVOLUME_MAX)
 	{
@@ -78,5 +70,5 @@ void Lib::DSound::SetVolume(LPDIRECTSOUNDBUFFER8& _pSoundBuffer, int _volume)
 	{
 		_volume = DSBVOLUME_MIN;
 	}
-	_pSoundBuffer->SetVolume(_volume);
+	SINGLETON_INSTANCE(DSoundContainer).GetSound(_index)->SetVolume(_volume);
 }

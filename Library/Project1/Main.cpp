@@ -4,13 +4,11 @@
 #include <Library\Window.h>
 #include <Library\TextureLoader.h>
 #include <Library\DX11Manager.h>
-#include <Library\DSound.h>
-#include <Library\DSoundContainer.h>
+#include <Library\DSoundManager.h>
 #include <Library\Singleton.h>
 #include <Library\DXInputDevice.h>
 #include <Library\DSoundLoader.h>
-#include <Library\TextureContainer.h>
-#include <Library\TextureLoader.h>
+#include <Library\TextureManager.h>
 #include <Library\DirectShowSound.h>
 
 #include "SceneManager.h"
@@ -28,15 +26,13 @@ void Init(HWND _hWnd)
 	SINGLETON_INSTANCE(Lib::DX11Manager).Init(_hWnd);
 
 	//DirectSound関係
-	SINGLETON_CREATE(Lib::DSound);
-	SINGLETON_INSTANCE(Lib::DSound).Init(_hWnd);
-
-	SINGLETON_CREATE(Lib::DSoundContainer);
-	Lib::DSoundLoader::Init(SINGLETON_INSTANCE(Lib::DSound).GetIDSound());
+	SINGLETON_CREATE(Lib::DSoundManager);
+	SINGLETON_INSTANCE(Lib::DSoundManager).Init(_hWnd);
 
 	//テクスチャ
-	SINGLETON_CREATE(Lib::TextureContainer);
-	Lib::TextureLoader::Init(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice());
+	SINGLETON_CREATE(Lib::TextureManager);
+	SINGLETON_INSTANCE(Lib::TextureManager).
+		Init(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice());
 
 	//DirectInput関係
 	SINGLETON_CREATE(Lib::DXInputDevice);
@@ -66,11 +62,10 @@ void Exit()
 	SINGLETON_INSTANCE(Lib::DXInputDevice).Release();
 	SINGLETON_DELETE(Lib::DXInputDevice);
 
-	SINGLETON_DELETE(Lib::TextureContainer);
+	SINGLETON_DELETE(Lib::TextureManager);
 
-	SINGLETON_DELETE(Lib::DSoundContainer);
-	SINGLETON_INSTANCE(Lib::DSound).Release();
-	SINGLETON_DELETE(Lib::DSound);
+	SINGLETON_INSTANCE(Lib::DSoundManager).Release();
+	SINGLETON_DELETE(Lib::DSoundManager);
 
 	SINGLETON_INSTANCE(Lib::DX11Manager).Release();
 	SINGLETON_DELETE(Lib::DX11Manager);
@@ -85,12 +80,11 @@ void Exit()
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdShow)
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	HWND hWnd = NULL;
 
 	//Window表示
 	SINGLETON_CREATE(Lib::Window);
 	SINGLETON_INSTANCE(Lib::Window).DispWindow(hInst, WINDOW_WIDTH, WINDOW_HEIGHT, "test", &WindowProc);
-	hWnd = SINGLETON_INSTANCE(Lib::Window).GetWindowHandle();
+	HWND hWnd = SINGLETON_INSTANCE(Lib::Window).GetWindowHandle();
 	Init(hWnd);
 
 #if FULLSCREEN

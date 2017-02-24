@@ -9,7 +9,7 @@
 #include <dshow.h>
 #include <vector>
 #include "Singleton.h"
-#include "DSound.h"
+#include "DSoundManager.h"
 
 namespace Lib
 {
