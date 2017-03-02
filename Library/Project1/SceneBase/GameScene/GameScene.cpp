@@ -20,7 +20,7 @@ GameScene::GameScene() :
 SceneBase(SCENE_GAME)
 {
 	SINGLETON_INSTANCE(Lib::DirectShowSound).LoadMediaSound("button01a.wav", &m_SoundIndex);
-	SINGLETON_INSTANCE(Lib::TextureManager).Load("test2.jpg", &m_TextureIndex);
+	SINGLETON_INSTANCE(Lib::TextureManager).Load("test.png", &m_TextureIndex);
 
 	m_Vertex = new Lib::Vertex2D(
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
