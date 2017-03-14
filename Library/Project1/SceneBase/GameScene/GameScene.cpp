@@ -14,7 +14,9 @@
 #include <Library\DXInputDevice.h>
 #include <Library\TextureManager.h>
 #include <Library\DirectShowSound.h>
-
+#include <Library\DebugTimer.h>
+#include <Library\AnimTexture.h>
+Lib::DebugTimer g_Timer(60);
 
 GameScene::GameScene() :
 SceneBase(SCENE_GAME)
@@ -34,11 +36,11 @@ SceneBase(SCENE_GAME)
 		D3DXVECTOR2(0, 1),
 		D3DXVECTOR2(1, 1),
 	};
+	Lib::AnimTexture var;
+	var.LoadAnimation("test.txt","test");
 	m_Vertex->Init(&D3DXVECTOR2(1280, 720), uv);
-	m_Vertex->WriteConstantBuffer(&D3DXVECTOR2(640, 360));
 	m_Vertex->SetTexture(SINGLETON_INSTANCE(Lib::TextureContainer).GetTexture(m_TextureIndex));
 	//SINGLETON_INSTANCE(Lib::DirectShowSound).SoundOperation(m_SoundIndex, Lib::SOUND_LOOP);
-
 }
 
 GameScene::~GameScene()
@@ -72,8 +74,11 @@ SceneBase::SceneID GameScene::Control()
 
 void GameScene::Draw()
 {
+	g_Timer.Begin();
 	SINGLETON_INSTANCE(Lib::DX11Manager).BeginScene();
-	m_Vertex->Draw();
+	m_Vertex->Draw(&D3DXVECTOR2(640, 360));
 	SINGLETON_INSTANCE(Lib::DX11Manager).EndScene();
+	g_Timer.End();
 
+	g_Timer.TimerShow();
 }

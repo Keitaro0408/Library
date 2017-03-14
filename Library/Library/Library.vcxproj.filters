@@ -67,6 +67,12 @@
     <Filter Include="Library\TextureAnimation\AnimFileParser">
       <UniqueIdentifier>{b866d142-97e6-432e-8e92-2a4ccdf9298d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library\Debug">
+      <UniqueIdentifier>{2a2a9394-c9eb-44ef-b5eb-01e0eadad47a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Fbx">
+      <UniqueIdentifier>{5dc41e94-9a5a-4ee4-b08a-9c3b066060aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\EventManager.cpp">
@@ -114,11 +120,14 @@
     <ClCompile Include="Library\DSoundManager.cpp">
       <Filter>Library\DSoundManager</Filter>
     </ClCompile>
-    <ClCompile Include="Library\TextureAnim.cpp">
-      <Filter>Library\TextureAnimation</Filter>
-    </ClCompile>
     <ClCompile Include="Library\AnimFileParser.cpp">
       <Filter>Library\TextureAnimation\AnimFileParser</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\AnimTexture.cpp">
+      <Filter>Library\TextureAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\DebugTimer.cpp">
+      <Filter>Library\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -176,11 +185,14 @@
     <ClInclude Include="Library\DSoundManager.h">
       <Filter>Library\DSoundManager</Filter>
     </ClInclude>
-    <ClInclude Include="Library\TextureAnim.h">
-      <Filter>Library\TextureAnimation</Filter>
-    </ClInclude>
     <ClInclude Include="Library\AnimFileParser.h">
       <Filter>Library\TextureAnimation\AnimFileParser</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\AnimTexture.h">
+      <Filter>Library\TextureAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DebugTimer.h">
+      <Filter>Library\Debug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

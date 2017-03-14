@@ -1,6 +1,6 @@
 ﻿/**
- * @file   Vertex2D.h
- * @brief  Vertex2Dクラスのcppファイル
+ * @file   Vertex2D.cpp
+ * @brief  Vertex2Dクラスの実装
  * @author kotani
  */
 #include "Vertex2D.h"
@@ -95,6 +95,19 @@ bool Lib::Vertex2D::Init(const D3DXVECTOR2* _pRectSize, const D3DXVECTOR2* _pUV)
 		return false;
 	}
 
+	if (!WriteConstantBuffer())
+	{
+		ReleaseConstantBuffer();
+		ReleaseVertexBuffer();
+		ReleaseSamplerState();
+		ReleaseBlendState();
+		ReleasePixelShader();
+		ReleaseVertexLayout();
+		ReleaseVertexShader();
+		return false;
+
+	}
+	
 	return true;
 }
 

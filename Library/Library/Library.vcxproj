@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Library\DebugTimer.cpp" />
     <ClCompile Include="Library\AnimFileParser.cpp" />
     <ClCompile Include="Library\DSoundManager.cpp" />
     <ClCompile Include="Library\DirectShowSound.cpp" />
@@ -27,9 +28,10 @@
     <ClCompile Include="Library\TextureLoader.cpp" />
     <ClCompile Include="Library\DSoundLoader.cpp" />
     <ClCompile Include="Library\TextureManager.cpp" />
-    <ClCompile Include="Library\TextureAnim.cpp" />
+    <ClCompile Include="Library\AnimTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\DebugTimer.h" />
     <ClInclude Include="Library\AnimFileParser.h" />
     <ClInclude Include="Library\DSoundManager.h" />
     <ClInclude Include="Library\DirectShowSound.h" />
@@ -49,7 +51,7 @@
     <ClInclude Include="Library\TextureLoader.h" />
     <ClInclude Include="Library\DSoundLoader.h" />
     <ClInclude Include="Library\TextureManager.h" />
-    <ClInclude Include="Library\TextureAnim.h" />
+    <ClInclude Include="Library\AnimTexture.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65480EA8-8D64-4328-A73F-671C0487AA00}</ProjectGuid>

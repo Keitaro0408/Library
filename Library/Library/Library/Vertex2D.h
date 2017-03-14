@@ -54,7 +54,6 @@ namespace Lib
 		 * @param[in] _pScale 描画する矩形の拡縮率
 		 * @param[in] _pTexScroll 最初に指定したUV値からの変化値
 		 * @param[in] _angle 描画する矩形の傾き
-		 * @deprecated 削除予定 Draw()を使うようにしてください
 		 */
 		void Draw(
 			const D3DXVECTOR2* _pDrawPos,
@@ -63,20 +62,6 @@ namespace Lib
 			const D3DXVECTOR2* _pTexScroll = &D3DXVECTOR2(0.f, 0.f),
 			float _angle = 0.f);
 
-		/**
-		 * 定数バッファにデータを書き込む関数
-		 * @param[in] _pDrawPos 矩形を描画するスクリーン座標位置
-		 * @param[in] _pScale 描画する矩形の拡縮率
-		 * @param[in] _pTexScroll 最初に指定したUV値からの変化値
-		 * @param[in] _angle 描画する矩形の傾き
-		 * @param[in] _alpha 描画する矩形のアルファ値
-		 */
-		bool WriteConstantBuffer(
-			const D3DXVECTOR2* _pDrawPos,
-			const D3DXVECTOR2* _pScale = &D3DXVECTOR2(1.f, 1.f),
-			const D3DXVECTOR2* _pTexScroll = &D3DXVECTOR2(0.f, 0.f),
-			float _angle = 0.f,
-			float _alpha = 1.f);
 
 		/**
 		 * 描画するテクスチャをセットする関数
@@ -88,14 +73,6 @@ namespace Lib
 		}
 
 	private:
-		/**
-		 * 2D矩形の描画に利用する頂点構造体
-		 */
-		struct VERTEX
-		{
-			D3DXVECTOR3 Pos;	//!< 頂点座標
-			D3DXVECTOR2 UV;		//!< テクスチャ座標
-		};
 
 		/**
 		 * シェーダーに渡す定数バッファ
@@ -155,6 +132,21 @@ namespace Lib
 		bool InitConstantBuffer();
 
 		/**
+		* 定数バッファにデータを書き込む関数
+		* @param[in] _pDrawPos 矩形を描画するスクリーン座標位置
+		* @param[in] _pScale 描画する矩形の拡縮率
+		* @param[in] _pTexScroll 最初に指定したUV値からの変化値
+		* @param[in] _angle 描画する矩形の傾き
+		* @param[in] _alpha 描画する矩形のアルファ値
+		*/
+		bool WriteConstantBuffer(
+			const D3DXVECTOR2* _pDrawPos = &D3DXVECTOR2(0.f, 0.f),
+			const D3DXVECTOR2* _pScale = &D3DXVECTOR2(1.f, 1.f),
+			const D3DXVECTOR2* _pTexScroll = &D3DXVECTOR2(0.f, 0.f),
+			float _angle = 0.f,
+			float _alpha = 1.f);
+
+		/**
 		 * 頂点シェーダーの解放関数
 		 */
 		void ReleaseVertexShader();
@@ -209,6 +201,16 @@ namespace Lib
 		float						m_ClientHeight;
 
 	};
+
+	/**
+	 * 2D矩形の描画に利用する頂点構造体
+	 */
+	struct VERTEX
+	{
+		D3DXVECTOR3 Pos;	//!< 頂点座標
+		D3DXVECTOR2 UV;		//!< テクスチャ座標
+	};
+
 }
 
 
