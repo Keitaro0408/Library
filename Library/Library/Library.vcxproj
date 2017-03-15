@@ -29,6 +29,7 @@
     <ClCompile Include="Library\DSoundLoader.cpp" />
     <ClCompile Include="Library\TextureManager.cpp" />
     <ClCompile Include="Library\AnimTexture.cpp" />
+    <ClCompile Include="Library\XInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Library\DebugTimer.h" />
@@ -52,6 +53,7 @@
     <ClInclude Include="Library\DSoundLoader.h" />
     <ClInclude Include="Library\TextureManager.h" />
     <ClInclude Include="Library\AnimTexture.h" />
+    <ClInclude Include="Library\XInput.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65480EA8-8D64-4328-A73F-671C0487AA00}</ProjectGuid>

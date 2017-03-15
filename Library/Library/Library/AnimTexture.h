@@ -8,7 +8,6 @@
 #include <Windows.h>
 #include <D3DX10.h>
 
-
 namespace Lib
 {
 	class AnimFileParser;
@@ -22,6 +21,7 @@ namespace Lib
 		int	  AnimNum;
 	};
 
+	// TODO 下に続いているアニメーションも対応したい
 	/**
 	 * 1つのテクスチャアニメーションを管理するクラス(実装途中)
 	 *
@@ -56,16 +56,36 @@ namespace Lib
 		bool LoadAnimation(LPCTSTR _pFileName, LPCTSTR _pAnimName);
 
 		/**
-		 * 何フレームでアニメーションを進めるか設定する
+		 * 何フレーム目でアニメーションを進めるか設定する
+		 * @param[in] _scrollFrame アニメーションを進めるフレーム数
 		 */
 		inline void SetAnimFrame(int _scrollFrame)
 		{
 			m_ScrollFrame = _scrollFrame;
 		}
 
-		inline D3DXVECTOR2 GetUV()
+		/**
+		 * アニメーションをリセットする
+		 */
+		inline void ResetAnim()
 		{
-			return D3DXVECTOR2(m_ScrollUV.x * m_AnimCount, m_ScrollUV.y);
+			m_AnimCount = 1;
+		}
+
+		/**
+		 * テクスチャのスクロール値を取得する
+		 */
+		inline D3DXVECTOR2 GetScrollUV() const
+		{
+			return D3DXVECTOR2(m_ScrollUV.x * m_AnimCount, 0);
+		}
+
+		/**
+		 * UVの値を取得する
+		 */
+		inline D3DXVECTOR2* GetUV()
+		{
+			return m_NowUV;
 		}
 
 		/**
@@ -79,6 +99,7 @@ namespace Lib
 		D3DXVECTOR2		m_TextureSize;
 		D3DXVECTOR2		m_ScrollUV;
 		D3DXVECTOR2		m_UV[4];
+		D3DXVECTOR2		m_NowUV[4];
 		int				m_AnimCount;
 		int				m_ScrollFrame;
 		int				m_Count;

@@ -1,5 +1,14 @@
-﻿#include "AnimFileParser.h"
+﻿/**
+ * @file   AnimFileParser.cpp
+ * @brief  AnimFileParserクラスの実装
+ * @author kotani
+ */
+#include "AnimFileParser.h"
 
+Lib::AnimFileParser::~AnimFileParser()
+{
+	ReleaseLoadBuffer();
+}
 
 void Lib::AnimFileParser::FileLoad(LPCTSTR _pFileName)
 {

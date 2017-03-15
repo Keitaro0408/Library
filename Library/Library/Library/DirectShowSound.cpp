@@ -1,10 +1,14 @@
 ﻿/**
- * @file   DSound.cpp
- * @brief  DSoundクラスの実装
+ * @file   DirectShowSound.cpp
+ * @brief  DirectShowSoundクラスの実装
  * @author kotani
  */
 #include "DirectShowSound.h"
 
+
+//----------------------------------------------------------------------------------------------------
+// Public Functions
+//----------------------------------------------------------------------------------------------------
 
 bool Lib::DirectShowSound::LoadMediaSound(CString _fileName, int* _index)
 {

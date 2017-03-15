@@ -73,6 +73,9 @@
     <Filter Include="Library\Fbx">
       <UniqueIdentifier>{5dc41e94-9a5a-4ee4-b08a-9c3b066060aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library\XInput">
+      <UniqueIdentifier>{615178cd-8c7f-411d-84d5-dc85f2e9bcf8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\EventManager.cpp">
@@ -128,6 +131,9 @@
     </ClCompile>
     <ClCompile Include="Library\DebugTimer.cpp">
       <Filter>Library\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\XInput.cpp">
+      <Filter>Library\XInput</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="Library\DebugTimer.h">
       <Filter>Library\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\XInput.h">
+      <Filter>Library\XInput</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

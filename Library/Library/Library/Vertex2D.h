@@ -135,14 +135,14 @@ namespace Lib
 		* 定数バッファにデータを書き込む関数
 		* @param[in] _pDrawPos 矩形を描画するスクリーン座標位置
 		* @param[in] _pScale 描画する矩形の拡縮率
-		* @param[in] _pTexScroll 最初に指定したUV値からの変化値
+		* @param[in] _pUV テクスチャの4頂点分のUV
 		* @param[in] _angle 描画する矩形の傾き
 		* @param[in] _alpha 描画する矩形のアルファ値
 		*/
 		bool WriteConstantBuffer(
 			const D3DXVECTOR2* _pDrawPos = &D3DXVECTOR2(0.f, 0.f),
 			const D3DXVECTOR2* _pScale = &D3DXVECTOR2(1.f, 1.f),
-			const D3DXVECTOR2* _pTexScroll = &D3DXVECTOR2(0.f, 0.f),
+			const D3DXVECTOR2* _pUV = &D3DXVECTOR2(0.f, 0.f),
 			float _angle = 0.f,
 			float _alpha = 1.f);
 
@@ -197,6 +197,7 @@ namespace Lib
 		ID3D11Buffer*				m_pVertexBuffer;
 		ID3D11Buffer*				m_pConstantBuffer;
 		ID3D11ShaderResourceView*	m_pTextureResourceView;
+		RECT						m_RectSize;
 		float						m_ClientWidth;
 		float						m_ClientHeight;
 

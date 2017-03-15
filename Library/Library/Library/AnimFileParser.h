@@ -1,4 +1,9 @@
-﻿#ifndef ANIMFILEPARSER_H
+﻿/**
+ * @file   AnimFileParser.h
+ * @brief  AnimFileParserクラスのヘッダファイル
+ * @author kotani
+ */
+#ifndef ANIMFILEPARSER_H
 #define ANIMFILEPARSER_H
 #include <Windows.h>
 #include <vector>
@@ -10,7 +15,7 @@ namespace Lib
 	{
 	public:
 		AnimFileParser(){};
-		~AnimFileParser(){};
+		~AnimFileParser();
 
 		/**
 		 * ファイル読み込み

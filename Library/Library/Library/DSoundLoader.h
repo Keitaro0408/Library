@@ -8,7 +8,6 @@
 #include <dsound.h>
 #include "Singleton.h"
 
-// TODO: 使いづらかったらManagerでまとめよう
 namespace Lib
 {
 	/**
