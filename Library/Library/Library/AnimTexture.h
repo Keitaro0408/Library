@@ -90,8 +90,9 @@ namespace Lib
 
 		/**
 		 * アニメーション制御
+		 * @param[in] _isReverse 逆再生するか？
 		 */
-		void Control();
+		void Control(bool _isReverse);
 
 	private:
 		AnimFileParser* m_pAnimFileParser;

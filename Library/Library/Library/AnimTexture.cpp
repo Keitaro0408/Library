@@ -75,24 +75,45 @@ bool Lib::AnimTexture::LoadAnimation(LPCTSTR _pFileName, LPCTSTR _pAnimName)
 	return true;
 }
 
-void Lib::AnimTexture::Control()
+void Lib::AnimTexture::Control(bool _isReverse)
 {
-	static bool isReverse = false;
 	m_Count++;
-	if (m_ScrollFrame < m_Count)
+	if (_isReverse)
 	{
-		m_Count = 0;
+		if (m_ScrollFrame < m_Count)
+		{
+			m_Count = 0;
 		
-		if (m_AnimCount > m_AnimData.AnimNum)
-		{
-			m_AnimCount = 1;
-		}
+			if (m_AnimCount >= m_AnimData.AnimNum)
+			{
+				m_AnimCount = 0;
+			}
 
-		for (int i = 0; i < 4; i++)
-		{
-			m_NowUV[i].x = m_UV[i].x + m_AnimCount * m_ScrollUV.x;
-		}
+			for (int i = 0; i < 4; i++)
+			{
+				m_NowUV[i].x = m_UV[i].x + m_AnimCount * m_ScrollUV.x;
+			}
 
-		m_AnimCount++;
+			m_AnimCount++;
+		}
+	}
+	else
+	{
+		if (m_ScrollFrame < m_Count)
+		{
+			m_Count = 0;
+
+			if (m_AnimCount <= 1)
+			{
+				m_AnimCount = m_AnimData.AnimNum;
+			}
+
+			for (int i = 0; i < 4; i++)
+			{
+				m_NowUV[i].x = m_UV[i].x + m_AnimCount * m_ScrollUV.x;
+			}
+
+			m_AnimCount++;
+		}
 	}
 }

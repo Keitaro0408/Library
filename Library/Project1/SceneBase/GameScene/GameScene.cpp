@@ -24,8 +24,8 @@ SceneBase(SCENE_GAME)
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("7262.png", &m_TextureIndex);
 
 	m_Animation = new Lib::AnimTexture();
-	m_Animation->LoadAnimation("test.txt", "test");
-	m_Animation->SetAnimFrame(5);
+	m_Animation->LoadAnimation("test.txt", "Wait");
+	m_Animation->SetAnimFrame(7);
 
 	m_Vertex = new Lib::Vertex2D(
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
@@ -57,7 +57,7 @@ SceneBase::SceneID GameScene::Control()
 {
 	SINGLETON_INSTANCE(Lib::KeyDevice).Update();
 	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_P);
-	m_Animation->Control();
+	m_Animation->Control(true);
 	static bool isPlay = true;
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_PUSH)
 	{
