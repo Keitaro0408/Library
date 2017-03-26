@@ -20,7 +20,7 @@ bool Lib::DirectShowSound::LoadMediaSound(CString _fileName, int* _index)
 	pSound->pGraphBuilder->QueryInterface(IID_IMediaControl, (LPVOID *)&pSound->pMediaControl);
 	if (FAILED(pSound->pMediaControl->RenderFile(_fileName.AllocSysString())))
 	{
-		MessageBox(NULL, TEXT("音声の読み込みに失敗しました"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("音声の読み込みに失敗しました"));
 		pSound->pMediaControl->Release();
 		pSound->pMediaControl = NULL;
 

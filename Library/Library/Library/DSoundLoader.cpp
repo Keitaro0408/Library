@@ -20,7 +20,7 @@ LPDIRECTSOUNDBUFFER8 Lib::DSoundLoader::LoadWave(LPSTR _pFileName)
 
 	if (!ReadWave(_pFileName, &WaveFormat, &pWaveData, &WaveSize))
 	{
-		MessageBox(NULL, TEXT("waveファイルが開けませんでした"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("waveファイルが開けませんでした"));
 		return false;
 	}
 
@@ -40,7 +40,7 @@ LPDIRECTSOUNDBUFFER8 Lib::DSoundLoader::LoadWave(LPSTR _pFileName)
 
 	if (pDSBuffer == NULL)
 	{
-		MessageBox(NULL, TEXT("サウンドバッファ作成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("サウンドバッファ作成に失敗しました"));
 		return false;
 	}
 
@@ -49,7 +49,7 @@ LPDIRECTSOUNDBUFFER8 Lib::DSoundLoader::LoadWave(LPSTR _pFileName)
 	if (FAILED(pDSBuffer->Lock(0, 0, &pWriteData, &WriteDataLength, NULL, NULL, DSBLOCK_ENTIREBUFFER)))
 	{
 		delete[] pWaveData;
-		MessageBox(NULL, TEXT("サウンドバッファのロックに失敗しました"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("サウンドバッファのロックに失敗しました"));
 		return false;
 	}
 

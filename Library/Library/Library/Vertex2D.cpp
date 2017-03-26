@@ -145,7 +145,7 @@ void Lib::Vertex2D::Draw()
 	m_pDeviceContext->Draw(m_VertexNum, 0);
 }
 
-void Lib::Vertex2D::Draw(const D3DXVECTOR2* _pDrawPos, float _alpha, const D3DXVECTOR3* _pScale, const D3DXVECTOR2* _pUV, float _angle)
+void Lib::Vertex2D::Draw(const D3DXVECTOR2* _pDrawPos, const D3DXVECTOR2* _pUV, float _alpha, const D3DXVECTOR3* _pScale, float _angle)
 {
 	VERTEX Vertex[] =
 	{
@@ -169,7 +169,7 @@ void Lib::Vertex2D::Draw(const D3DXVECTOR2* _pDrawPos, float _alpha, const D3DXV
 	InitVertexData.pSysMem = Vertex;
 	if (FAILED(m_pDevice->CreateBuffer(&BufferDesc, &InitVertexData, &m_pVertexBuffer)))
 	{
-		MessageBox(m_hWnd, TEXT("VertexBufferの生成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("VertexBufferの生成に失敗しました"));
 		return;
 	}
 	WriteConstantBuffer(_pDrawPos, &D3DXVECTOR2(_pScale->x, _pScale->y), &D3DXVECTOR2(0, 0), _angle, _alpha);
@@ -248,7 +248,7 @@ bool Lib::Vertex2D::InitVertexShader()
 		&pErrors,
 		NULL)))
 	{
-		MessageBox(0, TEXT("VertexShaderのコンパイルに失敗"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("VertexShaderのコンパイルに失敗"));
 		pErrors->Release();
 		return false;
 	}
@@ -277,7 +277,7 @@ bool Lib::Vertex2D::InitVertexLayout()
 		m_pVertexCompiledShader->GetBufferSize(),
 		&m_pVertexLayout)))
 	{
-		MessageBox(m_hWnd, TEXT("CreateInputLayoutに失敗"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("CreateInputLayoutに失敗"));
 		return false;
 	}
 
@@ -301,7 +301,7 @@ bool Lib::Vertex2D::InitPixelShader()
 		&pErrors,
 		NULL)))
 	{
-		MessageBox(m_hWnd, TEXT("PixelShaderのコンパイルに失敗"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("PixelShaderのコンパイルに失敗"));
 		pErrors->Release();
 		return false;
 	}
@@ -334,7 +334,7 @@ bool Lib::Vertex2D::InitBlendState()
 
 	if (FAILED(m_pDevice->CreateBlendState(&BlendDesc, &m_pBlendState)))
 	{
-		MessageBox(m_hWnd, TEXT("CreateBlendStateに失敗しました"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("CreateBlendStateに失敗しました"));
 		return false;
 	}
 
@@ -352,7 +352,7 @@ bool Lib::Vertex2D::InitSamplerState()
 
 	if (FAILED(m_pDevice->CreateSamplerState(&SamplerDesc, &m_pSamplerState)))
 	{
-		MessageBox(m_hWnd, TEXT("CreateSamplerStateに失敗しました"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("CreateSamplerStateに失敗しました"));
 		return false;
 	}
 
@@ -388,7 +388,7 @@ bool Lib::Vertex2D::InitVertexBuffer(const D3DXVECTOR2* _pRectSize, const D3DXVE
 	InitVertexData.pSysMem = Vertex;
 	if (FAILED(m_pDevice->CreateBuffer(&BufferDesc, &InitVertexData, &m_pVertexBuffer)))
 	{
-		MessageBox(m_hWnd, TEXT("VertexBufferの生成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("VertexBufferの生成に失敗しました"));
 		return false;
 	}
 
@@ -408,7 +408,7 @@ bool Lib::Vertex2D::InitConstantBuffer()
 
 	if (FAILED(m_pDevice->CreateBuffer(&ConstantBufferDesc, NULL, &m_pConstantBuffer)))
 	{
-		MessageBox(m_hWnd, TEXT("ConstantBufferの生成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("ConstantBufferの生成に失敗しました"));
 		return false;
 	}
 

@@ -5,11 +5,8 @@
  */
 #include "GameScene.h"
 #include <Library\Window.h>
-#include <Library\TextureLoader.h>
 #include <Library\DX11Manager.h>
 #include <Library\DSoundManager.h>
-#include <Library\DSoundContainer.h>
-#include <Library\DSoundLoader.h>
 #include <Library\Singleton.h>
 #include <Library\DXInputDevice.h>
 #include <Library\TextureManager.h>
@@ -24,8 +21,8 @@ SceneBase(SCENE_GAME)
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("7262.png", &m_TextureIndex);
 
 	m_Animation = new Lib::AnimTexture();
-	m_Animation->LoadAnimation("test.txt", "Wait");
-	m_Animation->SetAnimFrame(7);
+	m_Animation->LoadAnimation("test.txt", "frontWalk");
+	m_Animation->SetAnimFrame(10);
 
 	m_Vertex = new Lib::Vertex2D(
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
@@ -73,7 +70,7 @@ void GameScene::Draw()
 {
 	SINGLETON_INSTANCE(Lib::DX11Manager).BeginScene();
 	g_Timer.Begin();
-	m_Vertex->Draw(&D3DXVECTOR2(640, 360), 1.0f, &D3DXVECTOR3(1, 1, 1), m_Animation->GetUV());
+	m_Vertex->Draw(&D3DXVECTOR2(640, 360), m_Animation->GetUV());
 	g_Timer.End();
 	SINGLETON_INSTANCE(Lib::DX11Manager).EndScene();
 

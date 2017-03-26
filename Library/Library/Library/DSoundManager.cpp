@@ -9,7 +9,7 @@ bool Lib::DSoundManager::Init(HWND _hWnd)
 {
 	if (m_pDSound8 != NULL)
 	{
-		MessageBox(_hWnd, TEXT("DSoundManagerはすでに初期化されています"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("DSoundManagerはすでに初期化されています"));
 		return false;
 	}
 
@@ -17,13 +17,13 @@ bool Lib::DSoundManager::Init(HWND _hWnd)
 
 	if (FAILED(DirectSoundCreate8(NULL, &m_pDSound8, NULL)))
 	{
-		MessageBox(m_hWnd, TEXT("サウンドデバイスの生成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("サウンドデバイスの生成に失敗しました"));
 		return false;
 	}
 
 	if (FAILED(m_pDSound8->SetCooperativeLevel(m_hWnd, DSSCL_NORMAL)))
 	{
-		MessageBox(m_hWnd, TEXT("協調レベルの設定に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
+		OutputDebugString(TEXT("協調レベルの設定に失敗しました"));
 		m_pDSound8->Release();
 		return false;
 	}
