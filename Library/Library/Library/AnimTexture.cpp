@@ -9,7 +9,7 @@
 
 Lib::AnimTexture::AnimTexture() : 
 m_Count(0),
-m_AnimCount(1)
+m_AnimCount(0)
 {
 	m_pAnimFileParser = new AnimFileParser();
 }
@@ -75,45 +75,102 @@ bool Lib::AnimTexture::LoadAnimation(LPCTSTR _pFileName, LPCTSTR _pAnimName)
 	return true;
 }
 
-void Lib::AnimTexture::Control(bool _isReverse)
+bool Lib::AnimTexture::Control(bool _isReverse, ANIM_OPERATION _playOperation)
 {
 	m_Count++;
 	if (_isReverse)
 	{
-		if (m_ScrollFrame < m_Count)
-		{
-			m_Count = 0;
-		
-			if (m_AnimCount >= m_AnimData.AnimNum)
-			{
-				m_AnimCount = 0;
-			}
-
-			for (int i = 0; i < 4; i++)
-			{
-				m_NowUV[i].x = m_UV[i].x + m_AnimCount * m_ScrollUV.x;
-			}
-
-			m_AnimCount++;
-		}
+		return ReverseControl(_playOperation);
 	}
 	else
 	{
-		if (m_ScrollFrame < m_Count)
-		{
-			m_Count = 0;
-
-			if (m_AnimCount <= 1)
-			{
-				m_AnimCount = m_AnimData.AnimNum;
-			}
-
-			for (int i = 0; i < 4; i++)
-			{
-				m_NowUV[i].x = m_UV[i].x + m_AnimCount * m_ScrollUV.x;
-			}
-
-			m_AnimCount++;
-		}
+		return NormalControl(_playOperation);
 	}
+}
+
+void Lib::AnimTexture::ResetAnim()
+{
+	m_AnimCount = 0;
+	m_Count = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		m_NowUV[i] = m_UV[i];
+	}
+}
+
+
+//----------------------------------------------------------------------------------------------------
+// Private Functions
+//----------------------------------------------------------------------------------------------------
+
+bool Lib::AnimTexture::NormalControl(ANIM_OPERATION _playOperation)
+{
+	if (m_ScrollFrame < m_Count)
+	{
+		m_Count = 0;
+
+		for (int i = 0; i < 4; i++)
+		{
+			m_NowUV[i].x = m_UV[i].x + m_AnimCount * m_ScrollUV.x;
+		}
+
+		m_AnimCount++;
+		switch (_playOperation)
+		{
+		case ANIM_LOOP:
+			if (m_AnimCount >= m_AnimData.AnimNum)
+			{
+				m_AnimCount = 0;
+				return true;
+			}
+			break;
+		case ANIM_NORMAL:
+			if (m_AnimCount >= m_AnimData.AnimNum)
+			{
+				/* アニメーションファイルの数は1からなので1引く */
+				m_AnimCount = m_AnimData.AnimNum - 1;
+				return true;
+			}
+			break;
+		}
+
+		return false;
+	}
+	return false;
+}
+
+bool Lib::AnimTexture::ReverseControl(ANIM_OPERATION _playOperation)
+{
+	if (m_ScrollFrame < m_Count)
+	{
+		m_Count = 0;
+
+		for (int i = 0; i < 4; i++)
+		{
+			m_NowUV[i].x = m_UV[i].x + m_AnimCount * m_ScrollUV.x;
+		}
+
+		m_AnimCount--;
+		switch (_playOperation)
+		{
+		case ANIM_LOOP:
+			if (m_AnimCount <= 0)
+			{
+				/* アニメーションファイルの数は1からなので1引く */
+				m_AnimCount = m_AnimData.AnimNum - 1;
+				return true;
+			}
+			break;
+		case ANIM_NORMAL:
+			if (m_AnimCount <= 0)
+			{
+				m_AnimCount = 0;
+				return true;
+			}
+			break;
+		}
+
+		return false;
+	}
+	return false;
 }

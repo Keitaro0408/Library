@@ -18,11 +18,11 @@ GameScene::GameScene() :
 SceneBase(SCENE_GAME)
 {
 	SINGLETON_INSTANCE(Lib::DirectShowSound).LoadMediaSound("button01a.wav", &m_SoundIndex);
-	SINGLETON_INSTANCE(Lib::TextureManager).Load("7262.png", &m_TextureIndex);
+	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
 
 	m_Animation = new Lib::AnimTexture();
-	m_Animation->LoadAnimation("test.txt", "frontWalk");
-	m_Animation->SetAnimFrame(10);
+	m_Animation->LoadAnimation("Character.anim", "Squat");
+	m_Animation->SetAnimFrame(5);
 
 	m_Vertex = new Lib::Vertex2D(
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
@@ -54,12 +54,16 @@ SceneBase::SceneID GameScene::Control()
 {
 	SINGLETON_INSTANCE(Lib::KeyDevice).Update();
 	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_P);
-	m_Animation->Control(true);
+	static bool isReverse = false;
+
 	static bool isPlay = true;
-	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_PUSH)
+	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_ON)
 	{
-		isPlay =! isPlay;
-		SINGLETON_INSTANCE(Lib::DirectShowSound).SoundOperation(m_SoundIndex, Lib::SOUND_START_PLAY);
+		m_Animation->Control(isReverse, Lib::ANIM_NORMAL);
+	}
+	else if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_PUSH)
+	{
+		m_Animation->ResetAnim();
 	}
 	SINGLETON_INSTANCE(Lib::DirectShowSound).CheckLoop(m_SoundIndex);
 
