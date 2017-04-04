@@ -193,6 +193,7 @@ void Lib::Vertex2D::Draw(const D3DXVECTOR2* _pDrawPos, const D3DXVECTOR2* _pUV, 
 	m_pDeviceContext->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &Stride, &Offset);
 
 	m_pDeviceContext->Draw(m_VertexNum, 0);
+	ReleaseVertexBuffer();
 }
 
 bool Lib::Vertex2D::WriteConstantBuffer(const D3DXVECTOR2* _pDrawPos, const D3DXVECTOR2* _pScale, const D3DXVECTOR2* _pTexScroll, float _angle, float _alpha)
