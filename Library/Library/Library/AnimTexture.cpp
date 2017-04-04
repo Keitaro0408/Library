@@ -52,7 +52,7 @@ bool Lib::AnimTexture::LoadAnimation(LPCTSTR _pFileName, LPCTSTR _pAnimName)
 	m_AnimData.Height = Data[3];
 	m_AnimData.AnimNum = static_cast<int>(Data[4]);
 	
-	m_ScrollUV.x = (m_AnimData.LeftUpX + m_AnimData.Width) / m_TextureSize.x;
+	m_ScrollUV.x = ((m_AnimData.LeftUpX + m_AnimData.Width) / m_TextureSize.x) - (m_AnimData.LeftUpX / m_TextureSize.x);
 	m_ScrollUV.y = 0;
 
 	m_UV[0].x = m_AnimData.LeftUpX / m_TextureSize.x;

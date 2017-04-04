@@ -21,7 +21,7 @@ SceneBase(SCENE_GAME)
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
 
 	m_Animation = new Lib::AnimTexture();
-	m_Animation->LoadAnimation("Character.anim", "Squat");
+	m_Animation->LoadAnimation("Character.anim", "Wait");
 	m_Animation->SetAnimFrame(5);
 
 	m_Vertex = new Lib::Vertex2D(
@@ -57,9 +57,9 @@ SceneBase::SceneID GameScene::Control()
 	static bool isReverse = false;
 
 	static bool isPlay = true;
+		m_Animation->Control(isReverse, Lib::ANIM_LOOP);
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_ON)
 	{
-		m_Animation->Control(isReverse, Lib::ANIM_NORMAL);
 	}
 	else if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_PUSH)
 	{
