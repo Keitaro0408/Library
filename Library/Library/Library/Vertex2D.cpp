@@ -145,7 +145,7 @@ void Lib::Vertex2D::Draw()
 	m_pDeviceContext->Draw(m_VertexNum, 0);
 }
 
-void Lib::Vertex2D::Draw(const D3DXVECTOR2* _pDrawPos, const D3DXVECTOR2* _pUV, float _alpha, const D3DXVECTOR3* _pScale, float _angle)
+void Lib::Vertex2D::Draw(const D3DXVECTOR2* _pDrawPos, const D3DXVECTOR2* _pUV, float _alpha, const D3DXVECTOR2* _pScale, float _angle)
 {
 	VERTEX Vertex[] =
 	{
@@ -195,6 +195,58 @@ void Lib::Vertex2D::Draw(const D3DXVECTOR2* _pDrawPos, const D3DXVECTOR2* _pUV, 
 	m_pDeviceContext->Draw(m_VertexNum, 0);
 	ReleaseVertexBuffer();
 }
+
+void Lib::Vertex2D::Draw(const D3DXVECTOR2* _pDrawPos, const RECT* _pRectDiff, const D3DXVECTOR2* _pUV, float _alpha, const D3DXVECTOR2* _pScale, float _angle)
+{
+	VERTEX Vertex[] =
+	{
+		D3DXVECTOR3(static_cast<float>(m_RectSize.left + _pRectDiff->left), static_cast<float>(m_RectSize.top + _pRectDiff->top), 0.f), D3DXVECTOR2(_pUV[0].x, _pUV[0].y),
+		D3DXVECTOR3(static_cast<float>(m_RectSize.right + _pRectDiff->right), static_cast<float>(m_RectSize.top + _pRectDiff->top), 0.f), D3DXVECTOR2(_pUV[1].x, _pUV[1].y),
+		D3DXVECTOR3(static_cast<float>(m_RectSize.left + _pRectDiff->left), static_cast<float>(m_RectSize.bottom + _pRectDiff->bottom), 0.f), D3DXVECTOR2(_pUV[2].x, _pUV[2].y),
+		D3DXVECTOR3(static_cast<float>(m_RectSize.right + _pRectDiff->right), static_cast<float>(m_RectSize.bottom + _pRectDiff->bottom), 0.f), D3DXVECTOR2(_pUV[3].x, _pUV[3].y)
+	};
+
+	D3D11_BUFFER_DESC BufferDesc;
+	ZeroMemory(&BufferDesc, sizeof(D3D11_BUFFER_DESC));
+	BufferDesc.ByteWidth = sizeof(VERTEX) * m_VertexNum;
+	BufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	BufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	BufferDesc.CPUAccessFlags = 0;
+	BufferDesc.MiscFlags = 0;
+	BufferDesc.StructureByteStride = 0;
+
+	D3D11_SUBRESOURCE_DATA InitVertexData;
+	ZeroMemory(&InitVertexData, sizeof(D3D11_SUBRESOURCE_DATA));
+	InitVertexData.pSysMem = Vertex;
+	if (FAILED(m_pDevice->CreateBuffer(&BufferDesc, &InitVertexData, &m_pVertexBuffer)))
+	{
+		OutputDebugString(TEXT("VertexBufferの生成に失敗しました"));
+		return;
+	}
+	WriteConstantBuffer(_pDrawPos, &D3DXVECTOR2(_pScale->x, _pScale->y), &D3DXVECTOR2(0, 0), _angle, _alpha);
+
+	m_pDeviceContext->VSSetShader(m_pVertexShader, NULL, 0);
+	m_pDeviceContext->PSSetShader(m_pPixelShader, NULL, 0);
+
+	m_pDeviceContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
+	m_pDeviceContext->PSSetConstantBuffers(0, 1, &m_pConstantBuffer);
+
+	m_pDeviceContext->IASetInputLayout(m_pVertexLayout);
+	m_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+	m_pDeviceContext->PSSetSamplers(0, 1, &m_pSamplerState);
+	m_pDeviceContext->PSSetShaderResources(0, 1, &m_pTextureResourceView);
+
+	m_pDeviceContext->OMSetBlendState(m_pBlendState, NULL, m_ColorMask);
+
+	UINT Stride = sizeof(VERTEX);
+	UINT Offset = 0;
+	m_pDeviceContext->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &Stride, &Offset);
+
+	m_pDeviceContext->Draw(m_VertexNum, 0);
+	ReleaseVertexBuffer();
+}
+
 
 bool Lib::Vertex2D::WriteConstantBuffer(const D3DXVECTOR2* _pDrawPos, const D3DXVECTOR2* _pScale, const D3DXVECTOR2* _pTexScroll, float _angle, float _alpha)
 {

@@ -12,7 +12,11 @@
 #include <Library\TextureManager.h>
 #include <Library\DirectShowSound.h>
 #include <Library\DebugTimer.h>
-Lib::DebugTimer g_Timer(60);
+namespace
+{
+	Lib::DebugTimer g_Timer(60);
+	RECT Rectvar = {0,0,0,0};
+}
 
 GameScene::GameScene() :
 SceneBase(SCENE_GAME)
@@ -54,16 +58,15 @@ SceneBase::SceneID GameScene::Control()
 {
 	SINGLETON_INSTANCE(Lib::KeyDevice).Update();
 	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_P);
-	static bool isReverse = false;
-
+	
 	static bool isPlay = true;
-		m_Animation->Control(isReverse, Lib::ANIM_LOOP);
+	m_Animation->Control(false, Lib::ANIM_LOOP);
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_ON)
 	{
+		Rectvar.right -= 1;
 	}
 	else if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_PUSH)
 	{
-		m_Animation->ResetAnim();
 	}
 	SINGLETON_INSTANCE(Lib::DirectShowSound).CheckLoop(m_SoundIndex);
 
@@ -74,7 +77,7 @@ void GameScene::Draw()
 {
 	SINGLETON_INSTANCE(Lib::DX11Manager).BeginScene();
 	g_Timer.Begin();
-	m_Vertex->Draw(&D3DXVECTOR2(640, 360), m_Animation->GetUV());
+	m_Vertex->Draw(&D3DXVECTOR2(640, 360), &Rectvar, m_Animation->GetUV());
 	g_Timer.End();
 	SINGLETON_INSTANCE(Lib::DX11Manager).EndScene();
 
