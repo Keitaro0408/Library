@@ -23,6 +23,7 @@ SceneBase(SCENE_GAME)
 {
 	SINGLETON_INSTANCE(Lib::DirectShowSound).LoadMediaSound("button01a.wav", &m_SoundIndex);
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
+	SINGLETON_INSTANCE(Lib::DSoundManager).Load("button01a.wav", &m_SoundIndex);
 
 	m_Animation = new Lib::AnimTexture();
 	m_Animation->LoadAnimation("Character.anim", "Wait");

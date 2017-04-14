@@ -55,7 +55,7 @@ namespace Lib
 		 * @param[out] _index 読み込んだサウンドへのインデックスが入る
 		 * @return 成功すればtrue
 		 */
-		bool Load(LPCTSTR _pFileName, int* _index);
+		bool Load(LPSTR _pFileName, int* _index);
 
 		/**
 		 * サウンドの開放

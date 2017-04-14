@@ -76,3 +76,15 @@ void Lib::DSoundManager::SetVolume(int _index, int _volume)
 	}
 	SINGLETON_INSTANCE(DSoundContainer).GetSound(_index)->SetVolume(_volume);
 }
+
+bool Lib::DSoundManager::Load(LPSTR _pFileName, int* _index)
+{
+	LPDIRECTSOUNDBUFFER8 pSound = DSoundLoader::LoadWave(_pFileName);
+	if (pSound == NULL)
+	{
+		return false;
+	}
+	SINGLETON_INSTANCE(DSoundContainer).Add(pSound, _index);
+	return true;
+}
+
