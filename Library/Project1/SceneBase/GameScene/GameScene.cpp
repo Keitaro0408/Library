@@ -10,7 +10,6 @@
 #include <Library\Singleton.h>
 #include <Library\DXInputDevice.h>
 #include <Library\TextureManager.h>
-#include <Library\DirectShowSound.h>
 #include <Library\DebugTimer.h>
 namespace
 {
@@ -21,9 +20,8 @@ namespace
 GameScene::GameScene() :
 SceneBase(SCENE_GAME)
 {
-	SINGLETON_INSTANCE(Lib::DirectShowSound).LoadMediaSound("button01a.wav", &m_SoundIndex);
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
-	SINGLETON_INSTANCE(Lib::DSoundManager).Load("button01a.wav", &m_SoundIndex);
+	SINGLETON_INSTANCE(Lib::DSoundManager).LoadSound("button01a.wav", &m_SoundIndex);
 
 	m_Animation = new Lib::AnimTexture();
 	m_Animation->LoadAnimation("Character.anim", "Wait");
@@ -43,23 +41,17 @@ SceneBase(SCENE_GAME)
 GameScene::~GameScene()
 {
 	m_Vertex->Release();
-	SINGLETON_INSTANCE(Lib::DirectShowSound).ReleaseMediaSound(m_SoundIndex);
+	SINGLETON_INSTANCE(Lib::DSoundManager).ReleaseSound(m_SoundIndex);
 	delete m_Vertex;
 	SINGLETON_INSTANCE(Lib::TextureContainer).ReleaseTexture(m_TextureIndex);
 	delete m_Animation;
-	int SoundMax = SINGLETON_INSTANCE(Lib::DSoundContainer).GetSoundMaxNum();
-	for (int i = 0; i < SoundMax; i++)
-	{
-		SINGLETON_INSTANCE(Lib::DSoundContainer).ReleaseSound(i);
-	}
-
 }
 
 SceneBase::SceneID GameScene::Control()
 {
 	SINGLETON_INSTANCE(Lib::KeyDevice).Update();
 	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_P);
-	
+	SINGLETON_INSTANCE(Lib::DSoundManager).SoundOperation(m_SoundIndex,Lib::DSoundManager::SOUND_PLAY);
 	static bool isPlay = true;
 	m_Animation->Control(false, Lib::ANIM_LOOP);
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_ON)
@@ -69,7 +61,7 @@ SceneBase::SceneID GameScene::Control()
 	else if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_PUSH)
 	{
 	}
-	SINGLETON_INSTANCE(Lib::DirectShowSound).CheckLoop(m_SoundIndex);
+	//SINGLETON_INSTANCE(Lib::DirectShowSound).CheckLoop(m_SoundIndex);
 
 	return m_SceneID;
 }

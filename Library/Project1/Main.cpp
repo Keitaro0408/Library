@@ -7,9 +7,7 @@
 #include <Library\DSoundManager.h>
 #include <Library\Singleton.h>
 #include <Library\DXInputDevice.h>
-#include <Library\DSoundLoader.h>
 #include <Library\TextureManager.h>
-#include <Library\DirectShowSound.h>
 
 #include "SceneManager.h"
 #define WINDOW_WIDTH 1280
@@ -45,14 +43,10 @@ void Init(HWND _hWnd)
 	SINGLETON_CREATE(Lib::KeyDevice);
 	SINGLETON_INSTANCE(Lib::KeyDevice).Init(
 		SINGLETON_INSTANCE(Lib::DXInputDevice).GetInputDevice(), _hWnd);
-
-	SINGLETON_CREATE(Lib::DirectShowSound);
 }
 
 void Exit()
 {
-	SINGLETON_DELETE(Lib::DirectShowSound);
-
 	SINGLETON_INSTANCE(Lib::KeyDevice).Release();
 	SINGLETON_DELETE(Lib::KeyDevice);
 

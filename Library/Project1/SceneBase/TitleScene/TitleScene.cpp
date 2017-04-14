@@ -4,8 +4,6 @@
  * @author kotani
  */
 #include "TitleScene.h"
-#include <Library\DSoundContainer.h>
-#include <Library\DSoundLoader.h>
 
 
 TitleScene::TitleScene() :

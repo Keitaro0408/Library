@@ -14,7 +14,6 @@
     <ClCompile Include="Library\DebugTimer.cpp" />
     <ClCompile Include="Library\AnimFileParser.cpp" />
     <ClCompile Include="Library\DSoundManager.cpp" />
-    <ClCompile Include="Library\DirectShowSound.cpp" />
     <ClCompile Include="Library\CollisionManager.cpp" />
     <ClCompile Include="Library\DXInputDevice.cpp" />
     <ClCompile Include="Library\DX11Manager.cpp" />
@@ -24,9 +23,7 @@
     <ClCompile Include="Library\Vertex2D.cpp" />
     <ClCompile Include="Library\Window.cpp" />
     <ClCompile Include="Library\MouseDevice.cpp" />
-    <ClCompile Include="Library\DSoundContainer.cpp" />
     <ClCompile Include="Library\TextureLoader.cpp" />
-    <ClCompile Include="Library\DSoundLoader.cpp" />
     <ClCompile Include="Library\TextureManager.cpp" />
     <ClCompile Include="Library\AnimTexture.cpp" />
     <ClCompile Include="Library\XInput.cpp" />
@@ -35,7 +32,6 @@
     <ClInclude Include="Library\DebugTimer.h" />
     <ClInclude Include="Library\AnimFileParser.h" />
     <ClInclude Include="Library\DSoundManager.h" />
-    <ClInclude Include="Library\DirectShowSound.h" />
     <ClInclude Include="Library\CollisionManager.h" />
     <ClInclude Include="Library\CollisionBase.h" />
     <ClInclude Include="Library\DXInputDevice.h" />
@@ -48,9 +44,7 @@
     <ClInclude Include="Library\Window.h" />
     <ClInclude Include="Library\MouseDevice.h" />
     <ClInclude Include="Library\Singleton.h" />
-    <ClInclude Include="Library\DSoundContainer.h" />
     <ClInclude Include="Library\TextureLoader.h" />
-    <ClInclude Include="Library\DSoundLoader.h" />
     <ClInclude Include="Library\TextureManager.h" />
     <ClInclude Include="Library\AnimTexture.h" />
     <ClInclude Include="Library\XInput.h" />
