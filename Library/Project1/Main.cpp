@@ -1,13 +1,12 @@
 ﻿#include <crtdbg.h>
 #include <stdio.h>
 #include <thread>
-#include <Library\Window.h>
-#include <Library\TextureLoader.h>
-#include <Library\DX11Manager.h>
-#include <Library\DSoundManager.h>
+#include <Library\Window\Window.h>
+#include <Library\Dx11\DX11Manager.h>
+#include <Library\Sound\DSoundManager.h>
 #include <Library\Singleton.h>
-#include <Library\DXInputDevice.h>
-#include <Library\TextureManager.h>
+#include <Library\DxInput\DXInputDevice.h>
+#include <Library\Texture\TextureManager.h>
 
 #include "SceneManager.h"
 #define WINDOW_WIDTH 1280

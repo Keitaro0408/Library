@@ -6,7 +6,7 @@
 #ifndef MOUSEDEVICE_H
 #define MOUSEDEVICE_H
 #include <dinput.h>	
-#include "Singleton.h"
+#include "..\..\Singleton.h"
 
 namespace Lib
 {

@@ -7,7 +7,7 @@
 #define DX11MANAGER_H
 #include <D3D11.h>
 #include <Windows.h>
-#include "Singleton.h"
+#include "..\Singleton.h"
 
 namespace Lib
 {

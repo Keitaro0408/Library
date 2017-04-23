@@ -5,9 +5,9 @@
  */
 #ifndef DXINPUTDEVICE_H
 #define DXINPUTDEVICE_H
-#include "MouseDevice.h"
-#include "KeyDevice.h"
-#include "Singleton.h"
+#include "Mouse/MouseDevice.h"
+#include "KeyBoard/KeyDevice.h"
+#include "..\Singleton.h"
 
 namespace Lib
 {

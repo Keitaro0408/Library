@@ -1,6 +1,6 @@
 ﻿#ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
-#include "Singleton.h"
+#include "..\Singleton.h"
 #include "TextureContainer.h"
 #include "TextureLoader.h"
 

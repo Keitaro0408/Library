@@ -8,7 +8,7 @@
 
 #include <map>
 #include "Event.h"
-#include "Singleton.h"
+#include "..\Singleton.h"
 
 namespace Lib
 {

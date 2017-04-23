@@ -6,7 +6,7 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 #include <windows.h>
-#include "Singleton.h"
+#include "..\Singleton.h"
 
 namespace Lib
 {

@@ -6,8 +6,8 @@
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
 #include "..\SceneBase.h"
-#include <Library\Vertex2D.h>
-#include <Library\AnimTexture.h>
+#include <Library\Vertex2D\Vertex2D.h>
+#include <Library\Animation\AnimUvController.h>
 
 /**
  * ゲームシーンを管理するクラス
@@ -43,7 +43,7 @@ private:
 	int m_SoundIndex;
 	int m_TextureIndex;
 	Lib::Vertex2D* m_Vertex;
-	Lib::AnimTexture* m_Animation;
+	Lib::AnimUvController* m_Animation;
 
 };
 

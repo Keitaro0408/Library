@@ -4,13 +4,14 @@
  * @author kotani
  */
 #include "GameScene.h"
-#include <Library\Window.h>
-#include <Library\DX11Manager.h>
-#include <Library\DSoundManager.h>
+#include <Library\Window\Window.h>
+#include <Library\Dx11\DX11Manager.h>
+#include <Library\Sound\DSoundManager.h>
 #include <Library\Singleton.h>
-#include <Library\DXInputDevice.h>
-#include <Library\TextureManager.h>
-#include <Library\DebugTimer.h>
+#include <Library\DxInput\DXInputDevice.h>
+#include <Library\Texture\TextureManager.h>
+#include <Library\DebugTool\DebugTimer.h>
+
 namespace
 {
 	Lib::DebugTimer g_Timer(60);
@@ -23,7 +24,7 @@ SceneBase(SCENE_GAME)
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
 	SINGLETON_INSTANCE(Lib::DSoundManager).LoadSound("button01a.wav", &m_SoundIndex);
 
-	m_Animation = new Lib::AnimTexture();
+	m_Animation = new Lib::AnimUvController();
 	m_Animation->LoadAnimation("Character.anim", "Wait");
 	m_Animation->SetAnimFrame(5);
 
@@ -51,7 +52,7 @@ SceneBase::SceneID GameScene::Control()
 {
 	SINGLETON_INSTANCE(Lib::KeyDevice).Update();
 	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_P);
-	SINGLETON_INSTANCE(Lib::DSoundManager).SoundOperation(m_SoundIndex,Lib::DSoundManager::SOUND_PLAY);
+	//SINGLETON_INSTANCE(Lib::DSoundManager).SoundOperation(m_SoundIndex,Lib::DSoundManager::SOUND_PLAY);
 	static bool isPlay = true;
 	m_Animation->Control(false, Lib::ANIM_LOOP);
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_ON)

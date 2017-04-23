@@ -1,20 +1,20 @@
 ﻿/**
- * @file   AnimTexture.cpp
- * @brief  AnimTextureクラスの実装
+ * @file   AnimUvController.cpp
+ * @brief  AnimUvControllerクラスの実装
  * @author kotani
  */
-#include "AnimTexture.h"
-#include "AnimFileParser.h"
+#include "AnimUvController.h"
+#include "AnimFileParser/AnimFileParser.h"
 
 
-Lib::AnimTexture::AnimTexture() : 
+Lib::AnimUvController::AnimUvController() : 
 m_Count(0),
 m_AnimCount(0)
 {
 	m_pAnimFileParser = new AnimFileParser();
 }
 
-Lib::AnimTexture::~AnimTexture()
+Lib::AnimUvController::~AnimUvController()
 {
 	delete m_pAnimFileParser;
 }
@@ -24,7 +24,7 @@ Lib::AnimTexture::~AnimTexture()
 // Public Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::AnimTexture::LoadAnimation(LPCTSTR _pFileName, LPCTSTR _pAnimName)
+bool Lib::AnimUvController::LoadAnimation(LPCTSTR _pFileName, LPCTSTR _pAnimName)
 {
 	m_pAnimFileParser->FileLoad(_pFileName);
 	std::vector<float> Data;
@@ -75,7 +75,7 @@ bool Lib::AnimTexture::LoadAnimation(LPCTSTR _pFileName, LPCTSTR _pAnimName)
 	return true;
 }
 
-bool Lib::AnimTexture::Control(bool _isReverse, ANIM_OPERATION _playOperation)
+bool Lib::AnimUvController::Control(bool _isReverse, ANIM_OPERATION _playOperation)
 {
 	m_Count++;
 	if (_isReverse)
@@ -88,7 +88,7 @@ bool Lib::AnimTexture::Control(bool _isReverse, ANIM_OPERATION _playOperation)
 	}
 }
 
-void Lib::AnimTexture::ResetAnim()
+void Lib::AnimUvController::ResetAnim()
 {
 	m_AnimCount = 0;
 	m_Count = 0;
@@ -103,7 +103,7 @@ void Lib::AnimTexture::ResetAnim()
 // Private Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::AnimTexture::NormalControl(ANIM_OPERATION _playOperation)
+bool Lib::AnimUvController::NormalControl(ANIM_OPERATION _playOperation)
 {
 	if (m_ScrollFrame < m_Count)
 	{
@@ -139,7 +139,7 @@ bool Lib::AnimTexture::NormalControl(ANIM_OPERATION _playOperation)
 	return false;
 }
 
-bool Lib::AnimTexture::ReverseControl(ANIM_OPERATION _playOperation)
+bool Lib::AnimUvController::ReverseControl(ANIM_OPERATION _playOperation)
 {
 	if (m_ScrollFrame < m_Count)
 	{

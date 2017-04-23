@@ -6,7 +6,7 @@
 #ifndef KEYDEVICE_H
 #define KEYDEVICE_H
 #include <dinput.h>	
-#include "Singleton.h"
+#include "..\..\Singleton.h"
 
 namespace Lib
 {

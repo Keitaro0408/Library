@@ -1,6 +1,6 @@
 ﻿#ifndef COLLISIONMANAGER_H 
 #define COLLISIONMANAGER_H
-#include "Singleton.h"
+#include "..\Singleton.h"
 
 namespace Lib
 {

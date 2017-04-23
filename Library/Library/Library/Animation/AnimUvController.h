@@ -1,6 +1,6 @@
 ﻿/**
- * @file   AnimTexture.h
- * @brief  AnimTextureクラスのヘッダファイル
+ * @file   AnimUvController.h
+ * @brief  AnimUvControllerクラスのヘッダファイル
  * @author kotani
  */
 #ifndef TEXTUREANIM_H
@@ -38,11 +38,11 @@ namespace Lib
 	 *      5  // アニメーションの数
 	 * }
 	 */
-	class AnimTexture
+	class AnimUvController
 	{
 	public:
-		AnimTexture();
-		~AnimTexture();
+		AnimUvController();
+		~AnimUvController();
 		
 		/**
 		 * アニメーションファイルの読み込み

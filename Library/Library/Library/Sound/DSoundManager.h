@@ -8,7 +8,7 @@
 #include <windows.h>
 #include <dsound.h>
 #include <vector>
-#include "Singleton.h"
+#include "..\Singleton.h"
 
 namespace Lib
 {

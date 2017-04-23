@@ -1,6 +1,6 @@
 ﻿#ifndef TEXTURELOADER_H
 #define TEXTURELOADER_H
-#include "Singleton.h" 
+#include "..\Singleton.h" 
 #include <D3DX11.h>
 
 namespace Lib

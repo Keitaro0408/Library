@@ -52,12 +52,6 @@
     <Filter Include="Library\DSoundManager">
       <UniqueIdentifier>{ed512f04-b94e-4f0d-9f39-d6f298a7800f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\TextureAnimation">
-      <UniqueIdentifier>{8db5778e-50e2-4c83-9c50-a95aa1913a84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Library\TextureAnimation\AnimFileParser">
-      <UniqueIdentifier>{b866d142-97e6-432e-8e92-2a4ccdf9298d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Library\Debug">
       <UniqueIdentifier>{2a2a9394-c9eb-44ef-b5eb-01e0eadad47a}</UniqueIdentifier>
     </Filter>
@@ -67,114 +61,120 @@
     <Filter Include="Library\XInput">
       <UniqueIdentifier>{615178cd-8c7f-411d-84d5-dc85f2e9bcf8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library\AnimUvController">
+      <UniqueIdentifier>{8db5778e-50e2-4c83-9c50-a95aa1913a84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\AnimUvController\AnimFileParser">
+      <UniqueIdentifier>{b866d142-97e6-432e-8e92-2a4ccdf9298d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Library\EventManager.cpp">
-      <Filter>Library\EventManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Window.cpp">
-      <Filter>Library\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\DX11Manager.cpp">
-      <Filter>Library\DX11Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\DXInputDevice.cpp">
-      <Filter>Library\DXInputDevice</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\MouseDevice.cpp">
-      <Filter>Library\DXInputDevice\MouseDevice</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\KeyDevice.cpp">
-      <Filter>Library\DXInputDevice\KeyDevice</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Vertex2D.cpp">
+    <ClCompile Include="Library\Vertex2D\Vertex2D.cpp">
       <Filter>Library\Vertex2D</Filter>
     </ClCompile>
-    <ClCompile Include="Library\TextureLoader.cpp">
-      <Filter>Library\TextureManager\TextureLoader</Filter>
+    <ClCompile Include="Library\Animation\AnimFileParser\AnimFileParser.cpp">
+      <Filter>Library\AnimUvController\AnimFileParser</Filter>
     </ClCompile>
-    <ClCompile Include="Library\TextureContainer.cpp">
-      <Filter>Library\TextureManager\TextureContainer</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\CollisionManager.cpp">
-      <Filter>Library\Collision\CollisionManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TextureManager.cpp">
-      <Filter>Library\TextureManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\DSoundManager.cpp">
+    <ClCompile Include="Library\Sound\DSoundManager.cpp">
       <Filter>Library\DSoundManager</Filter>
     </ClCompile>
-    <ClCompile Include="Library\AnimFileParser.cpp">
-      <Filter>Library\TextureAnimation\AnimFileParser</Filter>
+    <ClCompile Include="Library\DxInput\DXInputDevice.cpp">
+      <Filter>Library\DXInputDevice</Filter>
     </ClCompile>
-    <ClCompile Include="Library\AnimTexture.cpp">
-      <Filter>Library\TextureAnimation</Filter>
+    <ClCompile Include="Library\DxInput\KeyBoard\KeyDevice.cpp">
+      <Filter>Library\DXInputDevice\KeyDevice</Filter>
     </ClCompile>
-    <ClCompile Include="Library\DebugTimer.cpp">
-      <Filter>Library\Debug</Filter>
+    <ClCompile Include="Library\DxInput\Mouse\MouseDevice.cpp">
+      <Filter>Library\DXInputDevice\MouseDevice</Filter>
     </ClCompile>
-    <ClCompile Include="Library\XInput.cpp">
+    <ClCompile Include="Library\Animation\AnimUvController.cpp">
+      <Filter>Library\AnimUvController</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Collision\CollisionManager.cpp">
+      <Filter>Library\Collision\CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Dx11\DX11Manager.cpp">
+      <Filter>Library\DX11Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Event\EventManager.cpp">
+      <Filter>Library\EventManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Texture\TextureContainer.cpp">
+      <Filter>Library\TextureManager\TextureContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Texture\TextureLoader.cpp">
+      <Filter>Library\TextureManager\TextureLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Texture\TextureManager.cpp">
+      <Filter>Library\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\XInput\XInput.cpp">
       <Filter>Library\XInput</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Window\Window.cpp">
+      <Filter>Library\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\DebugTool\DebugTimer.cpp">
+      <Filter>Library\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Library\EventManager.h">
-      <Filter>Library\EventManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Event.h">
-      <Filter>Library\EventManager\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Window.h">
-      <Filter>Library\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\DX11Manager.h">
-      <Filter>Library\DX11Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\DXInputDevice.h">
-      <Filter>Library\DXInputDevice</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\MouseDevice.h">
-      <Filter>Library\DXInputDevice\MouseDevice</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\KeyDevice.h">
-      <Filter>Library\DXInputDevice\KeyDevice</Filter>
-    </ClInclude>
     <ClInclude Include="Library\Singleton.h">
       <Filter>Library\Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Vertex2D.h">
+    <ClInclude Include="Library\Vertex2D\Vertex2D.h">
       <Filter>Library\Vertex2D</Filter>
     </ClInclude>
-    <ClInclude Include="Library\CollisionBase.h">
-      <Filter>Library\Collision\CollisionBase</Filter>
+    <ClInclude Include="Library\Animation\AnimFileParser\AnimFileParser.h">
+      <Filter>Library\AnimUvController\AnimFileParser</Filter>
     </ClInclude>
-    <ClInclude Include="Library\TextureLoader.h">
-      <Filter>Library\TextureManager\TextureLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TextureContainer.h">
-      <Filter>Library\TextureManager\TextureContainer</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\CollisionManager.h">
-      <Filter>Library\Collision\CollisionManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TextureManager.h">
-      <Filter>Library\TextureManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\DSoundManager.h">
+    <ClInclude Include="Library\Sound\DSoundManager.h">
       <Filter>Library\DSoundManager</Filter>
     </ClInclude>
-    <ClInclude Include="Library\AnimFileParser.h">
-      <Filter>Library\TextureAnimation\AnimFileParser</Filter>
+    <ClInclude Include="Library\DxInput\DXInputDevice.h">
+      <Filter>Library\DXInputDevice</Filter>
     </ClInclude>
-    <ClInclude Include="Library\AnimTexture.h">
-      <Filter>Library\TextureAnimation</Filter>
+    <ClInclude Include="Library\DxInput\KeyBoard\KeyDevice.h">
+      <Filter>Library\DXInputDevice\KeyDevice</Filter>
     </ClInclude>
-    <ClInclude Include="Library\DebugTimer.h">
-      <Filter>Library\Debug</Filter>
+    <ClInclude Include="Library\DxInput\Mouse\MouseDevice.h">
+      <Filter>Library\DXInputDevice\MouseDevice</Filter>
     </ClInclude>
-    <ClInclude Include="Library\XInput.h">
+    <ClInclude Include="Library\Animation\AnimUvController.h">
+      <Filter>Library\AnimUvController</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Collision\CollisionBase.h">
+      <Filter>Library\Collision\CollisionBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Collision\CollisionManager.h">
+      <Filter>Library\Collision\CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Dx11\DX11Manager.h">
+      <Filter>Library\DX11Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Event\Event.h">
+      <Filter>Library\EventManager\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Event\EventManager.h">
+      <Filter>Library\EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Texture\TextureContainer.h">
+      <Filter>Library\TextureManager\TextureContainer</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Texture\TextureLoader.h">
+      <Filter>Library\TextureManager\TextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Texture\TextureManager.h">
+      <Filter>Library\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\XInput\XInput.h">
       <Filter>Library\XInput</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Window\Window.h">
+      <Filter>Library\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\DebugTool\DebugTimer.h">
+      <Filter>Library\Debug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
