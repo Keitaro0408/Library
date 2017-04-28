@@ -34,7 +34,7 @@ SceneBase(SCENE_GAME)
 		SINGLETON_INSTANCE(Lib::Window).GetWindowHandle());
 
 	m_Vertex->Init(&D3DXVECTOR2(256, 256), m_Animation->GetUV());
-	m_Vertex->SetTexture(SINGLETON_INSTANCE(Lib::TextureContainer).GetTexture(m_TextureIndex));
+	m_Vertex->SetTexture(SINGLETON_INSTANCE(Lib::TextureManager).GetTexture(m_TextureIndex));
 	
 	//SINGLETON_INSTANCE(Lib::DirectShowSound).SoundOperation(m_SoundIndex, Lib::SOUND_LOOP);
 }
@@ -44,7 +44,7 @@ GameScene::~GameScene()
 	m_Vertex->Release();
 	SINGLETON_INSTANCE(Lib::DSoundManager).ReleaseSound(m_SoundIndex);
 	delete m_Vertex;
-	SINGLETON_INSTANCE(Lib::TextureContainer).ReleaseTexture(m_TextureIndex);
+	SINGLETON_INSTANCE(Lib::TextureManager).ReleaseTexture(m_TextureIndex);
 	delete m_Animation;
 }
 
@@ -57,7 +57,8 @@ SceneBase::SceneID GameScene::Control()
 	m_Animation->Control(false, Lib::ANIM_LOOP);
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_ON)
 	{
-		Rectvar.right -= 1;
+		
+		m_SceneID = SceneID::SCENE_TITLE;
 	}
 	else if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_PUSH)
 	{

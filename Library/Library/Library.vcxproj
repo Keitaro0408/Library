@@ -19,11 +19,9 @@
     <ClCompile Include="Library\Dx11\DX11Manager.cpp" />
     <ClCompile Include="Library\Event\EventManager.cpp" />
     <ClCompile Include="Library\DxInput\KeyBoard\KeyDevice.cpp" />
-    <ClCompile Include="Library\Texture\TextureContainer.cpp" />
     <ClCompile Include="Library\Vertex2D\Vertex2D.cpp" />
     <ClCompile Include="Library\Window\Window.cpp" />
     <ClCompile Include="Library\DxInput\Mouse\MouseDevice.cpp" />
-    <ClCompile Include="Library\Texture\TextureLoader.cpp" />
     <ClCompile Include="Library\Texture\TextureManager.cpp" />
     <ClCompile Include="Library\Animation\AnimUvController.cpp" />
     <ClCompile Include="Library\XInput\XInput.cpp" />
@@ -39,12 +37,10 @@
     <ClInclude Include="Library\Event\Event.h" />
     <ClInclude Include="Library\Event\EventManager.h" />
     <ClInclude Include="Library\DxInput\KeyBoard\KeyDevice.h" />
-    <ClInclude Include="Library\Texture\TextureContainer.h" />
     <ClInclude Include="Library\Vertex2D\Vertex2D.h" />
     <ClInclude Include="Library\Window\Window.h" />
     <ClInclude Include="Library\DxInput\Mouse\MouseDevice.h" />
     <ClInclude Include="Library\Singleton.h" />
-    <ClInclude Include="Library\Texture\TextureLoader.h" />
     <ClInclude Include="Library\Texture\TextureManager.h" />
     <ClInclude Include="Library\Animation\AnimUvController.h" />
     <ClInclude Include="Library\XInput\XInput.h" />
