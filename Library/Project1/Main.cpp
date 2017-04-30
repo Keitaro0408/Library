@@ -83,7 +83,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 #if FULLSCREEN
 	SINGLETON_INSTANCE(Lib::DX11Manager).SetFullScreenState(true);
 #else
-	SINGLETON_INSTANCE(Lib::DX11Manager).SetFullScreenState(false);
+	//SINGLETON_INSTANCE(Lib::DX11Manager).SetFullScreenState(false);
 #endif
 
 	SceneManager* sceneManager = new SceneManager(hWnd);

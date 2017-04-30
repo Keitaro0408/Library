@@ -32,7 +32,7 @@ SceneBase(SCENE_GAME)
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext(),
 		SINGLETON_INSTANCE(Lib::Window).GetWindowHandle());
-
+	
 	m_Vertex->Init(&D3DXVECTOR2(256, 256), m_Animation->GetUV());
 	m_Vertex->SetTexture(SINGLETON_INSTANCE(Lib::TextureManager).GetTexture(m_TextureIndex));
 	
@@ -42,8 +42,8 @@ SceneBase(SCENE_GAME)
 GameScene::~GameScene()
 {
 	m_Vertex->Release();
-	SINGLETON_INSTANCE(Lib::DSoundManager).ReleaseSound(m_SoundIndex);
 	delete m_Vertex;
+	SINGLETON_INSTANCE(Lib::DSoundManager).ReleaseSound(m_SoundIndex);
 	SINGLETON_INSTANCE(Lib::TextureManager).ReleaseTexture(m_TextureIndex);
 	delete m_Animation;
 }
@@ -72,7 +72,7 @@ void GameScene::Draw()
 {
 	SINGLETON_INSTANCE(Lib::DX11Manager).BeginScene();
 	g_Timer.Begin();
-	m_Vertex->Draw(&D3DXVECTOR2(640, 360), &Rectvar, m_Animation->GetUV());
+	m_Vertex->Draw(&D3DXVECTOR2(640, 360), m_Animation->GetUV());
 	g_Timer.End();
 	SINGLETON_INSTANCE(Lib::DX11Manager).EndScene();
 

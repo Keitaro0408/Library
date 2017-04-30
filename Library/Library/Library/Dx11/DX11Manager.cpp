@@ -94,6 +94,23 @@ void Lib::DX11Manager::SetDepthStencilTest(bool _isStencil)
 
 bool Lib::DX11Manager::InitDevice()
 {
+#ifdef	_DEBUG
+	if (FAILED(D3D11CreateDevice(
+		NULL,
+		D3D_DRIVER_TYPE_HARDWARE,
+		NULL,
+		D3D11_CREATE_DEVICE_DEBUG,
+		NULL,
+		0,
+		D3D11_SDK_VERSION,
+		&m_pDevice,
+		NULL,
+		&m_pDeviceContext)))
+	{
+		OutputDebugString(TEXT("D3D11CreateDeviceに失敗しました"));
+		return false;
+	}
+#else
 	if (FAILED(D3D11CreateDevice(
 		NULL,
 		D3D_DRIVER_TYPE_HARDWARE,
@@ -109,7 +126,7 @@ bool Lib::DX11Manager::InitDevice()
 		OutputDebugString(TEXT("D3D11CreateDeviceに失敗しました"));
 		return false;
 	}
-
+#endif
 	return true;
 }
 
