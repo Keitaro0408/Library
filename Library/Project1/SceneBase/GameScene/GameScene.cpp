@@ -14,7 +14,7 @@
 
 namespace
 {
-	Lib::DebugTimer g_Timer(60);
+	Lib::DebugTimer g_Timer(120);
 	RECT Rectvar = {0,0,0,0};
 }
 
@@ -26,7 +26,7 @@ SceneBase(SCENE_GAME)
 
 	m_Animation = new Lib::AnimUvController();
 	m_Animation->LoadAnimation("Character.anim", "Wait");
-	m_Animation->SetAnimFrame(5);
+	m_Animation->SetAnimFrame(10);
 
 	m_Vertex = new Lib::Vertex2D(
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),

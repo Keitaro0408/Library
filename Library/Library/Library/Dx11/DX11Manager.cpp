@@ -167,7 +167,7 @@ bool Lib::DX11Manager::InitDisplay()
 	m_DXGISwapChainDesc.BufferDesc.Height = m_WindowRect.bottom - m_WindowRect.top;
 	m_DXGISwapChainDesc.BufferDesc.RefreshRate.Numerator = 60;
 	m_DXGISwapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
-	m_DXGISwapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+	m_DXGISwapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	m_DXGISwapChainDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	m_DXGISwapChainDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 	m_DXGISwapChainDesc.SampleDesc.Count = 1;

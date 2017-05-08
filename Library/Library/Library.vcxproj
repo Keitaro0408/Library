@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Library\Network\HttpConnect\HttpConnect.cpp" />
     <ClCompile Include="Library\Animation\AnimFileParser\AnimFileParser.cpp" />
     <ClCompile Include="Library\DebugTool\DebugTimer.cpp" />
     <ClCompile Include="Library\Sound\DSoundManager.cpp" />
@@ -27,6 +28,7 @@
     <ClCompile Include="Library\XInput\XInput.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\Network\HttpConnect\HttpConnect.h" />
     <ClInclude Include="Library\Animation\AnimFileParser\AnimFileParser.h" />
     <ClInclude Include="Library\DebugTool\DebugTimer.h" />
     <ClInclude Include="Library\Sound\DSoundManager.h" />
