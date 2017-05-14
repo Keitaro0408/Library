@@ -98,6 +98,21 @@ void Lib::AnimUvController::ResetAnim()
 	}
 }
 
+void Lib::AnimUvController::SetAnimCount(int _animCount)
+{
+	if (m_AnimData.AnimNum < _animCount)
+	{
+		m_AnimCount = m_AnimData.AnimNum;
+		return;
+	}
+	else if (_animCount < 0)
+	{
+		m_AnimCount = 0;
+	}
+
+	m_AnimCount = _animCount;
+}
+
 
 //----------------------------------------------------------------------------------------------------
 // Private Functions

@@ -61,14 +61,23 @@
     <Filter Include="Library\AnimUvController\AnimFileParser">
       <UniqueIdentifier>{b866d142-97e6-432e-8e92-2a4ccdf9298d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\Fbx\FbxLoader">
-      <UniqueIdentifier>{d170df00-845e-4c4d-874b-d6075e1941cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Library\NetWork">
       <UniqueIdentifier>{bb786069-458e-41f8-a248-d2a0ac1e76e6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\NetWork\HttpConnect">
       <UniqueIdentifier>{d5a8d15e-6450-4e63-bb3f-cb5952938c02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Fbx\FileManager">
+      <UniqueIdentifier>{7e922a3a-450f-4667-93d5-0895163e32ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Fbx\FileManager\FbxLoader">
+      <UniqueIdentifier>{efa5609d-9371-4268-8ecd-6454567f94bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Fbx\FileManager\FbxModel">
+      <UniqueIdentifier>{132c7754-257f-4d9a-a791-18a5084c7fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Vertex">
+      <UniqueIdentifier>{a90dd4cc-0942-4289-82fa-87702c7e4b3f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +125,18 @@
     </ClCompile>
     <ClCompile Include="Library\Network\HttpConnect\HttpConnect.cpp">
       <Filter>Library\NetWork\HttpConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Fbx\FbxFileManager\FbxFileManager.cpp">
+      <Filter>Library\Fbx\FileManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Fbx\FbxFileManager\FbxLoader\FbxLoader.cpp">
+      <Filter>Library\Fbx\FileManager\FbxLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Fbx\FbxFileManager\FbxModel\FbxModel.cpp">
+      <Filter>Library\Fbx\FileManager\FbxModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Vertex\Vertex.cpp">
+      <Filter>Library\Vertex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +193,18 @@
     </ClInclude>
     <ClInclude Include="Library\Network\HttpConnect\HttpConnect.h">
       <Filter>Library\NetWork\HttpConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Fbx\FbxFileManager\FbxFileManager.h">
+      <Filter>Library\Fbx\FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Fbx\FbxFileManager\FbxLoader\FbxLoader.h">
+      <Filter>Library\Fbx\FileManager\FbxLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Fbx\FbxFileManager\FbxModel\FbxModel.h">
+      <Filter>Library\Fbx\FileManager\FbxModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Vertex\Vertex.h">
+      <Filter>Library\Vertex</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

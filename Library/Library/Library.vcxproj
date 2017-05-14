@@ -11,6 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Library\Fbx\FbxFileManager\FbxFileManager.cpp" />
+    <ClCompile Include="Library\Fbx\FbxFileManager\FbxLoader\FbxLoader.cpp" />
+    <ClCompile Include="Library\Fbx\FbxFileManager\FbxModel\FbxModel.cpp" />
     <ClCompile Include="Library\Network\HttpConnect\HttpConnect.cpp" />
     <ClCompile Include="Library\Animation\AnimFileParser\AnimFileParser.cpp" />
     <ClCompile Include="Library\DebugTool\DebugTimer.cpp" />
@@ -21,6 +24,7 @@
     <ClCompile Include="Library\Event\EventManager.cpp" />
     <ClCompile Include="Library\DxInput\KeyBoard\KeyDevice.cpp" />
     <ClCompile Include="Library\Vertex2D\Vertex2D.cpp" />
+    <ClCompile Include="Library\Vertex\Vertex.cpp" />
     <ClCompile Include="Library\Window\Window.cpp" />
     <ClCompile Include="Library\DxInput\Mouse\MouseDevice.cpp" />
     <ClCompile Include="Library\Texture\TextureManager.cpp" />
@@ -28,6 +32,9 @@
     <ClCompile Include="Library\XInput\XInput.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\Fbx\FbxFileManager\FbxFileManager.h" />
+    <ClInclude Include="Library\Fbx\FbxFileManager\FbxLoader\FbxLoader.h" />
+    <ClInclude Include="Library\Fbx\FbxFileManager\FbxModel\FbxModel.h" />
     <ClInclude Include="Library\Network\HttpConnect\HttpConnect.h" />
     <ClInclude Include="Library\Animation\AnimFileParser\AnimFileParser.h" />
     <ClInclude Include="Library\DebugTool\DebugTimer.h" />
@@ -40,6 +47,7 @@
     <ClInclude Include="Library\Event\EventManager.h" />
     <ClInclude Include="Library\DxInput\KeyBoard\KeyDevice.h" />
     <ClInclude Include="Library\Vertex2D\Vertex2D.h" />
+    <ClInclude Include="Library\Vertex\Vertex.h" />
     <ClInclude Include="Library\Window\Window.h" />
     <ClInclude Include="Library\DxInput\Mouse\MouseDevice.h" />
     <ClInclude Include="Library\Singleton.h" />
@@ -81,8 +89,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)Include;C:\Program Files\Autodesk\FBX\FBX SDK\2016.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4005;4717;4006;4221;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -100,6 +109,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

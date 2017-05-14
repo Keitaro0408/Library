@@ -54,7 +54,11 @@ SceneBase::SceneID GameScene::Control()
 	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_P);
 	//SINGLETON_INSTANCE(Lib::DSoundManager).SoundOperation(m_SoundIndex,Lib::DSoundManager::SOUND_PLAY);
 	static bool isPlay = true;
-	m_Animation->Control(false, Lib::ANIM_LOOP);
+	if (m_Animation->Control(false, Lib::ANIM_LOOP))
+	{
+		int animCount = m_Animation->GetAnimCount();
+		m_Animation->GetAnimCount();
+	}
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_ON)
 	{
 		
