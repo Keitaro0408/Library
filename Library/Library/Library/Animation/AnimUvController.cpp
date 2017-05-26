@@ -124,11 +124,6 @@ bool Lib::AnimUvController::NormalControl(ANIM_OPERATION _playOperation)
 	{
 		m_Count = 0;
 
-		for (int i = 0; i < 4; i++)
-		{
-			m_NowUV[i].x = m_UV[i].x + m_AnimCount * m_ScrollUV.x;
-		}
-
 		m_AnimCount++;
 		switch (_playOperation)
 		{
@@ -159,12 +154,6 @@ bool Lib::AnimUvController::ReverseControl(ANIM_OPERATION _playOperation)
 	if (m_ScrollFrame < m_Count)
 	{
 		m_Count = 0;
-
-		for (int i = 0; i < 4; i++)
-		{
-			m_NowUV[i].x = m_UV[i].x + m_AnimCount * m_ScrollUV.x;
-		}
-
 		m_AnimCount--;
 		switch (_playOperation)
 		{
