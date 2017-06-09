@@ -39,7 +39,7 @@ bool Lib::DX11Manager::Init(HWND _hWnd)
 	}
 
 	m_hWnd = _hWnd;
-	GetWindowRect(m_hWnd, &m_WindowRect);
+	GetClientRect(m_hWnd, &m_WindowRect);
 
 	if (!InitDevice())
 	{
@@ -163,8 +163,8 @@ bool Lib::DX11Manager::InitDisplay()
 		return false;
 	}
 
-	m_DXGISwapChainDesc.BufferDesc.Width = m_WindowRect.right - m_WindowRect.left;
-	m_DXGISwapChainDesc.BufferDesc.Height = m_WindowRect.bottom - m_WindowRect.top;
+	m_DXGISwapChainDesc.BufferDesc.Width = m_WindowRect.right;
+	m_DXGISwapChainDesc.BufferDesc.Height = m_WindowRect.bottom;
 	m_DXGISwapChainDesc.BufferDesc.RefreshRate.Numerator = 60;
 	m_DXGISwapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
 	m_DXGISwapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -214,8 +214,8 @@ bool Lib::DX11Manager::InitDisplay()
 	OutputDebugString(TEXT("描画ターゲット生成に成功しました\n"));
 
 
-	m_DepthDesc.Width = m_WindowRect.right - m_WindowRect.left;
-	m_DepthDesc.Height = m_WindowRect.bottom - m_WindowRect.top;
+	m_DepthDesc.Width = m_WindowRect.right;
+	m_DepthDesc.Height = m_WindowRect.bottom;
 	m_DepthDesc.MipLevels = 1;
 	m_DepthDesc.ArraySize = 1;
 	m_DepthDesc.Format = DXGI_FORMAT_D32_FLOAT;
@@ -260,8 +260,8 @@ bool Lib::DX11Manager::InitDisplay()
 
 	m_ViewPort.TopLeftX = 0;
 	m_ViewPort.TopLeftY = 0;
-	m_ViewPort.Width = static_cast<float>(m_WindowRect.right - m_WindowRect.left);
-	m_ViewPort.Height = static_cast<float>(m_WindowRect.bottom - m_WindowRect.top);
+	m_ViewPort.Width = static_cast<float>(m_WindowRect.right);
+	m_ViewPort.Height = static_cast<float>(m_WindowRect.bottom);
 	m_ViewPort.MinDepth = 0.0f;
 	m_ViewPort.MaxDepth = 1.0f;
 	m_pDeviceContext->RSSetViewports(1, &m_ViewPort);

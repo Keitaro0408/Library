@@ -33,9 +33,12 @@ SceneBase(SCENE_GAME)
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext(),
 		SINGLETON_INSTANCE(Lib::Window).GetWindowHandle());
 	
+	RECT ClientRect;
+	GetClientRect(SINGLETON_INSTANCE(Lib::Window).GetWindowHandle(), &ClientRect);
 	m_Vertex->Init(&D3DXVECTOR2(256, 256), m_Animation->GetUV());
 	m_Vertex->SetTexture(SINGLETON_INSTANCE(Lib::TextureManager).GetTexture(m_TextureIndex));
-	
+
+
 	//SINGLETON_INSTANCE(Lib::DirectShowSound).SoundOperation(m_SoundIndex, Lib::SOUND_LOOP);
 }
 

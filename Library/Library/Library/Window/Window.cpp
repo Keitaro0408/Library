@@ -28,11 +28,12 @@ HRESULT Lib::Window::DispWindow(HINSTANCE _hInstance, INT _width, INT _height, L
 	Wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 	RegisterClassEx(&Wndclass);
 
+	
 	//ウィンドウの作成
 	m_hWnd = CreateWindow(
 		_windowName,
 		_windowName,
-		WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MINIMIZEBOX & ~WS_MAXIMIZEBOX | WS_VISIBLE,
+		WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME | WS_VISIBLE,
 		0,
 		0,
 		_width,
@@ -46,6 +47,15 @@ HRESULT Lib::Window::DispWindow(HINSTANCE _hInstance, INT _width, INT _height, L
 	{
 		return E_FAIL;
 	}
+
+	RECT rw, rc;
+	GetWindowRect(m_hWnd, &rw); // ウィンドウ全体のサイズ
+	GetClientRect(m_hWnd, &rc); // クライアント領域のサイズ
+
+	int new_width = (rw.right - rw.left) - (rc.right - rc.left) + _width;
+	int new_height = (rw.bottom - rw.top) - (rc.bottom - rc.top) + _height;
+
+	SetWindowPos(m_hWnd, NULL, 0, 0, new_width, new_height, SWP_NOMOVE | SWP_NOZORDER);
 	//ウインドウの表示
 	ShowWindow(m_hWnd, SW_SHOW);
 	UpdateWindow(m_hWnd);
@@ -76,7 +86,7 @@ HRESULT Lib::Window::DispWindow(HINSTANCE _hInstance, INT _width, INT _height, L
 	m_hWnd = CreateWindow(
 		_windowName,
 		_windowName,
-		WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MINIMIZEBOX & ~WS_MAXIMIZEBOX | WS_VISIBLE,
+		WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME | WS_VISIBLE,
 		0,
 		0,
 		_width,
