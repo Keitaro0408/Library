@@ -96,6 +96,8 @@ HRESULT Lib::Window::DispWindow(INT _width, INT _height, LPCTSTR _windowName)
 
 HRESULT Lib::Window::DispWindow(INT _width, INT _height, LPCTSTR _windowName, LPCTSTR _iconName)
 {
+	m_hInstance = GetModuleHandle(NULL);
+
 	// ウィンドウの定義
 	WNDCLASSEX  Wndclass;
 	ZeroMemory(&Wndclass, sizeof(Wndclass));

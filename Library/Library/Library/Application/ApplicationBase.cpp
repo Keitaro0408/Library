@@ -15,20 +15,6 @@
 Lib::ApplicationBase* Lib::ApplicationBase::m_pInstance = nullptr;
 
 
-int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdShow)
-{
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	SINGLETON_CREATE(Lib::Window);
-
-	SINGLETON_INSTANCE(Lib::Window).Init(hInst);
-
-	Lib::ApplicationBase::m_pInstance->Init();
-	Lib::ApplicationBase::m_pInstance->InitLib();
-
-	return Lib::ApplicationBase::m_pInstance->Boot();
-}
-
-
 namespace Lib
 {
 	ApplicationBase::ApplicationBase()
@@ -47,8 +33,15 @@ namespace Lib
 	// Public Functions
 	//----------------------------------------------------------------------------------------------------
 
-	int ApplicationBase::Boot()
+	int ApplicationBase::Boot(int windowWidth, int windowHeight, LPCTSTR _windowName)
 	{
+		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+		SINGLETON_CREATE(Lib::Window);
+
+		SINGLETON_INSTANCE(Lib::Window).DispWindow(windowWidth, windowHeight, _windowName);
+		Init();
+		InitLib();
+
 		MSG Msg;
 		ZeroMemory(&Msg, sizeof(Msg));
 		while (Msg.message != WM_QUIT)

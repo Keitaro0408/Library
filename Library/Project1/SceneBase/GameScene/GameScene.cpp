@@ -72,13 +72,13 @@ SceneBase::SceneID GameScene::Update()
 
 	float test = Lib::Math::GetAngle(Pos,D3DXVECTOR2(400,400));
 
-	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_LEFTARROW] == Lib::KEY_ON)
+	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_LEFTARROW] == Lib::KEY_PUSH)
 	{
-		g_Angle -= 1.0;
+		SINGLETON_INSTANCE(Lib::Window).ChangeWindowSize(1920,1080);
 	}
-	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_RIGHTARROW] == Lib::KEY_ON)
+	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_RIGHTARROW] == Lib::KEY_PUSH)
 	{
-		g_Angle += 1.0;
+		SINGLETON_INSTANCE(Lib::Window).ChangeWindowSize(1280, 720);
 	}
 
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_ON)

@@ -5,6 +5,8 @@
  */
 #ifndef APPLICATIONBASE_H
 #define APPLICATIONBASE_H
+#define ENTRY_POINT int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdShow)
+#include <Windows.h>
 
 namespace Lib
 {
@@ -15,11 +17,13 @@ namespace Lib
 	class ApplicationBase
 	{
 	public:
-		static ApplicationBase* m_pInstance;
-
 		ApplicationBase();
-
 		virtual ~ApplicationBase();
+
+		static inline ApplicationBase* GetInstance()
+		{
+			return m_pInstance;
+		}
 
 		/**
 		 * ライブラリの初期化
@@ -51,8 +55,16 @@ namespace Lib
 		 */
 		virtual bool MainLoop() = 0;
 
-		int Boot();
+		int Boot(int _windowWidth, int _windowHeight,LPCTSTR _windowName);
 
+	private:
+		static ApplicationBase* m_pInstance;
+
+	};
+
+	inline int Boot(int _windowWidth, int _windowHeight, LPCTSTR _windowName)
+	{
+		return ApplicationBase::GetInstance()->Boot(_windowWidth, _windowHeight, _windowName);
 	};
 }
 
