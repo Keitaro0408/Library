@@ -42,7 +42,7 @@ public:
 	 * SceneBaseの制御関数
 	 * @return 遷移先のシーンID
 	 */
-	virtual SceneID Control() = 0;
+	virtual SceneID Update() = 0;
 
 	/**
 	 * SceneBaseの描画関数

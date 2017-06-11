@@ -71,14 +71,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="App.cpp" />
     <ClCompile Include="SceneBase\GameScene\GameScene.cpp" />
     <ClCompile Include="SceneBase\SceneBase.cpp" />
     <ClCompile Include="SceneBase\TitleScene\TitleScene.cpp" />
     <ClCompile Include="SceneFactory\SceneFactory.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="App.h" />
     <ClInclude Include="SceneBase\GameScene\GameScene.h" />
     <ClInclude Include="SceneBase\SceneBase.h" />
     <ClInclude Include="SceneBase\TitleScene\TitleScene.h" />

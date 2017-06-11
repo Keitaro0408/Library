@@ -6,6 +6,7 @@
 #ifndef TITLESCENE_H
 #define TITLESCENE_H
 #include "..\SceneBase.h"
+#include "Math.h"
 
 
 /**
@@ -28,7 +29,7 @@ public:
 	 * TitleSceneの制御関数
 	 * @return 遷移先のシーンID
 	 */
-	virtual SceneID Control();
+	virtual SceneID Update();
 
 	/**
 	 * TitleSceneの描画関数

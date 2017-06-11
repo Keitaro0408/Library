@@ -9,10 +9,9 @@
 const int  Lib::Vertex2D::m_VertexNum = 4;
 const UINT Lib::Vertex2D::m_ColorMask = 0xffffffff;
 
-Lib::Vertex2D::Vertex2D(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext, HWND _hWnd) :
+Lib::Vertex2D::Vertex2D(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext, RECT _windowSize) :
 m_pDevice(_pDevice),
 m_pDeviceContext(_pDeviceContext),
-m_hWnd(_hWnd),
 m_pVertexShader(NULL),
 m_pVertexCompiledShader(NULL),
 m_pVertexLayout(NULL),
@@ -22,8 +21,8 @@ m_pSamplerState(NULL),
 m_pVertexBuffer(NULL),
 m_pConstantBuffer(NULL),
 m_pTextureResourceView(NULL),
-m_ClientWidth(0),
-m_ClientHeight(0)
+m_ClientWidth(static_cast<float>(_windowSize.right)),
+m_ClientHeight(static_cast<float>(_windowSize.bottom))
 {
 }
 
@@ -34,11 +33,6 @@ m_ClientHeight(0)
 
 bool Lib::Vertex2D::Init(const D3DXVECTOR2* _pRectSize, const D3DXVECTOR2* _pUV)
 {
-	RECT ClientRect;
-	GetClientRect(m_hWnd, &ClientRect);
-	m_ClientWidth = static_cast<float>(ClientRect.right);
-	m_ClientHeight = static_cast<float>(ClientRect.bottom);
-
 	if (!InitVertexShader())
 	{
 		return false;
@@ -160,7 +154,7 @@ void Lib::Vertex2D::Draw(const D3DXVECTOR2* _pDrawPos, const D3DXVECTOR2* _pUV, 
 		memcpy_s(MappedResource.pData, MappedResource.RowPitch, reinterpret_cast<void*>(&Vertex), sizeof(Vertex));
 		m_pDeviceContext->Unmap(m_pVertexBuffer, 0);
 	}
-	WriteConstantBuffer(_pDrawPos, &D3DXVECTOR2(_pScale->x, _pScale->y), &D3DXVECTOR2(0, 0), _angle, _alpha);
+	WriteConstantBuffer(_pDrawPos, &D3DXVECTOR2(_pScale->x, _pScale->y), &D3DXVECTOR2(0, 0), static_cast<float>(D3DXToRadian(_angle)), _alpha);
 
 	m_pDeviceContext->VSSetShader(m_pVertexShader, NULL, 0);
 	m_pDeviceContext->PSSetShader(m_pPixelShader, NULL, 0);
@@ -198,7 +192,7 @@ void Lib::Vertex2D::Draw(const D3DXVECTOR2* _pDrawPos, const RECT* _pRectDiff, c
 		memcpy_s(MappedResource.pData, MappedResource.RowPitch, reinterpret_cast<void*>(&Vertex), sizeof(Vertex));
 		m_pDeviceContext->Unmap(m_pVertexBuffer, 0);
 	}
-	WriteConstantBuffer(_pDrawPos, &D3DXVECTOR2(_pScale->x, _pScale->y), &D3DXVECTOR2(0, 0), _angle, _alpha);
+	WriteConstantBuffer(_pDrawPos, &D3DXVECTOR2(_pScale->x, _pScale->y), &D3DXVECTOR2(0, 0), static_cast<float>(D3DXToRadian(_angle)), _alpha);
 
 	m_pDeviceContext->VSSetShader(m_pVertexShader, NULL, 0);
 	m_pDeviceContext->PSSetShader(m_pPixelShader, NULL, 0);

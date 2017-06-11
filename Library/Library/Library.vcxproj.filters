@@ -79,6 +79,12 @@
     <Filter Include="Library\Vertex">
       <UniqueIdentifier>{a90dd4cc-0942-4289-82fa-87702c7e4b3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library\Math">
+      <UniqueIdentifier>{909986df-88d9-4de6-aa32-90015f2206f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Application">
+      <UniqueIdentifier>{96bc6615-a98a-4532-8148-e0ebef8f1b60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\Vertex2D\Vertex2D.cpp">
@@ -137,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="Library\Vertex\Vertex.cpp">
       <Filter>Library\Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Math\Math.cpp">
+      <Filter>Library\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Application\ApplicationBase.cpp">
+      <Filter>Library\Application</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +217,12 @@
     </ClInclude>
     <ClInclude Include="Library\Vertex\Vertex.h">
       <Filter>Library\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Math\Math.h">
+      <Filter>Library\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Application\ApplicationBase.h">
+      <Filter>Library\Application</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@
 #define SCENEMANAGER_H
 #include <Windows.h>
 #include "SceneBase\SceneBase.h"
+#include "Math.h"
 
 /**
  * シーンを管理するクラス
@@ -45,7 +46,7 @@ private:
 	/**
 	 * SceneManagerクラスの制御関数
 	 */
-	void Control();
+	void Update();
 
 	/**
 	 * SceneManagerクラスの描画関数

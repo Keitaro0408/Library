@@ -11,16 +11,21 @@
 #include <Library\DxInput\DXInputDevice.h>
 #include <Library\Texture\TextureManager.h>
 #include <Library\DebugTool\DebugTimer.h>
+#include "Library/Math/Math.h"
 
 namespace
 {
 	Lib::DebugTimer g_Timer(120);
 	RECT Rectvar = {0,0,0,0};
+	D3DXVECTOR2 Pos;
+	float g_Angle = 0.f;
 }
 
 GameScene::GameScene() :
 SceneBase(SCENE_GAME)
 {
+	Pos.x = 400.f;
+	Pos.y = 400.f;
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
 	SINGLETON_INSTANCE(Lib::DSoundManager).LoadSound("button01a.wav", &m_SoundIndex);
 
@@ -31,7 +36,7 @@ SceneBase(SCENE_GAME)
 	m_Vertex = new Lib::Vertex2D(
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext(),
-		SINGLETON_INSTANCE(Lib::Window).GetWindowHandle());
+		SINGLETON_INSTANCE(Lib::Window).GetWindowSize());
 	
 	RECT ClientRect;
 	GetClientRect(SINGLETON_INSTANCE(Lib::Window).GetWindowHandle(), &ClientRect);
@@ -51,24 +56,34 @@ GameScene::~GameScene()
 	delete m_Animation;
 }
 
-SceneBase::SceneID GameScene::Control()
+SceneBase::SceneID GameScene::Update()
 {
 	SINGLETON_INSTANCE(Lib::KeyDevice).Update();
 	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_P);
+	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_LEFTARROW);
+	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_RIGHTARROW);
 	//SINGLETON_INSTANCE(Lib::DSoundManager).SoundOperation(m_SoundIndex,Lib::DSoundManager::SOUND_PLAY);
 	static bool isPlay = true;
-	if (m_Animation->Control(false, Lib::ANIM_LOOP))
+	//if (m_Animation->Control(false, Lib::ANIM_LOOP))
+	//{
+	//	int animCount = m_Animation->GetAnimCount();
+	//	m_Animation->GetAnimCount();
+	//}
+
+	float test = Lib::Math::GetAngle(Pos,D3DXVECTOR2(400,400));
+
+	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_LEFTARROW] == Lib::KEY_ON)
 	{
-		int animCount = m_Animation->GetAnimCount();
-		m_Animation->GetAnimCount();
+		g_Angle -= 1.0;
 	}
+	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_RIGHTARROW] == Lib::KEY_ON)
+	{
+		g_Angle += 1.0;
+	}
+
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_ON)
 	{
-		
-		m_SceneID = SceneID::SCENE_TITLE;
-	}
-	else if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_PUSH)
-	{
+		Pos += Lib::Math::GetAngleMovePos(2.f, g_Angle - 90.f);
 	}
 	//SINGLETON_INSTANCE(Lib::DirectShowSound).CheckLoop(m_SoundIndex);
 
@@ -79,7 +94,7 @@ void GameScene::Draw()
 {
 	SINGLETON_INSTANCE(Lib::DX11Manager).BeginScene();
 	g_Timer.Begin();
-	m_Vertex->Draw(&D3DXVECTOR2(640, 360), m_Animation->GetUV());
+	m_Vertex->Draw(&Pos, m_Animation->GetUV(),1.f,&D3DXVECTOR2(1.f,1.f),g_Angle);
 	g_Timer.End();
 	SINGLETON_INSTANCE(Lib::DX11Manager).EndScene();
 

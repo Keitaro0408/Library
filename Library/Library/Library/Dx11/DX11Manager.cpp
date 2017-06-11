@@ -30,7 +30,7 @@ m_hWnd(NULL)
 // Public Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::DX11Manager::Init(HWND _hWnd)
+bool Lib::DX11Manager::Init(HWND _hWnd, RECT _windowSize)
 {
 	if (m_pDevice != NULL)
 	{
@@ -39,7 +39,8 @@ bool Lib::DX11Manager::Init(HWND _hWnd)
 	}
 
 	m_hWnd = _hWnd;
-	GetClientRect(m_hWnd, &m_WindowRect);
+	m_WindowRect.right = _windowSize.right;
+	m_WindowRect.bottom = _windowSize.bottom;
 
 	if (!InitDevice())
 	{

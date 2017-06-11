@@ -11,9 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Library\Application\ApplicationBase.cpp" />
     <ClCompile Include="Library\Fbx\FbxFileManager\FbxFileManager.cpp" />
     <ClCompile Include="Library\Fbx\FbxFileManager\FbxLoader\FbxLoader.cpp" />
     <ClCompile Include="Library\Fbx\FbxFileManager\FbxModel\FbxModel.cpp" />
+    <ClCompile Include="Library\Math\Math.cpp" />
     <ClCompile Include="Library\Network\HttpConnect\HttpConnect.cpp" />
     <ClCompile Include="Library\Animation\AnimFileParser\AnimFileParser.cpp" />
     <ClCompile Include="Library\DebugTool\DebugTimer.cpp" />
@@ -32,9 +34,11 @@
     <ClCompile Include="Library\XInput\XInput.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\Application\ApplicationBase.h" />
     <ClInclude Include="Library\Fbx\FbxFileManager\FbxFileManager.h" />
     <ClInclude Include="Library\Fbx\FbxFileManager\FbxLoader\FbxLoader.h" />
     <ClInclude Include="Library\Fbx\FbxFileManager\FbxModel\FbxModel.h" />
+    <ClInclude Include="Library\Math\Math.h" />
     <ClInclude Include="Library\Network\HttpConnect\HttpConnect.h" />
     <ClInclude Include="Library\Animation\AnimFileParser\AnimFileParser.h" />
     <ClInclude Include="Library\DebugTool\DebugTimer.h" />

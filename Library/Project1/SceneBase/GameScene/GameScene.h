@@ -29,7 +29,7 @@ public:
 	 * GameSceneの制御関数
 	 * @return シーンの遷移先ID
 	 */
-	virtual SceneID Control();
+	virtual SceneID Update();
 
 	/**
 	 * GameSceneの描画関数

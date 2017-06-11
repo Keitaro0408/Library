@@ -28,6 +28,9 @@
     <Filter Include="ソース ファイル\SceneManager\SceneFactory">
       <UniqueIdentifier>{eb979a4b-6fbf-4cc2-b8d7-b391d1a16d16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\App">
+      <UniqueIdentifier>{90e084f5-df0b-4e1e-9379-568796c5783f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SceneManager.cpp">
@@ -45,8 +48,8 @@
     <ClCompile Include="SceneFactory\SceneFactory.cpp">
       <Filter>ソース ファイル\SceneManager\SceneFactory</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="App.cpp">
+      <Filter>ソース ファイル\App</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="SceneFactory\SceneFactory.h">
       <Filter>ソース ファイル\SceneManager\SceneFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="App.h">
+      <Filter>ソース ファイル\App</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
