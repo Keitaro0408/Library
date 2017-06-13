@@ -27,8 +27,8 @@ namespace Lib
 		D3DXVECTOR2 GetAngleMovePos(float _movement, float _angle)
 		{
 			D3DXVECTOR2 returnVar = {0.f,0.f};
-			returnVar.x = _movement * cos(ToRadian(_angle));
-			returnVar.y = _movement * sin(ToRadian(_angle));
+			returnVar.x = _movement * cos(_angle);
+			returnVar.y = _movement * sin(_angle);
 			return returnVar;
 		}
 	}

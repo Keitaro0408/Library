@@ -99,7 +99,7 @@ bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 	m_pDSound8->CreateSoundBuffer(&DSBufferDesc, &pTmpBufer, NULL);
 	pTmpBufer->QueryInterface(IID_IDirectSoundBuffer8, reinterpret_cast<void**>(&pDSBuffer));
 	pTmpBufer->Release();
-
+	
 	if (pDSBuffer == NULL)
 	{
 		m_pDSound8->Release();

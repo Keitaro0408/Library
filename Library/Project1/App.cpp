@@ -7,7 +7,9 @@ App theApp;
 
 void App::Init()
 {
+	SINGLETON_INSTANCE(Lib::Window).DispWindow(1280,720,TEXT("test"));
 	HWND hWnd = SINGLETON_INSTANCE(Lib::Window).GetWindowHandle();
+	InitLib(hWnd);
 	m_pSceneManager = new SceneManager(hWnd);
 }
 
@@ -15,6 +17,7 @@ void App::Release()
 {
 	delete m_pSceneManager;
 	m_pSceneManager = NULL;
+	ReleaseLib();
 }
 
 bool App::MainLoop()
