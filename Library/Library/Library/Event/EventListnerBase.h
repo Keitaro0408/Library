@@ -10,15 +10,15 @@ namespace Lib
 {
 	class EventManager;
 
-	class Event
+	class EventListnerBase
 	{
 		friend class EventManager;
 	public:
-		Event();
-		~Event();
+		EventListnerBase();
+		~EventListnerBase();
 
 	private:
-		virtual void Action(int _eventId) = 0;
+		virtual void Action() = 0;
 
 	};
 }

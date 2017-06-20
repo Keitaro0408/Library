@@ -3,7 +3,6 @@
 #include "Library/Window/Window.h"
 #include "SceneManager.h"
 
-App theApp;
 
 void App::Init()
 {
@@ -28,3 +27,4 @@ bool App::MainLoop()
 	}
 	return false;
 }
+App theApp;

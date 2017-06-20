@@ -7,7 +7,8 @@
 #define EVENTMANAGER_H
 
 #include <map>
-#include "Event.h"
+#include <functional>
+#include "EventListnerBase.h"
 #include "..\Singleton.h"
 
 namespace Lib
@@ -16,13 +17,13 @@ namespace Lib
 	{
 		friend Singleton<EventManager>;
 	public:
-		bool AddEvent(std::string _eventName, Event* _pEvent);
-		bool CallEvent(std::string _eventName,int _eventId);
+		bool AddEvent(std::string _eventName, EventListnerBase* _pEvent);
+		bool CallEvent(std::string _eventName);
 
 	private:
 		EventManager(){};
 		~EventManager(){};
-		std::map<std::string,Event*> m_pEvent;
+		std::map<std::string, std::function<void()> > m_pEvent;
 	};
 }
 

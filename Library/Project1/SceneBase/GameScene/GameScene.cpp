@@ -11,6 +11,7 @@
 #include <Library\DxInput\DXInputDevice.h>
 #include <Library\Texture\TextureManager.h>
 #include <Library\DebugTool\DebugTimer.h>
+#include "Library/Event/EventManager.h"
 #include "Library/Math/Math.h"
 
 namespace
@@ -28,7 +29,7 @@ SceneBase(SCENE_GAME)
 	Pos.y = 400.f;
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
 	SINGLETON_INSTANCE(Lib::DSoundManager).LoadSound("button01a.wav", &m_SoundIndex);
-
+	//SINGLETON_CREATE(Lib::EventManager);
 	m_Animation = new Lib::AnimUvController();
 	m_Animation->LoadAnimation("Character.anim", "Wait");
 	m_Animation->SetAnimFrame(10);

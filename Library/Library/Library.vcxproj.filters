@@ -10,9 +10,6 @@
     <Filter Include="Library\Window">
       <UniqueIdentifier>{3a65740c-7e23-497b-9f36-ba7495bc9172}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\EventManager\Event">
-      <UniqueIdentifier>{062ba0ee-4c43-47df-ac3a-8fc33890748c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Library\DX11Manager">
       <UniqueIdentifier>{acec4097-ab98-4df4-9e04-25021c76233c}</UniqueIdentifier>
     </Filter>
@@ -84,6 +81,9 @@
     </Filter>
     <Filter Include="Library\Application">
       <UniqueIdentifier>{96bc6615-a98a-4532-8148-e0ebef8f1b60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\EventManager\EventListnerBase">
+      <UniqueIdentifier>{062ba0ee-4c43-47df-ac3a-8fc33890748c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -185,9 +185,6 @@
     <ClInclude Include="Library\Dx11\DX11Manager.h">
       <Filter>Library\DX11Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Event\Event.h">
-      <Filter>Library\EventManager\Event</Filter>
-    </ClInclude>
     <ClInclude Include="Library\Event\EventManager.h">
       <Filter>Library\EventManager</Filter>
     </ClInclude>
@@ -223,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="Library\Application\ApplicationBase.h">
       <Filter>Library\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Event\EventListnerBase.h">
+      <Filter>Library\EventManager\EventListnerBase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
