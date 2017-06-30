@@ -6,6 +6,9 @@
 #ifndef KEYDEVICE_H
 #define KEYDEVICE_H
 #include <dinput.h>	
+#include <map>
+#include <string>
+#include <list>
 #include "..\..\Singleton.h"
 
 namespace Lib
@@ -19,6 +22,12 @@ namespace Lib
 		KEY_RELEASE,//!< キーが離された瞬間の状態
 		KEY_ON,		//!< キーが押され続けている状態
 		KEY_OFF		//!< キーが押されていない状態
+	};
+
+	struct KEYDATA
+	{
+		KEYSTATE KeyData;
+		int		 DIKeyState;
 	};
 
 	class KeyDevice
@@ -44,16 +53,27 @@ namespace Lib
 		void Update();
 
 		/**
-		 * キーの状態を更新する
-		 * @param[in] 更新したいキーのDIK
+		 * 更新するキーに名前をつけて登録する
+		 * @param[in] _dik チェックしたいキーのDIK
+		 * @param[in] _keyName 登録するキーの名前
 		 */
-		void KeyCheck(int _dik);
+		void KeyCheckEntry(std::string _keyName, int _dik);
 
 		/**
-		 * キーの状態が格納されている配列を取得する
-		 * @return キーの状態が格納されている配列
+		 * 登録したキーの全ての状態をチェック(すべて一致)
+		 * @param[in] _keyName チェックするキーの名前
+		 * @param[in] _keyState チェックする状態
+		 * @return 全ての登録されたキーの状態が同じならtrueを返す
 		 */
-		const KEYSTATE* GetKeyState() const;
+		bool AllMatchKeyCheck(std::string _keyName, KEYSTATE _keyState);
+
+		/**
+		 * 登録したキーの全ての状態をチェック(一つでも一致)
+		 * @param[in] _keyName チェックするキーの名前
+		 * @param[in] _keyState チェックする状態
+		 * @return 一つでも登録されたキーの状態が同じならtrueを返す
+		 */
+		bool AnyMatchKeyCheck(std::string _keyName, KEYSTATE _keyState);
 
 	private:
 		/**
@@ -66,12 +86,12 @@ namespace Lib
 		 */
 		~KeyDevice(){};
 
-		LPDIRECTINPUT8			m_pDInput8;
-		HWND					m_hWnd;
-		LPDIRECTINPUTDEVICE8	m_pDInputDevice8;
-		KEYSTATE				m_pKeyState[256];
-		BYTE					m_pDIKeyState[256];
-		BYTE					m_pOldDIKeyState[256];
+		LPDIRECTINPUT8							   m_pDInput8;
+		HWND									   m_hWnd;
+		LPDIRECTINPUTDEVICE8					   m_pDInputDevice8;
+		BYTE									   m_pDIKeyState[256];
+		BYTE									   m_pOldDIKeyState[256];
+		std::map<std::string, std::list<KEYDATA> > m_SetKeyState;
 
 	};
 }

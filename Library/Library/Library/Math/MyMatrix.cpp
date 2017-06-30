@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 * @file   MyMatrix.cpp
-* @brief  MATRIX\‘¢‘Ì‚ÌÀ‘•
+* @brief  MATRIXæ§‹é€ ä½“ã®å®Ÿè£…
 * @author kotani
 */
 #include "MyMatrix.h"

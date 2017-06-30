@@ -1,6 +1,6 @@
-/**
+ï»¿/**
  * @file   MyMatrix.h
- * @brief  MATRIX\‘¢‘Ì‚Ìƒwƒbƒ_ƒtƒ@ƒCƒ‹
+ * @brief  MATRIXæ§‹é€ ä½“ã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
  * @author kotani
  */
 #ifndef MYMATRIX_H
@@ -9,7 +9,7 @@
 namespace Lib
 {
 	/**
-	 * 4*4‚Ìs—ñ\‘¢‘Ì
+	 * 4*4ã®è¡Œåˆ—æ§‹é€ ä½“
 	 */
 	typedef struct MATRIX
 	{
@@ -26,7 +26,7 @@ namespace Lib
 		MATRIX operator + (const MATRIX&) const;
 		MATRIX operator - (const MATRIX&) const;
 
-		/* ”äŠr‰‰Zq */
+		/* æ¯”è¼ƒæ¼”ç®—å­ */
 		bool operator == (const MATRIX&) const;
 		bool operator != (const MATRIX&) const;
 

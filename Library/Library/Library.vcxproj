@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Library\Camera\Camera.cpp" />
     <ClCompile Include="Library\Application\ApplicationBase.cpp" />
     <ClCompile Include="Library\Fbx\FbxFileManager\FbxFileManager.cpp" />
     <ClCompile Include="Library\Fbx\FbxFileManager\FbxLoader\FbxLoader.cpp" />
@@ -20,6 +21,7 @@
     <ClCompile Include="Library\Network\HttpConnect\HttpConnect.cpp" />
     <ClCompile Include="Library\Animation\AnimFileParser\AnimFileParser.cpp" />
     <ClCompile Include="Library\DebugTool\DebugTimer.cpp" />
+    <ClCompile Include="Library\Shader\ShaderManager.cpp" />
     <ClCompile Include="Library\Sound\DSoundManager.cpp" />
     <ClCompile Include="Library\Collision\CollisionManager.cpp" />
     <ClCompile Include="Library\DxInput\DXInputDevice.cpp" />
@@ -36,6 +38,7 @@
     <ClCompile Include="Library\Math\MyVector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\Camera\Camera.h" />
     <ClInclude Include="Library\Application\ApplicationBase.h" />
     <ClInclude Include="Library\Fbx\FbxFileManager\FbxFileManager.h" />
     <ClInclude Include="Library\Fbx\FbxFileManager\FbxLoader\FbxLoader.h" />
@@ -45,6 +48,7 @@
     <ClInclude Include="Library\Network\HttpConnect\HttpConnect.h" />
     <ClInclude Include="Library\Animation\AnimFileParser\AnimFileParser.h" />
     <ClInclude Include="Library\DebugTool\DebugTimer.h" />
+    <ClInclude Include="Library\Shader\ShaderManager.h" />
     <ClInclude Include="Library\Sound\DSoundManager.h" />
     <ClInclude Include="Library\Collision\CollisionManager.h" />
     <ClInclude Include="Library\Collision\CollisionBase.h" />

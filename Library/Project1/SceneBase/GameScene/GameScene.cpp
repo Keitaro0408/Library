@@ -44,6 +44,14 @@ SceneBase(SCENE_GAME)
 	m_Vertex->Init(Lib::VECTOR2(256, 256), m_Animation->GetUV());
 	m_Vertex->SetTexture(SINGLETON_INSTANCE(Lib::TextureManager).GetTexture(m_TextureIndex));
 
+	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("front", DIK_W);
+	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("front", DIK_UPARROW);
+
+	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("left", DIK_A);
+	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("left", DIK_LEFTARROW);
+
+	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("right", DIK_D);
+	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("right", DIK_RIGHTARROW);
 
 	//SINGLETON_INSTANCE(Lib::DirectShowSound).SoundOperation(m_SoundIndex, Lib::SOUND_LOOP);
 }
@@ -60,34 +68,21 @@ GameScene::~GameScene()
 SceneBase::SceneID GameScene::Update()
 {
 	SINGLETON_INSTANCE(Lib::KeyDevice).Update();
-	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_P);
-	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_LEFTARROW);
-	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheck(DIK_RIGHTARROW);
-	//SINGLETON_INSTANCE(Lib::DSoundManager).SoundOperation(m_SoundIndex,Lib::DSoundManager::SOUND_PLAY);
-	static bool isPlay = true;
-	//if (m_Animation->Control(false, Lib::ANIM_LOOP))
-	//{
-	//	int animCount = m_Animation->GetAnimCount();
-	//	m_Animation->GetAnimCount();
-	//}
 
-	float test = Lib::Math::GetAngle(Pos, Lib::VECTOR2(400, 400));
-
-	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_LEFTARROW] == Lib::KEY_PUSH)
-	{
-		SINGLETON_INSTANCE(Lib::Window).ChangeWindowSize(1920,1080);
-	}
-	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_RIGHTARROW] == Lib::KEY_PUSH)
-	{
-		SINGLETON_INSTANCE(Lib::Window).ChangeWindowSize(1280, 720);
-	}
-
-	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_P] == Lib::KEY_ON)
+	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("front",Lib::KEY_ON))
 	{
 		Pos += Lib::Math::GetAngleMovePos(2.f, g_Angle - 90.f);
 	}
-	//SINGLETON_INSTANCE(Lib::DirectShowSound).CheckLoop(m_SoundIndex);
+	
+	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("left", Lib::KEY_ON))
+	{
+		g_Angle -= 2.f;
+	}
 
+	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("right", Lib::KEY_ON))
+	{
+		g_Angle += 2.f;
+	}
 	return m_SceneID;
 }
 

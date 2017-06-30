@@ -93,38 +93,68 @@ void Lib::KeyDevice::Update()
 	if ((hr == DI_OK) || (hr == S_FALSE))
 	{
 		m_pDInputDevice8->GetDeviceState(sizeof(m_pDIKeyState), &m_pDIKeyState);
+		
+		for (auto itr = m_SetKeyState.begin(); itr != m_SetKeyState.end(); itr++)
+		{
+			for (auto itr2 = itr->second.begin(); itr2 != itr->second.end(); itr2++)
+			{
+				if (m_pDIKeyState[itr2->DIKeyState] & 0x80)
+				{
+					if (m_pOldDIKeyState[itr2->DIKeyState] == KEY_OFF)
+					{
+						itr2->KeyData = KEY_PUSH;
+					}
+					else
+					{
+						itr2->KeyData = KEY_ON;
+					}
+					m_pOldDIKeyState[itr2->DIKeyState] = KEY_ON;
+				}
+				else
+				{
+					if (m_pOldDIKeyState[itr2->DIKeyState] == KEY_ON)
+					{
+						itr2->KeyData = KEY_RELEASE;
+					}
+					else
+					{
+						itr2->KeyData = KEY_OFF;
+					}
+					m_pOldDIKeyState[itr2->DIKeyState] = KEY_OFF;
+				}
+			}
+		}
 	}
 }
 
-void Lib::KeyDevice::KeyCheck(int _dik)
+void Lib::KeyDevice::KeyCheckEntry(std::string _keyName, int _dik)
 {
-	if (m_pDIKeyState[_dik] & 0x80)
-	{
-		if (m_pOldDIKeyState[_dik] == KEY_OFF)
-		{
-			m_pKeyState[_dik] = KEY_PUSH;
-		}
-		else
-		{
-			m_pKeyState[_dik] = KEY_ON;
-		}
-		m_pOldDIKeyState[_dik] = KEY_ON;
-	}
-	else
-	{
-		if (m_pOldDIKeyState[_dik] == KEY_ON)
-		{
-			m_pKeyState[_dik] = KEY_RELEASE;
-		}
-		else
-		{
-			m_pKeyState[_dik] = KEY_OFF;
-		}
-		m_pOldDIKeyState[_dik] = KEY_OFF;
-	}
+	KEYDATA keyData;
+	keyData.DIKeyState = _dik;
+	keyData.KeyData = Lib::KEY_OFF;
+	m_SetKeyState[_keyName].push_back(keyData);
 }
 
-const Lib::KEYSTATE* Lib::KeyDevice::GetKeyState() const
+bool Lib::KeyDevice::AllMatchKeyCheck(std::string _keyName, KEYSTATE _keyState)
 {
-	return m_pKeyState;
+	for (auto itr = m_SetKeyState[_keyName].begin(); itr != m_SetKeyState[_keyName].end(); itr++)
+	{
+		if (itr->KeyData != _keyState)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool Lib::KeyDevice::AnyMatchKeyCheck(std::string _keyName, KEYSTATE _keyState)
+{
+	for (auto itr = m_SetKeyState[_keyName].begin(); itr != m_SetKeyState[_keyName].end(); itr++)
+	{
+		if (itr->KeyData == _keyState)
+		{
+			return true;
+		}
+	}
+	return false;
 }

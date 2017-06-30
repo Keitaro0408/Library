@@ -1,9 +1,15 @@
-﻿/* コピー禁止マクロ */
+﻿/**
+ * @file   Helper.h
+ * @brief  便利関数のヘッダファイル
+ * @author kotani
+ */
+#ifndef HELPER_H
+#define HELPER_H
+/* コピー禁止マクロ */
 #define NON_COPYABLE(Class) Class(const Class &); \
                         void operator=(const Class &)
 namespace Lib
 {
-
 	/**
 	 * delete処理
 	 */
@@ -24,3 +30,6 @@ namespace Lib
 		p = nullptr;
 	}
 }
+
+
+#endif

@@ -1,6 +1,6 @@
-/**
+﻿/**
  * @file   VECTOR.h
- * @brief  VECTOR�\���̂̃w�b�_�t�@�C��
+ * @brief  VECTOR構造体のヘッダファイル
  * @author kotani
  */
 #ifndef MYVECTOR_H

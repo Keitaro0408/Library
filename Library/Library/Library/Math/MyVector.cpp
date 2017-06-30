@@ -1,6 +1,6 @@
-/**
+ï»¿/**
  * @file   VECTOR.cpp
- * @brief  VECTOR\‘¢‘Ì‚ÌÀ‘•
+ * @brief  VECTORæ§‹é€ ä½“ã®å®Ÿè£…
  * @author kotani
  */
 #include "MyVector.h"

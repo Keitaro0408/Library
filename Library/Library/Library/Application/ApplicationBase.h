@@ -17,13 +17,14 @@
 #pragma comment(lib,"dsound.lib")
 #pragma comment(lib,"strmiids.lib")
 #pragma comment(lib,"xinput.lib")
+#pragma comment(lib,"libfbxsdk-mt.lib")
 #endif
 
 namespace Lib
 {
 	/**
 	 * このクラスがメイン
-	 * この抽象クラスを実装することでウィンドウが表示される
+	 * この抽象クラスを実装し、グローバスで宣言する事でウィンドウが表示される
 	 */
 	class ApplicationBase
 	{

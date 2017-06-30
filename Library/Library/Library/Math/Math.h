@@ -74,6 +74,30 @@ namespace Lib
 		MATRIX* MatrixIdentity(MATRIX* _pMatrix);
 
 		/**
+		 * 内積を求める
+		 * @param[in] _pIn1 基になるVector3
+		 * @param[in] _pIn2 基になるVector3
+		 * @return 内積
+		 */
+		float Vector3Dot(VECTOR3 *_pIn1, VECTOR3 *_pIn2);
+
+		/**
+		 * 3dベクトルを正規化する
+		 * @param[in,out] _pVector3 基になるVector3。計算結果も入る
+		 * @return 正規化されたvectorへのポインタ
+		 */
+		VECTOR3* Vector3Normalize(VECTOR3* _pVector3);
+
+		/**
+		 * 外積を求める
+		 * @param[in] _pIn1 基になるVector3
+		 * @param[in] _pIn2 基になるVector3
+		 * @param[out] _pOut 計算結果へのポインタ
+		 * @return 外積のvectorへのポインタ
+		 */
+		VECTOR3* Vector3Cross(VECTOR3* _pIn1, VECTOR3* _pIn2, VECTOR3* _pOut);
+
+		/**
 		 * 転置行列を返す
 		 * @param[in,out] _pMatrix 転置行列の入るMATRIX構造体のポインタ
 		 * @return 転置行列のMATRIX構造体のポインタ
@@ -123,6 +147,21 @@ namespace Lib
 		 * @return 計算結果のMATRIX構造体のポインタ
 		 */
 		MATRIX* MatrixRotationZ(MATRIX* _pMatrix, float _angle);
+
+		/**
+		 * 左手系ビュー行列を作成する
+		 * @param[in, out] _pMatrix 計算結果が入るMATRIX構造体のポインタ
+		 * @param[in] _eyePos 視点の座標
+		 * @param[in] _atPos 注視点座標
+		 * @param[in] _up 上方向を指定する
+		 * @return 左手座標系ビュー行列のポインタ
+		 */
+		MATRIX* MatrixLookAtLH(MATRIX* _pMatrix, VECTOR3* _eyePos, VECTOR3* _atPos, VECTOR3* _up = &VECTOR3(0.f,1.f,0.f));
+
+		/**
+		 * 左手座標系パースペクティブ射影行列を作成する。
+		 */
+		MATRIX* MatrixPerspectiveFovLH(MATRIX* _pMatrix, float _fovY, float _aspect, float _zNear, float _zFar);
 
 	}
 }
