@@ -14,14 +14,17 @@
 #include "../XInput/XInput.h"
 
 Lib::ApplicationBase* Lib::ApplicationBase::m_pInstance = nullptr;
-int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdShow)
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, INT)
 {
 	return Lib::ApplicationBase::GetInstance()->Boot();
 }
 
 namespace Lib
 {
-	ApplicationBase::ApplicationBase()
+	ApplicationBase::ApplicationBase(LPCTSTR _appName, int _windowWidth, int _windowHeight) :
+		m_AppName(_appName),
+		m_WindowWidth(_windowWidth),
+		m_WindowHeight(_windowHeight)
 	{
 		m_pInstance = this;
 	}
@@ -40,7 +43,9 @@ namespace Lib
 	{
 		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 		SINGLETON_CREATE(Lib::Window);
+		SINGLETON_INSTANCE(Lib::Window).DispWindow(m_WindowWidth,m_WindowHeight, m_AppName);
 
+		InitLib();
 		Init();
 
 		MSG Msg;
@@ -62,21 +67,24 @@ namespace Lib
 		}
 		/* 先にサブクラスからデストラクタが実行されるのでここで解放する */
 		Release();
+		ReleaseLib();
 		return 0;
 	}
 
-	void ApplicationBase::InitLib(HWND _hWnd)
+	void ApplicationBase::InitLib()
 	{
+		HWND hWnd = SINGLETON_INSTANCE(Lib::Window).GetWindowHandle();
+
 		SINGLETON_CREATE(Lib::XInput);
 
 		//Directx11関係
 		SINGLETON_CREATE(Lib::DX11Manager);
-		SINGLETON_INSTANCE(Lib::DX11Manager).Init(_hWnd,
+		SINGLETON_INSTANCE(Lib::DX11Manager).Init(hWnd,
 			SINGLETON_INSTANCE(Lib::Window).GetWindowSize());
 
 		//DirectSound関係
 		SINGLETON_CREATE(Lib::DSoundManager);
-		SINGLETON_INSTANCE(Lib::DSoundManager).Init(_hWnd);
+		SINGLETON_INSTANCE(Lib::DSoundManager).Init(hWnd);
 
 		//テクスチャ
 		SINGLETON_CREATE(Lib::TextureManager);
@@ -85,15 +93,15 @@ namespace Lib
 
 		//DirectInput関係
 		SINGLETON_CREATE(Lib::DXInputDevice);
-		SINGLETON_INSTANCE(Lib::DXInputDevice).Init(_hWnd);
+		SINGLETON_INSTANCE(Lib::DXInputDevice).Init(hWnd);
 
 		SINGLETON_CREATE(Lib::MouseDevice);
 		SINGLETON_INSTANCE(Lib::MouseDevice).Init(
-			SINGLETON_INSTANCE(Lib::DXInputDevice).GetInputDevice(), _hWnd);
+			SINGLETON_INSTANCE(Lib::DXInputDevice).GetInputDevice(), hWnd);
 
 		SINGLETON_CREATE(Lib::KeyDevice);
 		SINGLETON_INSTANCE(Lib::KeyDevice).Init(
-			SINGLETON_INSTANCE(Lib::DXInputDevice).GetInputDevice(), _hWnd);
+			SINGLETON_INSTANCE(Lib::DXInputDevice).GetInputDevice(), hWnd);
 	}
 
 	void ApplicationBase::ReleaseLib()

@@ -6,7 +6,8 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 #include <D3DX11.h>
-#include <D3DX10.H>
+#include "../Math/MyVector.h"
+#include "../Math/MyMatrix.h"
 
 namespace Lib
 {
@@ -18,9 +19,9 @@ namespace Lib
 		*/
 		struct VERTEX
 		{
-			D3DXVECTOR3 Pos;	//!< 頂点座標
-			D3DXVECTOR2 UV;		//!< テクスチャ座標
-			D3DXCOLOR Color;	//!< 頂点カラー値
+			VECTOR3 Pos;	//!< 頂点座標
+			VECTOR2 UV;		//!< テクスチャ座標
+			COLOR Color;	//!< 頂点カラー値
 		};
 
 		/**
@@ -75,8 +76,8 @@ namespace Lib
 		* @return 書き込みに成功したらtrue
 		*/
 		bool WriteConstantBuffer(
-			const D3DXVECTOR2* _pDrawPos,
-			const D3DXVECTOR2* _pScale = &D3DXVECTOR2(1.f, 1.f),
+			const VECTOR2* _pDrawPos,
+			const VECTOR2* _pScale = &VECTOR2(1.f, 1.f),
 			float _angle = 0.f);
 
 		/**
@@ -99,8 +100,8 @@ namespace Lib
 		*/
 		struct SHADER_CONSTANT_BUFFER
 		{
-			D3DXMATRIX  MatWorld;	//!< ワールド変換行列
-			D3DXVECTOR4 WindowSize;	//!< ウィンドウの縦横サイズ
+			MATRIX  MatWorld;	//!< ワールド変換行列
+			VECTOR4 WindowSize;	//!< ウィンドウの縦横サイズ
 		};
 
 		/**

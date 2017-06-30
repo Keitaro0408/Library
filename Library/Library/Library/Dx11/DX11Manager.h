@@ -6,7 +6,6 @@
 #ifndef DX11MANAGER_H
 #define DX11MANAGER_H
 #include <D3D11.h>
-#include <D3DX10.h>
 #include <Windows.h>
 #include "..\Singleton.h"
 

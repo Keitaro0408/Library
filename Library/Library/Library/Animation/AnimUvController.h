@@ -6,7 +6,7 @@
 #ifndef TEXTUREANIM_H
 #define TEXTUREANIM_H
 #include <Windows.h>
-#include <D3DX10.h>
+#include "../Math/MyVector.h"
 
 namespace Lib
 {
@@ -69,15 +69,15 @@ namespace Lib
 		/**
 		 * テクスチャのスクロール値を取得する
 		 */
-		inline D3DXVECTOR2 GetScrollUV() const
+		inline VECTOR2 GetScrollUV() const
 		{
-			return D3DXVECTOR2(m_ScrollUV.x * m_AnimCount, 0);
+			return VECTOR2(m_ScrollUV.x * m_AnimCount, 0);
 		}
 
 		/**
 		 * UVの値を取得する
 		 */
-		inline D3DXVECTOR2* GetUV()
+		inline VECTOR2* GetUV()
 		{
 			for (int i = 0; i < 4; i++)
 			{
@@ -140,10 +140,10 @@ namespace Lib
 
 		AnimFileParser* m_pAnimFileParser;
 		Anim			m_AnimData;
-		D3DXVECTOR2		m_TextureSize;
-		D3DXVECTOR2		m_ScrollUV;
-		D3DXVECTOR2		m_UV[4];
-		D3DXVECTOR2		m_NowUV[4];
+		VECTOR2			m_TextureSize;
+		VECTOR2			m_ScrollUV;
+		VECTOR2			m_UV[4];
+		VECTOR2			m_NowUV[4];
 		int				m_AnimCount;
 		int				m_ScrollFrame;
 		int				m_Count;

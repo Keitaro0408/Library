@@ -6,7 +6,8 @@
 #ifndef VERTEX2D_H
 #define VERTEX2D_H
 #include <D3DX11.h>
-#include <D3DX10.h>
+#include "../Math/MyVector.h"
+#include "../Math/MyMatrix.h"
 
 namespace Lib
 {
@@ -31,11 +32,11 @@ namespace Lib
 
 		/**
 		 * Vertex2Dクラスの初期化関数
-		 * @param[in] _pRectSize 矩形のサイズ
+		 * @param[in] _RectSize 矩形のサイズ
 		 * @param[in] _pUV テクスチャの4頂点分のUV初期値 テクスチャ座標の指定順番(左上->右上->左下->右下)
 		 * @return 初期化に成功したらtrue
 		 */
-		bool Init(const D3DXVECTOR2* _pRectSize, const D3DXVECTOR2* _pUV);
+		bool Init(const VECTOR2& _RectSize, const VECTOR2* _pUV);
 
 		/**
 		 * Vertex2Dクラスの解放関数
@@ -49,17 +50,17 @@ namespace Lib
 
 		/**
 		 * 2Dの矩形を描画する関数
-		 * @param[in] _pDrawPos 矩形を描画するスクリーン座標位置
+		 * @param[in] _DrawPos 矩形を描画するスクリーン座標位置
 		 * @param[in] _pUV UV値
 		 * @param[in] _alpha 描画する矩形のアルファ値
-		 * @param[in] _pScale 描画する矩形の拡縮率
+		 * @param[in] _Scale 描画する矩形の拡縮率
 		 * @param[in] _angle 描画する矩形の傾き
 		 */
 		void Draw(
-			const D3DXVECTOR2* _pDrawPos,
-			const D3DXVECTOR2* _pUV,
+			const VECTOR2& _DrawPos,
+			const VECTOR2* _pUV,
 			float _alpha = 1.f,
-			const D3DXVECTOR2* _pScale = &D3DXVECTOR2(1.f, 1.f),
+			const VECTOR2& _Scale = VECTOR2(1.f, 1.f),
 			float _angle = 0.f);
 
 		/**
@@ -68,15 +69,15 @@ namespace Lib
 		 * @param[in] _pRectDiff 指定した値分矩形が変化する
 		 * @param[in] _pUV UV値
 		 * @param[in] _alpha 描画する矩形のアルファ値
-		 * @param[in] _pScale 描画する矩形の拡縮率
+		 * @param[in] _Scale 描画する矩形の拡縮率
 		 * @param[in] _angle 描画する矩形の傾き
 		 */
 		void Draw(
-			const D3DXVECTOR2* _pDrawPos,
-			const RECT* _pRectDiff, 
-			const D3DXVECTOR2* _pUV,
+			const VECTOR2& _pDrawPos,
+			const RECT& _RectDiff, 
+			const VECTOR2* _pUV,
 			float _alpha = 1.f,
-			const D3DXVECTOR2* _pScale = &D3DXVECTOR2(1.f, 1.f),
+			const VECTOR2& _Scale = VECTOR2(1.f, 1.f),
 			float _angle = 0.f);
 
 		/**
@@ -97,10 +98,10 @@ namespace Lib
 		 */
 		struct SHADER_CONSTANT_BUFFER
 		{
-			D3DXMATRIX  MatWorld;	//!< ワールド変換行列
-			D3DXCOLOR   Color;		//!< 頂点カラー値
-			D3DXVECTOR4 WindowSize;	//!< ウィンドウの縦横サイズ
-			D3DXVECTOR4 TexScroll;	//!< uv座標の変化量
+			MATRIX  MatWorld;	//!< ワールド変換行列
+			COLOR   Color;		//!< 頂点カラー値
+			VECTOR4 WindowSize;	//!< ウィンドウの縦横サイズ
+			VECTOR4 TexScroll;	//!< uv座標の変化量
 		};
 
 		/**
@@ -135,11 +136,11 @@ namespace Lib
 
 		/**
 		 * 頂点バッファの初期化関数
-		 * @param[in] _pRectSize 矩形の大きさ
+		 * @param[in] _RectSize 矩形の大きさ
 		 * @param[in] _pUV テクスチャ座標
 		 * @return 初期化に成功したらtrue
 		 */
-		bool InitVertexBuffer(const D3DXVECTOR2* _pRectSize, const D3DXVECTOR2* _pUV);
+		bool InitVertexBuffer(const VECTOR2& _RectSize, const VECTOR2* _pUV);
 
 		/**
 		 * 定数バッファの初期化関数
@@ -149,16 +150,16 @@ namespace Lib
 
 		/**
 		* 定数バッファにデータを書き込む関数
-		* @param[in] _pDrawPos 矩形を描画するスクリーン座標位置
-		* @param[in] _pScale 描画する矩形の拡縮率
+		* @param[in] _DrawPos 矩形を描画するスクリーン座標位置
+		* @param[in] _Scale 描画する矩形の拡縮率
 		* @param[in] _pUV テクスチャの4頂点分のUV
 		* @param[in] _angle 描画する矩形の傾き
 		* @param[in] _alpha 描画する矩形のアルファ値
 		*/
 		bool WriteConstantBuffer(
-			const D3DXVECTOR2* _pDrawPos = &D3DXVECTOR2(0.f, 0.f),
-			const D3DXVECTOR2* _pScale = &D3DXVECTOR2(1.f, 1.f),
-			const D3DXVECTOR2* _pUV = &D3DXVECTOR2(0.f, 0.f),
+			const VECTOR2& _DrawPos = VECTOR2(0.f, 0.f),
+			const VECTOR2& _Scale = VECTOR2(1.f, 1.f),
+			const VECTOR2* _pUV = &VECTOR2(0.f, 0.f),
 			float _angle = 0.f,
 			float _alpha = 1.f);
 
@@ -223,8 +224,8 @@ namespace Lib
 	 */
 	struct VERTEX
 	{
-		D3DXVECTOR3 Pos;	//!< 頂点座標
-		D3DXVECTOR2 UV;		//!< テクスチャ座標
+		VECTOR3 Pos;	//!< 頂点座標
+		VECTOR2 UV;		//!< テクスチャ座標
 	};
 
 }

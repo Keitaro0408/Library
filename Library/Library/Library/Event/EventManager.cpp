@@ -11,11 +11,14 @@
 // Public Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::EventManager::AddEvent(std::string _eventName, EventListnerBase* _pEvent)
+void Lib::EventManager::AddEvent(std::string _eventName, EventListnerBase* _pEvent)
 {
-	//m_pEvent[_eventName] = _pEvent;
-	m_pEvent[_eventName] = std::bind(&EventListnerBase::Action,_pEvent);
-	return true;
+	m_pEvent[_eventName].push_back(std::bind(&EventListnerBase::Action, _pEvent));
+}
+
+void Lib::EventManager::AddEvent(std::string _eventName, std::function<void()> _event)
+{
+	m_pEvent[_eventName].push_back(std::bind(_event));
 }
 
 bool Lib::EventManager::CallEvent(std::string _eventName)
@@ -24,9 +27,12 @@ bool Lib::EventManager::CallEvent(std::string _eventName)
 		return false;
 	}
 
-	if (m_pEvent[_eventName] != NULL)
+	for (unsigned int i = 0; i < m_pEvent[_eventName].size();i++)
 	{
-		m_pEvent[_eventName]();
+		if (m_pEvent[_eventName][i] != NULL)
+		{
+			m_pEvent[_eventName][i]();
+		}
 	}
 	return true;
 }

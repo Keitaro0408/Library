@@ -5,7 +5,6 @@
  */
 #ifndef COLLISIONBASE_H
 #define COLLISIONBASE_H
-#include <D3DX10.h>
 #include <string>
 
 namespace Lib

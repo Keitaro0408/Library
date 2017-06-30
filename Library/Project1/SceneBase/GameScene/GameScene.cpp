@@ -4,6 +4,7 @@
  * @author kotani
  */
 #include "GameScene.h"
+#include "Library/Math/Math.h"
 #include <Library\Window\Window.h>
 #include <Library\Dx11\DX11Manager.h>
 #include <Library\Sound\DSoundManager.h>
@@ -12,13 +13,12 @@
 #include <Library\Texture\TextureManager.h>
 #include <Library\DebugTool\DebugTimer.h>
 #include "Library/Event/EventManager.h"
-#include "Library/Math/Math.h"
 
 namespace
 {
 	Lib::DebugTimer g_Timer(120);
 	RECT Rectvar = {0,0,0,0};
-	D3DXVECTOR2 Pos;
+	Lib::VECTOR2 Pos;
 	float g_Angle = 0.f;
 }
 
@@ -41,7 +41,7 @@ SceneBase(SCENE_GAME)
 	
 	RECT ClientRect;
 	GetClientRect(SINGLETON_INSTANCE(Lib::Window).GetWindowHandle(), &ClientRect);
-	m_Vertex->Init(&D3DXVECTOR2(256, 256), m_Animation->GetUV());
+	m_Vertex->Init(Lib::VECTOR2(256, 256), m_Animation->GetUV());
 	m_Vertex->SetTexture(SINGLETON_INSTANCE(Lib::TextureManager).GetTexture(m_TextureIndex));
 
 
@@ -71,7 +71,7 @@ SceneBase::SceneID GameScene::Update()
 	//	m_Animation->GetAnimCount();
 	//}
 
-	float test = Lib::Math::GetAngle(Pos,D3DXVECTOR2(400,400));
+	float test = Lib::Math::GetAngle(Pos, Lib::VECTOR2(400, 400));
 
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).GetKeyState()[DIK_LEFTARROW] == Lib::KEY_PUSH)
 	{
@@ -95,7 +95,7 @@ void GameScene::Draw()
 {
 	SINGLETON_INSTANCE(Lib::DX11Manager).BeginScene();
 	g_Timer.Begin();
-	m_Vertex->Draw(&Pos, m_Animation->GetUV(),1.f,&D3DXVECTOR2(1.f,1.f),g_Angle);
+	m_Vertex->Draw(Pos, m_Animation->GetUV(), 1.f, Lib::VECTOR2(1.f, 1.f), g_Angle);
 	g_Timer.End();
 	SINGLETON_INSTANCE(Lib::DX11Manager).EndScene();
 

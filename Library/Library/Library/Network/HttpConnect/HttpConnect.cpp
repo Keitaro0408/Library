@@ -29,5 +29,5 @@ bool HttpConnect::Connect(METHOD _method, std::string _url, std::string* _pResul
 	default:
 		break;
 	}
-
+	return false;
 }

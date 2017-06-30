@@ -6,7 +6,9 @@
 class App : public Lib::ApplicationBase
 {
 public:
-	App() = default;
+	App() :
+		ApplicationBase("test",1280, 720)
+	{};
 	~App() = default;
 
 	bool MainLoop() override;

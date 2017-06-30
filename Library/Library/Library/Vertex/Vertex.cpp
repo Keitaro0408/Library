@@ -4,7 +4,7 @@
  * @author kotani
  */
 #include "Vertex.h"
-
+#include "../Math/Math.h"
 
 Lib::Vertex::Vertex(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext, HWND _hWnd) :
 m_pDevice(_pDevice),
@@ -161,22 +161,22 @@ bool Lib::Vertex::WriteVertexBuffer(const VERTEX* _pVertex)
 	return false;
 }
 
-bool Lib::Vertex::WriteConstantBuffer(const D3DXVECTOR2* _pDrawPos, const D3DXVECTOR2* _pScale, float _angle)
+bool Lib::Vertex::WriteConstantBuffer(const VECTOR2* _pDrawPos, const VECTOR2* _pScale, float _angle)
 {
-	D3DXMATRIX MatWorld, MatTranslate, MatRotate;
-	D3DXMatrixIdentity(&MatWorld);
-	D3DXMatrixScaling(&MatWorld, _pScale->x, _pScale->y, 1.0f);
-	D3DXMatrixRotationZ(&MatRotate, _angle);
-	D3DXMatrixMultiply(&MatWorld, &MatWorld, &MatRotate);
-	D3DXMatrixTranslation(&MatTranslate, _pDrawPos->x, _pDrawPos->y, 0);
-	D3DXMatrixMultiply(&MatWorld, &MatWorld, &MatTranslate);
+	MATRIX MatWorld, MatTranslate, MatRotate;
+	Math::MatrixIdentity(&MatWorld);
+	Math::MatrixScaling(&MatWorld, _pScale->x, _pScale->y, 1.0f);
+	Math::MatrixRotationZ(&MatRotate, _angle);
+	MatWorld *= MatRotate;
+	Math::MatrixTranslation(&MatTranslate, _pDrawPos->x, _pDrawPos->y, 0);
+	MatWorld *= MatTranslate;
 
 	D3D11_MAPPED_SUBRESOURCE MappedResource;
 	SHADER_CONSTANT_BUFFER ConstantBuffer;
 	if (SUCCEEDED(m_pDeviceContext->Map(m_pConstantBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedResource)))
 	{
 		ConstantBuffer.MatWorld = MatWorld;
-		D3DXMatrixTranspose(&ConstantBuffer.MatWorld, &ConstantBuffer.MatWorld);
+		Math::MatrixTranspose(&ConstantBuffer.MatWorld);
 
 		ConstantBuffer.WindowSize.x = m_ClientWidth;
 		ConstantBuffer.WindowSize.y = m_ClientHeight;

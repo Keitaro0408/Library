@@ -16,6 +16,7 @@
     <ClCompile Include="Library\Fbx\FbxFileManager\FbxLoader\FbxLoader.cpp" />
     <ClCompile Include="Library\Fbx\FbxFileManager\FbxModel\FbxModel.cpp" />
     <ClCompile Include="Library\Math\Math.cpp" />
+    <ClCompile Include="Library\Math\MyMatrix.cpp" />
     <ClCompile Include="Library\Network\HttpConnect\HttpConnect.cpp" />
     <ClCompile Include="Library\Animation\AnimFileParser\AnimFileParser.cpp" />
     <ClCompile Include="Library\DebugTool\DebugTimer.cpp" />
@@ -32,6 +33,7 @@
     <ClCompile Include="Library\Texture\TextureManager.cpp" />
     <ClCompile Include="Library\Animation\AnimUvController.cpp" />
     <ClCompile Include="Library\XInput\XInput.cpp" />
+    <ClCompile Include="Library\Math\MyVector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Library\Application\ApplicationBase.h" />
@@ -39,6 +41,7 @@
     <ClInclude Include="Library\Fbx\FbxFileManager\FbxLoader\FbxLoader.h" />
     <ClInclude Include="Library\Fbx\FbxFileManager\FbxModel\FbxModel.h" />
     <ClInclude Include="Library\Math\Math.h" />
+    <ClInclude Include="Library\Math\MyMatrix.h" />
     <ClInclude Include="Library\Network\HttpConnect\HttpConnect.h" />
     <ClInclude Include="Library\Animation\AnimFileParser\AnimFileParser.h" />
     <ClInclude Include="Library\DebugTool\DebugTimer.h" />
@@ -58,6 +61,8 @@
     <ClInclude Include="Library\Texture\TextureManager.h" />
     <ClInclude Include="Library\Animation\AnimUvController.h" />
     <ClInclude Include="Library\XInput\XInput.h" />
+    <ClInclude Include="Library\Helper\Helper.h" />
+    <ClInclude Include="Library\Math\MyVector.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65480EA8-8D64-4328-A73F-671C0487AA00}</ProjectGuid>
