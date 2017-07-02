@@ -8,8 +8,8 @@
 
 
 Lib::DSoundManager::DSoundManager() :
-m_pDSound8(NULL),
-m_hWnd(NULL)
+m_pDSound8(nullptr),
+m_hWnd(nullptr)
 {
 }
 
@@ -19,7 +19,7 @@ Lib::DSoundManager::~DSoundManager()
 
 bool Lib::DSoundManager::Init(HWND _hWnd)
 {
-	if (m_pDSound8 != NULL)
+	if (m_pDSound8 != nullptr)
 	{
 		MessageBox(_hWnd, TEXT("DSoundManagerはすでに初期化されています"), TEXT("エラー"), MB_ICONSTOP);
 		return false;
@@ -27,7 +27,7 @@ bool Lib::DSoundManager::Init(HWND _hWnd)
 
 	m_hWnd = _hWnd;
 
-	if (FAILED(DirectSoundCreate8(NULL, &m_pDSound8, NULL)))
+	if (FAILED(DirectSoundCreate8(nullptr, &m_pDSound8, nullptr)))
 	{
 		MessageBox(m_hWnd, TEXT("サウンドデバイスの生成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
 		return false;
@@ -44,10 +44,10 @@ bool Lib::DSoundManager::Init(HWND _hWnd)
 
 void Lib::DSoundManager::Release()
 {
-	if (m_pDSound8 != NULL)
+	if (m_pDSound8 != nullptr)
 	{
 		m_pDSound8->Release();
-		m_pDSound8 = NULL;
+		m_pDSound8 = nullptr;
 	}
 }
 
@@ -77,7 +77,7 @@ void Lib::DSoundManager::SoundOperation(int _index, SOUND_OPERATION _operation)
 bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 {
 	WAVEFORMATEX WaveFormat;
-	BYTE* pWaveData = NULL;
+	BYTE* pWaveData = nullptr;
 	DWORD WaveSize = 0;
 
 	if (!ReadWave(_pFileName, &WaveFormat, &pWaveData, &WaveSize))
@@ -94,13 +94,13 @@ bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 	DSBufferDesc.lpwfxFormat = &WaveFormat;
 	DSBufferDesc.guid3DAlgorithm = GUID_NULL;
 
-	LPDIRECTSOUNDBUFFER8 pDSBuffer = NULL;
-	LPDIRECTSOUNDBUFFER pTmpBufer = NULL;
-	m_pDSound8->CreateSoundBuffer(&DSBufferDesc, &pTmpBufer, NULL);
+	LPDIRECTSOUNDBUFFER8 pDSBuffer = nullptr;
+	LPDIRECTSOUNDBUFFER pTmpBufer = nullptr;
+	m_pDSound8->CreateSoundBuffer(&DSBufferDesc, &pTmpBufer, nullptr);
 	pTmpBufer->QueryInterface(IID_IDirectSoundBuffer8, reinterpret_cast<void**>(&pDSBuffer));
 	pTmpBufer->Release();
 	
-	if (pDSBuffer == NULL)
+	if (pDSBuffer == nullptr)
 	{
 		m_pDSound8->Release();
 		MessageBox(m_hWnd, TEXT("サウンドバッファ作成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
@@ -109,7 +109,7 @@ bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 
 	LPVOID pWriteData = 0;
 	DWORD WriteDataLength = 0;
-	if (FAILED(pDSBuffer->Lock(0, 0, &pWriteData, &WriteDataLength, NULL, NULL, DSBLOCK_ENTIREBUFFER)))
+	if (FAILED(pDSBuffer->Lock(0, 0, &pWriteData, &WriteDataLength, nullptr, nullptr, DSBLOCK_ENTIREBUFFER)))
 	{
 		m_pDSound8->Release();
 		delete[] pWaveData;
@@ -118,7 +118,7 @@ bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 	}
 
 	memcpy(pWriteData, pWaveData, WriteDataLength);
-	pDSBuffer->Unlock(pWriteData, WriteDataLength, NULL, 0);
+	pDSBuffer->Unlock(pWriteData, WriteDataLength, nullptr, 0);
 	delete[] pWaveData;
 
 	*_pIndex = m_pSound.size();
@@ -129,10 +129,10 @@ bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 
 void Lib::DSoundManager::ReleaseSound(int _index)
 {
-	if (m_pSound[_index] != NULL)
+	if (m_pSound[_index] != nullptr)
 	{
 		m_pSound[_index]->Release();
-		m_pSound[_index] = NULL;
+		m_pSound[_index] = nullptr;
 	}
 }
 
@@ -143,12 +143,12 @@ void Lib::DSoundManager::ReleaseSound(int _index)
 
 bool Lib::DSoundManager::ReadWave(LPSTR _pFileName, WAVEFORMATEX* _pWaveFormat, BYTE** _pWaveData, DWORD* _pWaveSize)
 {
-	if (_pFileName == NULL)
+	if (_pFileName == nullptr)
 	{
 		return false;
 	}
 
-	HMMIO hMmio = NULL;
+	HMMIO hMmio = nullptr;
 	MMIOINFO MmioInfo;
 	ZeroMemory(&MmioInfo, sizeof(MMIOINFO));
 	hMmio = mmioOpen(_pFileName, &MmioInfo, MMIO_READ);
@@ -161,7 +161,7 @@ bool Lib::DSoundManager::ReadWave(LPSTR _pFileName, WAVEFORMATEX* _pWaveFormat, 
 	MMRESULT Result;
 	MMCKINFO RiffChunk;
 	RiffChunk.fccType = mmioFOURCC('W', 'A', 'V', 'E');
-	Result = mmioDescend(hMmio, &RiffChunk, NULL, MMIO_FINDRIFF);
+	Result = mmioDescend(hMmio, &RiffChunk, nullptr, MMIO_FINDRIFF);
 	if (Result != MMSYSERR_NOERROR)
 	{
 		mmioClose(hMmio, 0);

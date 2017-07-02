@@ -5,23 +5,23 @@
  */
 #include "DX11Manager.h"
 
-Lib::DX11Manager* Lib::DX11Manager::m_pDX11Manager = NULL;
+Lib::DX11Manager* Lib::DX11Manager::m_pDX11Manager = nullptr;
 float Lib::DX11Manager::m_ClearColor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 
 
 Lib::DX11Manager::DX11Manager() :
-m_pDevice(NULL),
-m_pDeviceContext(NULL),
-m_pDXGI(NULL),
-m_pAdapter(NULL),
-m_pDXGIFactory(NULL),
-m_pDXGISwapChain(NULL),
-m_pBackBuffer(NULL),
-m_pRenderTargetView(NULL),
-m_pDepthStencilBuffer(NULL),
-m_pDepthStencilView(NULL),
-m_pRasterizerState(NULL),
-m_hWnd(NULL)
+m_pDevice(nullptr),
+m_pDeviceContext(nullptr),
+m_pDXGI(nullptr),
+m_pAdapter(nullptr),
+m_pDXGIFactory(nullptr),
+m_pDXGISwapChain(nullptr),
+m_pBackBuffer(nullptr),
+m_pRenderTargetView(nullptr),
+m_pDepthStencilBuffer(nullptr),
+m_pDepthStencilView(nullptr),
+m_pRasterizerState(nullptr),
+m_hWnd(nullptr)
 {
 }
 
@@ -32,7 +32,7 @@ m_hWnd(NULL)
 
 bool Lib::DX11Manager::Init(HWND _hWnd, RECT _windowSize)
 {
-	if (m_pDevice != NULL)
+	if (m_pDevice != nullptr)
 	{
 		OutputDebugString(TEXT("m_pDeviceDX11Managerクラスはすでに初期化されています"));
 		return false;
@@ -84,7 +84,7 @@ void Lib::DX11Manager::SetDepthStencilTest(bool _isStencil)
 	}
 	else
 	{
-		m_pDeviceContext->OMSetRenderTargets(1, &m_pRenderTargetView, NULL);
+		m_pDeviceContext->OMSetRenderTargets(1, &m_pRenderTargetView, nullptr);
 	}
 }
 
@@ -97,15 +97,15 @@ bool Lib::DX11Manager::InitDevice()
 {
 #ifdef	_DEBUG
 	if (FAILED(D3D11CreateDevice(
-		NULL,
+		nullptr,
 		D3D_DRIVER_TYPE_HARDWARE,
-		NULL,
+		nullptr,
 		D3D11_CREATE_DEVICE_DEBUG,
-		NULL,
+		nullptr,
 		0,
 		D3D11_SDK_VERSION,
 		&m_pDevice,
-		NULL,
+		nullptr,
 		&m_pDeviceContext)))
 	{
 		OutputDebugString(TEXT("D3D11CreateDeviceに失敗しました"));
@@ -113,15 +113,15 @@ bool Lib::DX11Manager::InitDevice()
 	}
 #else
 	if (FAILED(D3D11CreateDevice(
-		NULL,
+		nullptr,
 		D3D_DRIVER_TYPE_HARDWARE,
-		NULL,
+		nullptr,
 		0,
-		NULL,
+		nullptr,
 		0,
 		D3D11_SDK_VERSION,
 		&m_pDevice,
-		NULL,
+		nullptr,
 		&m_pDeviceContext)))
 	{
 		OutputDebugString(TEXT("D3D11CreateDeviceに失敗しました"));
@@ -147,7 +147,7 @@ bool Lib::DX11Manager::InitDisplay()
 	}
 
 	m_pAdapter->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&m_pDXGIFactory));
-	if (m_pDXGIFactory == NULL)
+	if (m_pDXGIFactory == nullptr)
 	{
 		OutputDebugString(TEXT("DX11のファクトリーの取得に失敗しました"));
 		m_pAdapter->Release();
@@ -201,7 +201,7 @@ bool Lib::DX11Manager::InitDisplay()
 
 	OutputDebugString(TEXT("スワップチェインのバックバッファ取得に成功しました\n"));
 
-	if (FAILED(m_pDevice->CreateRenderTargetView(m_pBackBuffer, NULL, &m_pRenderTargetView)))
+	if (FAILED(m_pDevice->CreateRenderTargetView(m_pBackBuffer, nullptr, &m_pRenderTargetView)))
 	{
 		OutputDebugString(TEXT("描画ターゲット生成に失敗しました"));
 		m_pBackBuffer->Release();
@@ -227,7 +227,7 @@ bool Lib::DX11Manager::InitDisplay()
 	m_DepthDesc.CPUAccessFlags = 0;
 	m_DepthDesc.MiscFlags = 0;
 
-	if (FAILED(m_pDevice->CreateTexture2D(&m_DepthDesc, NULL, &m_pDepthStencilBuffer)))
+	if (FAILED(m_pDevice->CreateTexture2D(&m_DepthDesc, nullptr, &m_pDepthStencilBuffer)))
 	{
 		OutputDebugString(TEXT("ステンシルビュー生成に失敗しました"));
 		m_pRenderTargetView->Release();
@@ -241,7 +241,7 @@ bool Lib::DX11Manager::InitDisplay()
 
 	OutputDebugString(TEXT("ステンシルビュー生成に成功しました\n"));
 
-	if (FAILED(m_pDevice->CreateDepthStencilView(m_pDepthStencilBuffer, NULL, &m_pDepthStencilView)))
+	if (FAILED(m_pDevice->CreateDepthStencilView(m_pDepthStencilBuffer, nullptr, &m_pDepthStencilView)))
 	{
 		OutputDebugString(TEXT("ステンシルバッファ生成に失敗しました"));
 		m_pDepthStencilBuffer->Release();
@@ -300,72 +300,72 @@ bool Lib::DX11Manager::InitDisplay()
 
 void Lib::DX11Manager::ReleaseDevice()
 {
-	if (m_pDeviceContext != NULL)
+	if (m_pDeviceContext != nullptr)
 	{
 		m_pDeviceContext->Release();
-		m_pDeviceContext = NULL;
+		m_pDeviceContext = nullptr;
 	}
 
-	if (m_pDevice != NULL)
+	if (m_pDevice != nullptr)
 	{
 		m_pDevice->Release();
-		m_pDevice = NULL;
+		m_pDevice = nullptr;
 	}
 }
 
 void Lib::DX11Manager::ReleaseDisplay()
 {
-	if (m_pRasterizerState != NULL)
+	if (m_pRasterizerState != nullptr)
 	{
 		m_pRasterizerState->Release();
-		m_pRasterizerState = NULL;
+		m_pRasterizerState = nullptr;
 	}
 
-	if (m_pDepthStencilView != NULL)
+	if (m_pDepthStencilView != nullptr)
 	{
 		m_pDepthStencilView->Release();
-		m_pDepthStencilView = NULL;
+		m_pDepthStencilView = nullptr;
 	}
 
-	if (m_pDepthStencilBuffer != NULL)
+	if (m_pDepthStencilBuffer != nullptr)
 	{
 		m_pDepthStencilBuffer->Release();
-		m_pDepthStencilBuffer = NULL;
+		m_pDepthStencilBuffer = nullptr;
 	}
 
-	if (m_pRenderTargetView != NULL)
+	if (m_pRenderTargetView != nullptr)
 	{
 		m_pRenderTargetView->Release();
-		m_pRenderTargetView = NULL;
+		m_pRenderTargetView = nullptr;
 	}
 
-	if (m_pBackBuffer != NULL)
+	if (m_pBackBuffer != nullptr)
 	{
 		m_pBackBuffer->Release();
-		m_pBackBuffer = NULL;
+		m_pBackBuffer = nullptr;
 	}
 
-	if (m_pDXGISwapChain != NULL)
+	if (m_pDXGISwapChain != nullptr)
 	{
 		m_pDXGISwapChain->Release();
-		m_pDXGISwapChain = NULL;
+		m_pDXGISwapChain = nullptr;
 	}
 
-	if (m_pDXGIFactory != NULL)
+	if (m_pDXGIFactory != nullptr)
 	{
 		m_pDXGIFactory->Release();
-		m_pDXGIFactory = NULL;
+		m_pDXGIFactory = nullptr;
 	}
 
-	if (m_pAdapter != NULL)
+	if (m_pAdapter != nullptr)
 	{
 		m_pAdapter->Release();
-		m_pAdapter = NULL;
+		m_pAdapter = nullptr;
 	}
 
-	if (m_pDXGI != NULL)
+	if (m_pDXGI != nullptr)
 	{
 		m_pDXGI->Release();
-		m_pDXGI = NULL;
+		m_pDXGI = nullptr;
 	}
 }

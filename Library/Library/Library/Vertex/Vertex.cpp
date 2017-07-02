@@ -10,17 +10,17 @@ Lib::Vertex::Vertex(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext
 m_pDevice(_pDevice),
 m_pDeviceContext(_pDeviceContext),
 m_hWnd(_hWnd),
-m_pVertexShader(NULL),
-m_pVertexCompiledShader(NULL),
-m_pVertexLayout(NULL),
-m_pPixelShader(NULL),
-m_pPixelCompiledShader(NULL),
-m_pBlendState(NULL),
-m_pSamplerState(NULL),
-m_pConstantBuffer(NULL),
-m_pVertexBuffer(NULL),
-m_pTextureResourceView(NULL),
-m_pVertex(NULL),
+m_pVertexShader(nullptr),
+m_pVertexCompiledShader(nullptr),
+m_pVertexLayout(nullptr),
+m_pPixelShader(nullptr),
+m_pPixelCompiledShader(nullptr),
+m_pBlendState(nullptr),
+m_pSamplerState(nullptr),
+m_pConstantBuffer(nullptr),
+m_pVertexBuffer(nullptr),
+m_pTextureResourceView(nullptr),
+m_pVertex(nullptr),
 m_VertexNum(0),
 m_ClientWidth(0),
 m_ClientHeight(0)
@@ -131,13 +131,13 @@ bool Lib::Vertex::CreateVertexBuffer(const VERTEX* _pVertex, int _vertexNum)
 
 void Lib::Vertex::ReleaseVertexBuffer()
 {
-	if (m_pVertexBuffer != NULL)
+	if (m_pVertexBuffer != nullptr)
 	{
 		m_pVertexBuffer->Release();
-		m_pVertexBuffer = NULL;
+		m_pVertexBuffer = nullptr;
 
 		delete[] m_pVertex;
-		m_pVertex = NULL;
+		m_pVertex = nullptr;
 		m_VertexNum = 0;
 	}
 }
@@ -197,8 +197,8 @@ bool Lib::Vertex::WriteConstantBuffer(const VECTOR2* _pDrawPos, const VECTOR2* _
 
 void Lib::Vertex::Draw()
 {
-	m_pDeviceContext->VSSetShader(m_pVertexShader, NULL, 0);
-	m_pDeviceContext->PSSetShader(m_pPixelShader, NULL, 0);
+	m_pDeviceContext->VSSetShader(m_pVertexShader, nullptr, 0);
+	m_pDeviceContext->PSSetShader(m_pPixelShader, nullptr, 0);
 
 	m_pDeviceContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
 	m_pDeviceContext->PSSetConstantBuffers(0, 1, &m_pConstantBuffer);
@@ -209,7 +209,7 @@ void Lib::Vertex::Draw()
 	m_pDeviceContext->PSSetSamplers(0, 1, &m_pSamplerState);
 	m_pDeviceContext->PSSetShaderResources(0, 1, &m_pTextureResourceView);
 
-	m_pDeviceContext->OMSetBlendState(m_pBlendState, NULL, 0xffffffff);
+	m_pDeviceContext->OMSetBlendState(m_pBlendState, nullptr, 0xffffffff);
 
 	UINT Stride = sizeof(VERTEX);
 	UINT Offset = 0;
@@ -225,19 +225,19 @@ void Lib::Vertex::Draw()
 
 bool Lib::Vertex::InitVertexShader()
 {
-	ID3DBlob* pErrors = NULL;
+	ID3DBlob* pErrors = nullptr;
 	if (FAILED(D3DX11CompileFromFile(
 		TEXT("Library\\Vertex\\Effect\\Vertex.fx"),
-		NULL,
-		NULL,
+		nullptr,
+		nullptr,
 		"VS",
 		"vs_5_0",
 		D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION,
 		0,
-		NULL,
+		nullptr,
 		&m_pVertexCompiledShader,
 		&pErrors,
-		NULL)))
+		nullptr)))
 	{
 		MessageBox(0, TEXT("VertexShaderのコンパイルに失敗"), TEXT("エラー"), MB_ICONSTOP);
 		pErrors->Release();
@@ -247,7 +247,7 @@ bool Lib::Vertex::InitVertexShader()
 	m_pDevice->CreateVertexShader(
 		m_pVertexCompiledShader->GetBufferPointer(),
 		m_pVertexCompiledShader->GetBufferSize(),
-		NULL,
+		nullptr,
 		&m_pVertexShader);
 
 	return true;
@@ -278,19 +278,19 @@ bool Lib::Vertex::InitVertexLayout()
 
 bool Lib::Vertex::InitPixelShader()
 {
-	ID3DBlob* pErrors = NULL;
+	ID3DBlob* pErrors = nullptr;
 	if (FAILED(D3DX11CompileFromFile(
 		TEXT("Library\\Vertex\\Effect\\Vertex.fx"),
-		NULL,
-		NULL,
+		nullptr,
+		nullptr,
 		"PS",
 		"ps_5_0",
 		D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION,
 		0,
-		NULL,
+		nullptr,
 		&m_pPixelCompiledShader,
 		&pErrors,
-		NULL)))
+		nullptr)))
 	{
 		MessageBox(m_hWnd, TEXT("PixelShaderのコンパイルに失敗"), TEXT("エラー"), MB_ICONSTOP);
 		pErrors->Release();
@@ -300,7 +300,7 @@ bool Lib::Vertex::InitPixelShader()
 	m_pDevice->CreatePixelShader(
 		m_pPixelCompiledShader->GetBufferPointer(),
 		m_pPixelCompiledShader->GetBufferSize(),
-		NULL,
+		nullptr,
 		&m_pPixelShader);
 
 	return true;
@@ -359,7 +359,7 @@ bool Lib::Vertex::InitConstantBuffer()
 	ConstantBufferDesc.MiscFlags = 0;
 	ConstantBufferDesc.StructureByteStride = 0;
 
-	if (FAILED(m_pDevice->CreateBuffer(&ConstantBufferDesc, NULL, &m_pConstantBuffer)))
+	if (FAILED(m_pDevice->CreateBuffer(&ConstantBufferDesc, nullptr, &m_pConstantBuffer)))
 	{
 		MessageBox(m_hWnd, TEXT("ConstantBufferの生成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
 		return false;
@@ -370,66 +370,66 @@ bool Lib::Vertex::InitConstantBuffer()
 
 void Lib::Vertex::ReleaseVertexShader()
 {
-	if (m_pVertexShader != NULL)
+	if (m_pVertexShader != nullptr)
 	{
 		m_pVertexShader->Release();
-		m_pVertexShader = NULL;
+		m_pVertexShader = nullptr;
 	}
 
-	if (m_pVertexCompiledShader != NULL)
+	if (m_pVertexCompiledShader != nullptr)
 	{
 		m_pVertexCompiledShader->Release();
-		m_pVertexCompiledShader = NULL;
+		m_pVertexCompiledShader = nullptr;
 	}
 }
 
 void Lib::Vertex::ReleaseVertexLayout()
 {
-	if (m_pVertexLayout != NULL)
+	if (m_pVertexLayout != nullptr)
 	{
 		m_pVertexLayout->Release();
-		m_pVertexLayout = NULL;
+		m_pVertexLayout = nullptr;
 	}
 }
 
 void Lib::Vertex::ReleasePixelShader()
 {
-	if (m_pPixelShader != NULL)
+	if (m_pPixelShader != nullptr)
 	{
 		m_pPixelShader->Release();
-		m_pPixelShader = NULL;
+		m_pPixelShader = nullptr;
 	}
 
-	if (m_pPixelCompiledShader != NULL)
+	if (m_pPixelCompiledShader != nullptr)
 	{
 		m_pPixelCompiledShader->Release();
-		m_pPixelCompiledShader = NULL;
+		m_pPixelCompiledShader = nullptr;
 	}
 }
 
 void Lib::Vertex::ReleaseBlendState()
 {
-	if (m_pBlendState != NULL)
+	if (m_pBlendState != nullptr)
 	{
 		m_pBlendState->Release();
-		m_pBlendState = NULL;
+		m_pBlendState = nullptr;
 	}
 }
 
 void Lib::Vertex::ReleaseSamplerState()
 {
-	if (m_pSamplerState != NULL)
+	if (m_pSamplerState != nullptr)
 	{
 		m_pSamplerState->Release();
-		m_pSamplerState = NULL;
+		m_pSamplerState = nullptr;
 	}
 }
 
 void Lib::Vertex::ReleaseConstantBuffer()
 {
-	if (m_pConstantBuffer != NULL)
+	if (m_pConstantBuffer != nullptr)
 	{
 		m_pConstantBuffer->Release();
-		m_pConstantBuffer = NULL;
+		m_pConstantBuffer = nullptr;
 	}
 }

@@ -19,7 +19,7 @@ SceneFactory::~SceneFactory()
 
 SceneBase* SceneFactory::CreateScene(SceneBase::SceneID _sceneID)
 {
-	SceneBase* pScene = NULL;
+	SceneBase* pScene = nullptr;
 
 	switch (_sceneID)
 	{

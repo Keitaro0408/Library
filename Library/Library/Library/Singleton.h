@@ -33,7 +33,7 @@ namespace Lib
 		 */
 		inline static void Create()
 		{
-			if (m_Instance == NULL)
+			if (m_Instance == nullptr)
 			{
 				m_Instance = new InstanceType;
 			}
@@ -45,7 +45,7 @@ namespace Lib
 		inline static void Delete()
 		{
 			delete m_Instance;
-			m_Instance = NULL;
+			m_Instance = nullptr;
 		}
 
 	private:
@@ -60,7 +60,7 @@ namespace Lib
 
 	template <class Type>
 	//Singleton<Type>::InstanceTypeを型と明示的に宣言している
-	typename Singleton<Type>::InstanceType* Singleton<Type>::m_Instance = NULL;
+	typename Singleton<Type>::InstanceType* Singleton<Type>::m_Instance = nullptr;
 }
 
 #endif

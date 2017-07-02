@@ -52,19 +52,19 @@ namespace Lib
 		for (unsigned int i = 0; i < m_MeshData.size(); i++)
 		{
 			delete[] m_MeshData[i].pNormalData->pNormalVec;
-			m_MeshData[i].pNormalData->pNormalVec = NULL;
+			m_MeshData[i].pNormalData->pNormalVec = nullptr;
 
 			delete m_MeshData[i].pNormalData;
-			m_MeshData[i].pNormalData = NULL;
+			m_MeshData[i].pNormalData = nullptr;
 
 			delete[] m_MeshData[i].pVertexData->pVertex;
-			m_MeshData[i].pVertexData->pVertex = NULL;
+			m_MeshData[i].pVertexData->pVertex = nullptr;
 
 			delete[] m_MeshData[i].pVertexData->pIndexAry;
-			m_MeshData[i].pVertexData->pIndexAry = NULL;
+			m_MeshData[i].pVertexData->pIndexAry = nullptr;
 
 			delete m_MeshData[i].pVertexData;
-			m_MeshData[i].pVertexData = NULL;
+			m_MeshData[i].pVertexData = nullptr;
 		}
 	}
 
@@ -131,7 +131,7 @@ namespace Lib
 					m_ppIndexBuffer[i]->Release();
 				}
 				delete[] m_ppIndexBuffer;
-				m_ppIndexBuffer = NULL;
+				m_ppIndexBuffer = nullptr;
 				return false;
 			}
 		}
@@ -186,7 +186,7 @@ namespace Lib
 					m_ppVertexBuffer[i]->Release();
 				}
 				delete[] m_ppVertexBuffer;
-				m_ppVertexBuffer = NULL;
+				m_ppVertexBuffer = nullptr;
 
 				return false;
 			}
@@ -199,37 +199,37 @@ namespace Lib
 
 	void FbxModel::ReleaseIndexBuffer()
 	{
-		if (m_ppIndexBuffer != NULL)
+		if (m_ppIndexBuffer != nullptr)
 		{
 			for (unsigned int i = 0; i < m_MeshData.size(); i++)
 			{
 				m_ppIndexBuffer[i]->Release();
 			}
 			delete[] m_ppIndexBuffer;
-			m_ppIndexBuffer = NULL;
+			m_ppIndexBuffer = nullptr;
 		}
 	}
 
 	void FbxModel::ReleaseVertexBuffer()
 	{
-		if (m_ppVertexBuffer != NULL)
+		if (m_ppVertexBuffer != nullptr)
 		{
 			for (unsigned int i = 0; i < m_MeshData.size(); i++)
 			{
 				delete m_ppVertexData[i];
-				m_ppVertexData[i] = NULL;
+				m_ppVertexData[i] = nullptr;
 			}
 			delete[] m_ppVertexData;
-			m_ppVertexData = NULL;
+			m_ppVertexData = nullptr;
 		}
 
-		if (m_ppVertexBuffer != NULL)
+		if (m_ppVertexBuffer != nullptr)
 		{
 			for (unsigned int i = 0; i < m_MeshData.size(); i++)
 			{
 				m_ppVertexBuffer[i]->Release();
 				delete[] m_ppVertexBuffer;
-				m_ppVertexBuffer = NULL;
+				m_ppVertexBuffer = nullptr;
 			}
 		}
 	}

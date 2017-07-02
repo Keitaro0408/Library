@@ -21,7 +21,7 @@ Lib::KeyDevice::KeyDevice()
 
 bool Lib::KeyDevice::Init(LPDIRECTINPUT8 _pDInput8, HWND _hWnd)
 {
-	if (m_pDInput8 != NULL)
+	if (m_pDInput8 != nullptr)
 	{
 		MessageBox(_hWnd, TEXT("KeyDeviceクラスは既に初期化されています"), TEXT("エラー"), MB_ICONSTOP);
 		return false;
@@ -30,13 +30,13 @@ bool Lib::KeyDevice::Init(LPDIRECTINPUT8 _pDInput8, HWND _hWnd)
 	m_pDInput8 = _pDInput8;
 	m_hWnd = _hWnd;
 
-	if (m_pDInput8 == NULL)
+	if (m_pDInput8 == nullptr)
 	{
 		MessageBox(m_hWnd, TEXT("DirectInput8オブジェクトが有効ではありません"), TEXT("エラー"), MB_ICONSTOP);
 		return false;
 	}
 
-	if (FAILED(m_pDInput8->CreateDevice(GUID_SysKeyboard, &m_pDInputDevice8, NULL)))
+	if (FAILED(m_pDInput8->CreateDevice(GUID_SysKeyboard, &m_pDInputDevice8, nullptr)))
 	{
 		MessageBox(m_hWnd, TEXT("DirectInput8キーデバイスの生成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
 		return false;
@@ -78,11 +78,11 @@ bool Lib::KeyDevice::Init(LPDIRECTINPUT8 _pDInput8, HWND _hWnd)
 
 void Lib::KeyDevice::Release()
 {
-	if (m_pDInputDevice8 != NULL)
+	if (m_pDInputDevice8 != nullptr)
 	{
 		m_pDInputDevice8->Release();
-		m_pDInputDevice8 = NULL;
-		m_pDInput8 = NULL;
+		m_pDInputDevice8 = nullptr;
+		m_pDInput8 = nullptr;
 		OutputDebugString(TEXT("DirectInputのKeyDeviceを解放しました\n"));
 	}
 }

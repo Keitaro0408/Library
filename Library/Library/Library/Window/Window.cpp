@@ -52,11 +52,11 @@ HRESULT Lib::Window::DispWindow(INT _width, INT _height, LPCTSTR _windowName)
 	Wndclass.style = CS_HREDRAW | CS_VREDRAW;
 	Wndclass.lpfnWndProc = WindowProc;
 	Wndclass.hInstance = m_hInstance;
-	Wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-	Wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	Wndclass.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
+	Wndclass.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	Wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	Wndclass.lpszClassName = TEXT(_windowName);
-	Wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+	Wndclass.hIconSm = LoadIcon(nullptr, IDI_APPLICATION);
 	RegisterClassEx(&Wndclass);
 
 	
@@ -69,10 +69,10 @@ HRESULT Lib::Window::DispWindow(INT _width, INT _height, LPCTSTR _windowName)
 		0,
 		_width,
 		_height,
-		NULL,
-		NULL,
+		nullptr,
+		nullptr,
 		m_hInstance,
-		NULL);
+		nullptr);
 
 	if (!m_hWnd)
 	{
@@ -86,7 +86,7 @@ HRESULT Lib::Window::DispWindow(INT _width, INT _height, LPCTSTR _windowName)
 	int new_width = (rw.right - rw.left) - (rc.right - rc.left) + _width;
 	int new_height = (rw.bottom - rw.top) - (rc.bottom - rc.top) + _height;
 
-	SetWindowPos(m_hWnd, NULL, 0, 0, new_width, new_height, SWP_NOMOVE | SWP_NOZORDER);
+	SetWindowPos(m_hWnd, nullptr, 0, 0, new_width, new_height, SWP_NOMOVE | SWP_NOZORDER);
 	//ウインドウの表示
 	ShowWindow(m_hWnd, SW_SHOW);
 	UpdateWindow(m_hWnd);
@@ -96,7 +96,7 @@ HRESULT Lib::Window::DispWindow(INT _width, INT _height, LPCTSTR _windowName)
 
 HRESULT Lib::Window::DispWindow(INT _width, INT _height, LPCTSTR _windowName, LPCTSTR _iconName)
 {
-	m_hInstance = GetModuleHandle(NULL);
+	m_hInstance = GetModuleHandle(nullptr);
 
 	// ウィンドウの定義
 	WNDCLASSEX  Wndclass;
@@ -106,11 +106,11 @@ HRESULT Lib::Window::DispWindow(INT _width, INT _height, LPCTSTR _windowName, LP
 	Wndclass.lpfnWndProc = WindowProc;
 	Wndclass.hInstance = m_hInstance;
 	//アイコン読み込み
-	Wndclass.hIcon = (HICON)LoadImage(NULL, _iconName, IMAGE_ICON, 0, 0, LR_SHARED | LR_LOADFROMFILE);
-	Wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	Wndclass.hIcon = (HICON)LoadImage(nullptr, _iconName, IMAGE_ICON, 0, 0, LR_SHARED | LR_LOADFROMFILE);
+	Wndclass.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	Wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	Wndclass.lpszClassName = _windowName;
-	Wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+	Wndclass.hIconSm = LoadIcon(nullptr, IDI_APPLICATION);
 	RegisterClassEx(&Wndclass);
 
 	//ウィンドウの作成
@@ -122,10 +122,10 @@ HRESULT Lib::Window::DispWindow(INT _width, INT _height, LPCTSTR _windowName, LP
 		0,
 		_width,
 		_height,
-		NULL,
-		NULL,
+		nullptr,
+		nullptr,
 		m_hInstance,
-		NULL);
+		nullptr);
 
 	if (!m_hWnd)
 	{
@@ -147,5 +147,5 @@ void Lib::Window::ChangeWindowSize(int _width, int _hight)
 	int new_width = (rw.right - rw.left) - (rc.right - rc.left) + _width;
 	int new_height = (rw.bottom - rw.top) - (rc.bottom - rc.top) + _hight;
 
-	SetWindowPos(m_hWnd, NULL, 0, 0, new_width, new_height, SWP_NOMOVE | SWP_NOZORDER);
+	SetWindowPos(m_hWnd, nullptr, 0, 0, new_width, new_height, SWP_NOMOVE | SWP_NOZORDER);
 }

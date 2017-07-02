@@ -13,7 +13,7 @@ void App::Init()
 void App::Release()
 {
 	delete m_pSceneManager;
-	m_pSceneManager = NULL;
+	m_pSceneManager = nullptr;
 }
 
 bool App::MainLoop()

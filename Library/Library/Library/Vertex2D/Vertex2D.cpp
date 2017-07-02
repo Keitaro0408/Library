@@ -16,15 +16,15 @@ namespace Lib
 	Vertex2D::Vertex2D(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext, RECT _windowSize) :
 		m_pDevice(_pDevice),
 		m_pDeviceContext(_pDeviceContext),
-		m_pVertexShader(NULL),
-		m_pVertexCompiledShader(NULL),
-		m_pVertexLayout(NULL),
-		m_pPixelShader(NULL),
-		m_pBlendState(NULL),
-		m_pSamplerState(NULL),
-		m_pVertexBuffer(NULL),
-		m_pConstantBuffer(NULL),
-		m_pTextureResourceView(NULL),
+		m_pVertexShader(nullptr),
+		m_pVertexCompiledShader(nullptr),
+		m_pVertexLayout(nullptr),
+		m_pPixelShader(nullptr),
+		m_pBlendState(nullptr),
+		m_pSamplerState(nullptr),
+		m_pVertexBuffer(nullptr),
+		m_pConstantBuffer(nullptr),
+		m_pTextureResourceView(nullptr),
 		m_ClientWidth(static_cast<float>(_windowSize.right)),
 		m_ClientHeight(static_cast<float>(_windowSize.bottom))
 	{
@@ -122,8 +122,8 @@ namespace Lib
 
 	void Vertex2D::Draw()
 	{
-		m_pDeviceContext->VSSetShader(m_pVertexShader, NULL, 0);
-		m_pDeviceContext->PSSetShader(m_pPixelShader, NULL, 0);
+		m_pDeviceContext->VSSetShader(m_pVertexShader, nullptr, 0);
+		m_pDeviceContext->PSSetShader(m_pPixelShader, nullptr, 0);
 
 		m_pDeviceContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
 		m_pDeviceContext->PSSetConstantBuffers(0, 1, &m_pConstantBuffer);
@@ -134,7 +134,7 @@ namespace Lib
 		m_pDeviceContext->PSSetSamplers(0, 1, &m_pSamplerState);
 		m_pDeviceContext->PSSetShaderResources(0, 1, &m_pTextureResourceView);
 
-		m_pDeviceContext->OMSetBlendState(m_pBlendState, NULL, m_ColorMask);
+		m_pDeviceContext->OMSetBlendState(m_pBlendState, nullptr, m_ColorMask);
 
 		UINT Stride = sizeof(VERTEX);
 		UINT Offset = 0;
@@ -160,8 +160,8 @@ namespace Lib
 		}
 		WriteConstantBuffer(_DrawPos, VECTOR2(_Scale.x, _Scale.y), &VECTOR2(0, 0), static_cast<float>(_angle), _alpha);
 
-		m_pDeviceContext->VSSetShader(m_pVertexShader, NULL, 0);
-		m_pDeviceContext->PSSetShader(m_pPixelShader, NULL, 0);
+		m_pDeviceContext->VSSetShader(m_pVertexShader, nullptr, 0);
+		m_pDeviceContext->PSSetShader(m_pPixelShader, nullptr, 0);
 
 		m_pDeviceContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
 		m_pDeviceContext->PSSetConstantBuffers(0, 1, &m_pConstantBuffer);
@@ -172,7 +172,7 @@ namespace Lib
 		m_pDeviceContext->PSSetSamplers(0, 1, &m_pSamplerState);
 		m_pDeviceContext->PSSetShaderResources(0, 1, &m_pTextureResourceView);
 
-		m_pDeviceContext->OMSetBlendState(m_pBlendState, NULL, m_ColorMask);
+		m_pDeviceContext->OMSetBlendState(m_pBlendState, nullptr, m_ColorMask);
 
 		UINT Stride = sizeof(VERTEX);
 		UINT Offset = 0;
@@ -198,8 +198,8 @@ namespace Lib
 		}
 		WriteConstantBuffer(_DrawPos, VECTOR2(_Scale.x, _Scale.y), &VECTOR2(0, 0), static_cast<float>(_angle), _alpha);
 
-		m_pDeviceContext->VSSetShader(m_pVertexShader, NULL, 0);
-		m_pDeviceContext->PSSetShader(m_pPixelShader, NULL, 0);
+		m_pDeviceContext->VSSetShader(m_pVertexShader, nullptr, 0);
+		m_pDeviceContext->PSSetShader(m_pPixelShader, nullptr, 0);
 
 		m_pDeviceContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
 		m_pDeviceContext->PSSetConstantBuffers(0, 1, &m_pConstantBuffer);
@@ -210,7 +210,7 @@ namespace Lib
 		m_pDeviceContext->PSSetSamplers(0, 1, &m_pSamplerState);
 		m_pDeviceContext->PSSetShaderResources(0, 1, &m_pTextureResourceView);
 
-		m_pDeviceContext->OMSetBlendState(m_pBlendState, NULL, m_ColorMask);
+		m_pDeviceContext->OMSetBlendState(m_pBlendState, nullptr, m_ColorMask);
 
 		UINT Stride = sizeof(VERTEX);
 		UINT Offset = 0;
@@ -259,19 +259,19 @@ namespace Lib
 
 	bool Vertex2D::InitVertexShader()
 	{
-		ID3DBlob* pErrors = NULL;
+		ID3DBlob* pErrors = nullptr;
 		if (FAILED(D3DX11CompileFromFile(
 			TEXT("Effect\\Vertex2D.fx"),
-			NULL,
-			NULL,
+			nullptr,
+			nullptr,
 			"VS",
 			"vs_4_0",
 			D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION,
 			0,
-			NULL,
+			nullptr,
 			&m_pVertexCompiledShader,
 			&pErrors,
-			NULL)))
+			nullptr)))
 		{
 			OutputDebugString(TEXT("VertexShaderのコンパイルに失敗"));
 			pErrors->Release();
@@ -281,7 +281,7 @@ namespace Lib
 		m_pDevice->CreateVertexShader(
 			m_pVertexCompiledShader->GetBufferPointer(),
 			m_pVertexCompiledShader->GetBufferSize(),
-			NULL,
+			nullptr,
 			&m_pVertexShader);
 
 		return true;
@@ -311,20 +311,20 @@ namespace Lib
 
 	bool Vertex2D::InitPixelShader()
 	{
-		ID3DBlob* pCompiledShader = NULL;
-		ID3DBlob* pErrors = NULL;
+		ID3DBlob* pCompiledShader = nullptr;
+		ID3DBlob* pErrors = nullptr;
 		if (FAILED(D3DX11CompileFromFile(
 			TEXT("Effect\\Vertex2D.fx"),
-			NULL,
-			NULL,
+			nullptr,
+			nullptr,
 			"PS",
 			"ps_4_0",
 			D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION,
 			0,
-			NULL,
+			nullptr,
 			&pCompiledShader,
 			&pErrors,
-			NULL)))
+			nullptr)))
 		{
 			OutputDebugString(TEXT("PixelShaderのコンパイルに失敗"));
 			pErrors->Release();
@@ -334,7 +334,7 @@ namespace Lib
 		m_pDevice->CreatePixelShader(
 			pCompiledShader->GetBufferPointer(),
 			pCompiledShader->GetBufferSize(),
-			NULL,
+			nullptr,
 			&m_pPixelShader);
 
 		pCompiledShader->Release();
@@ -431,7 +431,7 @@ namespace Lib
 		ConstantBufferDesc.MiscFlags = 0;
 		ConstantBufferDesc.StructureByteStride = 0;
 
-		if (FAILED(m_pDevice->CreateBuffer(&ConstantBufferDesc, NULL, &m_pConstantBuffer)))
+		if (FAILED(m_pDevice->CreateBuffer(&ConstantBufferDesc, nullptr, &m_pConstantBuffer)))
 		{
 			OutputDebugString(TEXT("ConstantBufferの生成に失敗しました"));
 			return false;
@@ -442,70 +442,70 @@ namespace Lib
 
 	void Vertex2D::ReleaseVertexShader()
 	{
-		if (m_pVertexShader != NULL)
+		if (m_pVertexShader != nullptr)
 		{
 			m_pVertexShader->Release();
-			m_pVertexShader = NULL;
+			m_pVertexShader = nullptr;
 		}
 
-		if (m_pVertexCompiledShader != NULL)
+		if (m_pVertexCompiledShader != nullptr)
 		{
 			m_pVertexCompiledShader->Release();
-			m_pVertexCompiledShader = NULL;
+			m_pVertexCompiledShader = nullptr;
 		}
 	}
 
 	void Vertex2D::ReleaseVertexLayout()
 	{
-		if (m_pVertexLayout != NULL)
+		if (m_pVertexLayout != nullptr)
 		{
 			m_pVertexLayout->Release();
-			m_pVertexLayout = NULL;
+			m_pVertexLayout = nullptr;
 		}
 	}
 
 	void Vertex2D::ReleasePixelShader()
 	{
-		if (m_pPixelShader != NULL)
+		if (m_pPixelShader != nullptr)
 		{
 			m_pPixelShader->Release();
-			m_pPixelShader = NULL;
+			m_pPixelShader = nullptr;
 		}
 	}
 
 	void Vertex2D::ReleaseBlendState()
 	{
-		if (m_pBlendState != NULL)
+		if (m_pBlendState != nullptr)
 		{
 			m_pBlendState->Release();
-			m_pBlendState = NULL;
+			m_pBlendState = nullptr;
 		}
 	}
 
 	void Vertex2D::ReleaseSamplerState()
 	{
-		if (m_pSamplerState != NULL)
+		if (m_pSamplerState != nullptr)
 		{
 			m_pSamplerState->Release();
-			m_pSamplerState = NULL;
+			m_pSamplerState = nullptr;
 		}
 	}
 
 	void Vertex2D::ReleaseVertexBuffer()
 	{
-		if (m_pVertexBuffer != NULL)
+		if (m_pVertexBuffer != nullptr)
 		{
 			m_pVertexBuffer->Release();
-			m_pVertexBuffer = NULL;
+			m_pVertexBuffer = nullptr;
 		}
 	}
 
 	void Vertex2D::ReleaseConstantBuffer()
 	{
-		if (m_pConstantBuffer != NULL)
+		if (m_pConstantBuffer != nullptr)
 		{
 			m_pConstantBuffer->Release();
-			m_pConstantBuffer = NULL;
+			m_pConstantBuffer = nullptr;
 		}
 
 	}

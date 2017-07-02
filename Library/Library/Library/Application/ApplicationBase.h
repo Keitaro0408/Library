@@ -8,7 +8,8 @@
 /**
  * @mainpage Library使い方
  * エントリーポイントはApplicationBaseに内蔵されており
- * 実装し、グローバルで宣言する事でウィンドウが表示される
+ * 実装し、グローバルで宣言する事でウィンドウが表示される。 \n\n
+ * GitHub url : https://github.com/Keitaro0408/Library
  */
 
 #include <Windows.h>

@@ -29,7 +29,7 @@ bool Lib::EventManager::CallEvent(std::string _eventName)
 
 	for (unsigned int i = 0; i < m_pEvent[_eventName].size();i++)
 	{
-		if (m_pEvent[_eventName][i] != NULL)
+		if (m_pEvent[_eventName][i] != nullptr)
 		{
 			m_pEvent[_eventName][i]();
 		}

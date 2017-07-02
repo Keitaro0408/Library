@@ -9,7 +9,7 @@
 
 
 SceneManager::SceneManager(HWND _hwnd) :
-m_pScene(NULL),
+m_pScene(nullptr),
 m_State(SCENE_CREATE),
 m_NextSceneID(SceneBase::SCENE_TITLE),
 m_hWnd(_hwnd),
@@ -59,7 +59,7 @@ void SceneManager::Update()
 		break;
 	case SCENE_RELEASE:
 		delete m_pScene;
-		m_pScene = NULL;
+		m_pScene = nullptr;
 
 		m_State = SCENE_CREATE;
 		break;

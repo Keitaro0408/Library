@@ -12,18 +12,18 @@
 
 bool Lib::DXInputDevice::Init(HWND _hWnd)
 {
-	if (m_pDInput8 != NULL)
+	if (m_pDInput8 != nullptr)
 	{
 		MessageBox(_hWnd, TEXT("m_pDInput8の中身は空ではありません"), TEXT("エラー"), MB_ICONSTOP);
 		return false;
 	}
 
 	if (FAILED(DirectInput8Create(
-		GetModuleHandle(NULL),
+		GetModuleHandle(nullptr),
 		DIRECTINPUT_VERSION,
 		IID_IDirectInput8,
 		reinterpret_cast<void**>(&m_pDInput8),
-		NULL)))
+		nullptr)))
 	{
 		MessageBox(_hWnd, TEXT("DirectInput8オブジェクトの生成に失敗しました"), TEXT("エラー"), MB_ICONSTOP);
 		return false;
@@ -38,9 +38,9 @@ bool Lib::DXInputDevice::Init(HWND _hWnd)
 
 void Lib::DXInputDevice::Release()
 {
-	if (m_pDInput8 != NULL)
+	if (m_pDInput8 != nullptr)
 	{
 		m_pDInput8->Release();
-		m_pDInput8 = NULL;
+		m_pDInput8 = nullptr;
 	}
 }

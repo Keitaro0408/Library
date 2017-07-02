@@ -9,11 +9,11 @@ namespace Lib
 {
 	FbxLoader::FbxLoader(ID3D11Device* _pDevice) :
 		m_pDevice(_pDevice),
-		m_pFbxManager(NULL),
-		m_pFbxScene(NULL),
-		m_pFbxImporter(NULL),
-		m_pFbxIOSettings(NULL),
-		m_pModel(NULL)
+		m_pFbxManager(nullptr),
+		m_pFbxScene(nullptr),
+		m_pFbxImporter(nullptr),
+		m_pFbxIOSettings(nullptr),
+		m_pModel(nullptr)
 	{
 
 	}
@@ -96,7 +96,7 @@ namespace Lib
 
 	void FbxLoader::RecursiveNode(FbxNode* _pFbxNode)
 	{
-		FbxNode* pChildNode = NULL;
+		FbxNode* pChildNode = nullptr;
 		int ChildCount = _pFbxNode->GetChildCount();
 		for (int i = 0; i < ChildCount; i++)
 		{
@@ -106,7 +106,7 @@ namespace Lib
 
 		fbxsdk::FbxNodeAttribute* pAttribute = _pFbxNode->GetNodeAttribute();
 
-		if (pAttribute != NULL)
+		if (pAttribute != nullptr)
 		{
 			switch (pAttribute->GetAttributeType())
 			{
@@ -243,7 +243,7 @@ namespace Lib
 				default:
 					/// 不明なモードは空データで対応
 
-					MessageBox(NULL, TEXT("リファレンスモード不明です\n空データを作成して対応します"), TEXT("エラー"), MB_ICONSTOP);
+					MessageBox(nullptr, TEXT("リファレンスモード不明です\n空データを作成して対応します"), TEXT("エラー"), MB_ICONSTOP);
 
 					pNormalData[NormalIndex].pNormalVec = new D3DXVECTOR3[_pMeshData->pVertexData->PolygonVertexNum];
 					for (int i = 0; i < _pMeshData->pVertexData->PolygonVertexNum; i++)
@@ -256,7 +256,7 @@ namespace Lib
 				}
 				break;
 			case FbxGeometryElement::eByControlPoint:
-				MessageBox(NULL, TEXT("マッピングモードeByControlPointに対応していません\n空データを作成して対応します"), TEXT("エラー"), MB_ICONSTOP);
+				MessageBox(nullptr, TEXT("マッピングモードeByControlPointに対応していません\n空データを作成して対応します"), TEXT("エラー"), MB_ICONSTOP);
 
 				pNormalData[NormalIndex].pNormalVec = new D3DXVECTOR3[_pMeshData->pVertexData->PolygonVertexNum];
 				for (int i = 0; i < _pMeshData->pVertexData->PolygonVertexNum; i++)
@@ -267,7 +267,7 @@ namespace Lib
 				}
 				break;
 			default:
-				MessageBox(NULL, TEXT("マッピングモードが不明です\n空データを作成して対応します"), TEXT("エラー"), MB_ICONSTOP);
+				MessageBox(nullptr, TEXT("マッピングモードが不明です\n空データを作成して対応します"), TEXT("エラー"), MB_ICONSTOP);
 
 				pNormalData[NormalIndex].pNormalVec = new D3DXVECTOR3[_pMeshData->pVertexData->PolygonVertexNum];
 				for (int i = 0; i < _pMeshData->pVertexData->PolygonVertexNum; i++)
@@ -334,7 +334,7 @@ namespace Lib
 	bool FbxLoader::InitFbxManager()
 	{
 		m_pFbxManager = fbxsdk::FbxManager::Create();
-		if (m_pFbxManager == NULL)
+		if (m_pFbxManager == nullptr)
 		{
 			OutputDebugString(TEXT("FbxManagerクラスの生成に失敗\n"));
 			return false;
@@ -346,7 +346,7 @@ namespace Lib
 	bool FbxLoader::InitFbxScene()
 	{
 		m_pFbxScene = fbxsdk::FbxScene::Create(m_pFbxManager, "");
-		if (m_pFbxScene == NULL)
+		if (m_pFbxScene == nullptr)
 		{
 			OutputDebugString(TEXT("FbxSceneクラスの生成に失敗\n"));
 			return false;
@@ -358,7 +358,7 @@ namespace Lib
 	bool FbxLoader::InitFbxImporter()
 	{
 		m_pFbxImporter = fbxsdk::FbxImporter::Create(m_pFbxManager, "");
-		if (m_pFbxImporter == NULL)
+		if (m_pFbxImporter == nullptr)
 		{
 			OutputDebugString(TEXT("FbxImporterクラスの生成に失敗\n"));
 			return false;
@@ -370,7 +370,7 @@ namespace Lib
 	bool FbxLoader::InitFbxIOSettings()
 	{
 		m_pFbxIOSettings = fbxsdk::FbxIOSettings::Create(m_pFbxManager, IOSROOT);
-		if (m_pFbxIOSettings == NULL)
+		if (m_pFbxIOSettings == nullptr)
 		{
 			OutputDebugString(TEXT("FbxIOSettingsクラスの生成に失敗\n"));
 			return false;
@@ -382,37 +382,37 @@ namespace Lib
 
 	void FbxLoader::ReleaseFbxManager()
 	{
-		if (m_pFbxManager != NULL)
+		if (m_pFbxManager != nullptr)
 		{
 			m_pFbxManager->Destroy();
-			m_pFbxManager = NULL;
+			m_pFbxManager = nullptr;
 		}
 	}
 
 	void FbxLoader::ReleaseFbxScene()
 	{
-		if (m_pFbxScene != NULL)
+		if (m_pFbxScene != nullptr)
 		{
 			m_pFbxScene->Destroy();
-			m_pFbxScene = NULL;
+			m_pFbxScene = nullptr;
 		}
 	}
 
 	void FbxLoader::ReleaseFbxImporter()
 	{
-		if (m_pFbxImporter != NULL)
+		if (m_pFbxImporter != nullptr)
 		{
 			m_pFbxImporter->Destroy();
-			m_pFbxImporter = NULL;
+			m_pFbxImporter = nullptr;
 		}
 	}
 
 	void FbxLoader::ReleaseFbxIOSettings()
 	{
-		if (m_pFbxIOSettings != NULL)
+		if (m_pFbxIOSettings != nullptr)
 		{
 			m_pFbxIOSettings->Destroy();
-			m_pFbxIOSettings = NULL;
+			m_pFbxIOSettings = nullptr;
 		}
 	}
 }

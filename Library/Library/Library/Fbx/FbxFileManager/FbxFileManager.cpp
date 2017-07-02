@@ -12,15 +12,15 @@ const int Lib::FbxFileManager::m_InvalidIndex = 0;
 Lib::FbxFileManager::FbxFileManager(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext) :
 m_pDevice(_pDevice),
 m_pDeviceContext(_pDeviceContext),
-m_pFbxLoader(NULL)
+m_pFbxLoader(nullptr)
 {
-	m_pFbxModel.push_back(NULL);	// 読み込みに失敗した際に参照する値としてNULLを追加
+	m_pFbxModel.push_back(nullptr);	// 読み込みに失敗した際に参照する値としてnullptrを追加
 }
 
 Lib::FbxFileManager::FbxFileManager() :
-m_pDevice(NULL),
-m_pDeviceContext(NULL),
-m_pFbxLoader(NULL)
+m_pDevice(nullptr),
+m_pDeviceContext(nullptr),
+m_pFbxLoader(nullptr)
 {
 }
 
@@ -32,9 +32,9 @@ m_pFbxLoader(NULL)
 bool Lib::FbxFileManager::Init(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext)
 {
 	FbxFileManager(_pDevice, _pDeviceContext);
-	if (m_pFbxLoader != NULL)
+	if (m_pFbxLoader != nullptr)
 	{
-		MessageBox(NULL, TEXT("既にFbxFileManagerクラスは初期化されています"), TEXT("エラー"), MB_ICONSTOP);
+		MessageBox(nullptr, TEXT("既にFbxFileManagerクラスは初期化されています"), TEXT("エラー"), MB_ICONSTOP);
 		return false;
 	}
 
@@ -44,15 +44,15 @@ bool Lib::FbxFileManager::Init(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDe
 
 void Lib::FbxFileManager::Release()
 {
-	if (m_pFbxLoader == NULL)
+	if (m_pFbxLoader == nullptr)
 	{
-		MessageBox(NULL, TEXT("FbxFileManagerクラスはすでに空です。"), TEXT("エラー"), MB_ICONSTOP);
+		MessageBox(nullptr, TEXT("FbxFileManagerクラスはすでに空です。"), TEXT("エラー"), MB_ICONSTOP);
 		return;
 	}
 
 	m_pFbxLoader->Release();
 	delete m_pFbxLoader;
-	m_pFbxLoader = NULL;
+	m_pFbxLoader = nullptr;
 }
 
 bool Lib::FbxFileManager::LoadFbxModel(LPCTSTR _pFileName, int* _pIndex)
@@ -75,10 +75,10 @@ bool Lib::FbxFileManager::LoadFbxModel(LPCTSTR _pFileName, int* _pIndex)
 
 void Lib::FbxFileManager::ReleaseFbxModel(int _index)
 {
-	if (m_pFbxModel[_index] != NULL)
+	if (m_pFbxModel[_index] != nullptr)
 	{
 		m_pFbxModel[_index]->Release();
 		delete m_pFbxModel[_index];
-		m_pFbxModel[_index] = NULL;
+		m_pFbxModel[_index] = nullptr;
 	}
 }

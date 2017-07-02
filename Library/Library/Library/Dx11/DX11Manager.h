@@ -20,7 +20,7 @@ namespace Lib
 		 */
 		inline void SetFullScreenState(bool _isFullScreen)
 		{
-			m_pDXGISwapChain->SetFullscreenState(_isFullScreen, NULL);
+			m_pDXGISwapChain->SetFullscreenState(_isFullScreen, nullptr);
 		}
 
 		/**

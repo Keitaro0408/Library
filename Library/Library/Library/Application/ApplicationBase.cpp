@@ -54,7 +54,7 @@ namespace Lib
 		ZeroMemory(&Msg, sizeof(Msg));
 		while (Msg.message != WM_QUIT)
 		{
-			if (PeekMessage(&Msg, NULL, 0U, 0U, PM_REMOVE))
+			if (PeekMessage(&Msg, nullptr, 0U, 0U, PM_REMOVE))
 			{
 				TranslateMessage(&Msg);
 				DispatchMessage(&Msg);

@@ -60,8 +60,8 @@ namespace Lib
 
 	private:
 		DXInputDevice() :
-			m_pDInput8(NULL),
-			m_hWnd(NULL){};
+			m_pDInput8(nullptr),
+			m_hWnd(nullptr){};
 
 		~DXInputDevice(){};
 

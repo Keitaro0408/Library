@@ -57,10 +57,10 @@ namespace Lib
 
 	private:
 		Window() :
-			m_hInstance(NULL),
-			m_hWnd(NULL)
+			m_hInstance(nullptr),
+			m_hWnd(nullptr)
 		{
-			m_hInstance = GetModuleHandle(NULL);
+			m_hInstance = GetModuleHandle(nullptr);
 		};
 		~Window(){};
 		RECT	m_WindowSize;

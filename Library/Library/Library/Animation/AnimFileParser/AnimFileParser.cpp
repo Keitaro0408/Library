@@ -32,7 +32,7 @@ bool Lib::AnimFileParser::ReadData(LPCTSTR _pGroupName, std::vector<float>* _pDa
 	TCHAR* pContext;
 
 	TCHAR* pBuffer = strstr(m_pBuffer, _pGroupName);
-	if (pBuffer == NULL)
+	if (pBuffer == nullptr)
 	{
 		return false;
 	}
@@ -46,9 +46,9 @@ bool Lib::AnimFileParser::ReadData(LPCTSTR _pGroupName, std::vector<float>* _pDa
 
 	while (1)
 	{
-		pBuffer = strtok_s(NULL, "{,", &pContext);
+		pBuffer = strtok_s(nullptr, "{,", &pContext);
 
-		if (pBuffer == NULL)
+		if (pBuffer == nullptr)
 		{
 			break;
 		}
@@ -63,9 +63,9 @@ bool Lib::AnimFileParser::ReadData(LPCTSTR _pGroupName, std::vector<float>* _pDa
 void Lib::AnimFileParser::ReleaseLoadBuffer()
 {
 	delete[] m_pBuffer;
-	m_pBuffer = NULL;
+	m_pBuffer = nullptr;
 
 	delete[] m_pTmpBuffer;
-	m_pTmpBuffer = NULL;
+	m_pTmpBuffer = nullptr;
 }
 

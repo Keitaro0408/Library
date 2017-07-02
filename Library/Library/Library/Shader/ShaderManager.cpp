@@ -16,55 +16,55 @@ namespace Lib
 
 	bool ShaderManager::LoadVertexShader(LPCTSTR _pFileName, LPCTSTR _pFuncName, int* _pIndex)
 	{
-		ID3D11VertexShader* pVertexShader = NULL;
-		ID3DBlob* pShaderErrors = NULL;
-		ID3DBlob* pCompiledShader = NULL;
+		ID3D11VertexShader* pVertexShader = nullptr;
+		ID3DBlob* pShaderErrors = nullptr;
+		ID3DBlob* pCompiledShader = nullptr;
 
 #ifdef _DEBUG
 		if (FAILED(D3DX11CompileFromFile(
 			_pFileName,
-			NULL,
-			NULL,
+			nullptr,
+			nullptr,
 			_pFuncName,
 			"vs_5_0",
 			D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION,
 			0,
-			NULL,
+			nullptr,
 			&pCompiledShader,
 			&pShaderErrors,
-			NULL)))
+			nullptr)))
 		{
-			if (pShaderErrors != NULL) pShaderErrors->Release();
+			if (pShaderErrors != nullptr) pShaderErrors->Release();
 			*_pIndex = m_InvalidIndex;
 			return false;
 		}
 #else
 		if (FAILED(D3DX11CompileFromFile(
 			_pFileName,
-			NULL,
-			NULL,
+			nullptr,
+			nullptr,
 			_pFuncName,
 			"vs_5_0",
 			D3D10_SHADER_OPTIMIZATION_LEVEL3,
 			0,
-			NULL,
+			nullptr,
 			&pCompiledShader,
 			&pShaderErrors,
-			NULL)))
+			nullptr)))
 		{
-			if (pShaderErrors != NULL) pShaderErrors->Release();
+			if (pShaderErrors != nullptr) pShaderErrors->Release();
 			*_pIndex = m_InvalidIndex;
 			return false;
 		}
 #endif
 
-		if (pShaderErrors != NULL) pShaderErrors->Release();
+		if (pShaderErrors != nullptr) pShaderErrors->Release();
 
 
 		if (FAILED(m_pDevice->CreateVertexShader(
 			pCompiledShader->GetBufferPointer(),
 			pCompiledShader->GetBufferSize(),
-			NULL,
+			nullptr,
 			&pVertexShader)))
 		{
 			pCompiledShader->Release();
@@ -81,54 +81,54 @@ namespace Lib
 
 	bool ShaderManager::LoadPixelShader(LPCTSTR _pFileName, LPCTSTR _pFuncName, int* _pIndex)
 	{
-		ID3D11PixelShader* pPixelShader = NULL;
-		ID3DBlob* pShaderErrors = NULL;
-		ID3DBlob* pCompiledShader = NULL;
+		ID3D11PixelShader* pPixelShader = nullptr;
+		ID3DBlob* pShaderErrors = nullptr;
+		ID3DBlob* pCompiledShader = nullptr;
 #ifdef _DEBUG
 
 		if (FAILED(D3DX11CompileFromFile(
 			_pFileName,
-			NULL,
-			NULL,
+			nullptr,
+			nullptr,
 			_pFuncName,
 			"ps_5_0",
 			D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION,
 			0,
-			NULL,
+			nullptr,
 			&pCompiledShader,
 			&pShaderErrors,
-			NULL)))
+			nullptr)))
 		{
-			if (pShaderErrors != NULL) pShaderErrors->Release();
+			if (pShaderErrors != nullptr) pShaderErrors->Release();
 			*_pIndex = m_InvalidIndex;
 			return false;
 		}
 #else
 		if (FAILED(D3DX11CompileFromFile(
 			_pFileName,
-			NULL,
-			NULL,
+			nullptr,
+			nullptr,
 			_pFuncName,
 			"ps_5_0",
 			D3D10_SHADER_OPTIMIZATION_LEVEL3,
 			0,
-			NULL,
+			nullptr,
 			&pCompiledShader,
 			&pShaderErrors,
-			NULL)))
+			nullptr)))
 		{
-			if (pShaderErrors != NULL) pShaderErrors->Release();
+			if (pShaderErrors != nullptr) pShaderErrors->Release();
 			*_pIndex = m_InvalidIndex;
 			return false;
 		}
 #endif
 
-		if (pShaderErrors != NULL) pShaderErrors->Release();
+		if (pShaderErrors != nullptr) pShaderErrors->Release();
 
 		if (FAILED(m_pDevice->CreatePixelShader(
 			pCompiledShader->GetBufferPointer(),
 			pCompiledShader->GetBufferSize(),
-			NULL,
+			nullptr,
 			&pPixelShader)))
 		{
 			pCompiledShader->Release();
@@ -145,23 +145,23 @@ namespace Lib
 
 	void ShaderManager::ReleaseVertexShader(int _index)
 	{
-		if (m_pVertexShader[_index] != NULL)
+		if (m_pVertexShader[_index] != nullptr)
 		{
 			m_pVertexShader[_index]->Release();
-			m_pVertexShader[_index] = NULL;
+			m_pVertexShader[_index] = nullptr;
 			m_pCompiledVertexShader[_index]->Release();
-			m_pCompiledVertexShader[_index] = NULL;
+			m_pCompiledVertexShader[_index] = nullptr;
 		}
 	}
 
 	void ShaderManager::ReleasePixelShader(int _index)
 	{
-		if (m_pPixelShader[_index] != NULL)
+		if (m_pPixelShader[_index] != nullptr)
 		{
 			m_pPixelShader[_index]->Release();
-			m_pPixelShader[_index] = NULL;
+			m_pPixelShader[_index] = nullptr;
 			m_pCompiledPixelShader[_index]->Release();
-			m_pCompiledPixelShader[_index] = NULL;
+			m_pCompiledPixelShader[_index] = nullptr;
 		}
 	}
 }
