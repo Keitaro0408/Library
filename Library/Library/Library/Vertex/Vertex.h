@@ -15,8 +15,8 @@ namespace Lib
 	{
 	public:
 		/**
-		* 2Dポリゴンの描画に利用する頂点構造体
-		*/
+		 * 2Dポリゴンの描画に利用する頂点構造体
+		 */
 		struct VERTEX
 		{
 			VECTOR3 Pos;	//!< 頂点座標
@@ -25,70 +25,70 @@ namespace Lib
 		};
 
 		/**
-		* Vertexクラスのコンストラクタ
-		* @param[in] _pDevice バッファ作成時などに使用するDirectX11のデバイス
-		* @param[in] _pDeviceContext 描画などに利用するDirectX11のデバイスコンテキスト
-		* @param[in] _hWnd ポリゴンを描画するウィンドウのハンドル
-		*/
+		 * Vertexクラスのコンストラクタ
+		 * @param[in] _pDevice バッファ作成時などに使用するDirectX11のデバイス
+		 * @param[in] _pDeviceContext 描画などに利用するDirectX11のデバイスコンテキスト
+		 * @param[in] _hWnd ポリゴンを描画するウィンドウのハンドル
+		 */
 		Vertex(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext, HWND _hWnd);
 
 		/**
-		* Vertexクラスのデストラクタ
-		*/
+		 * Vertexクラスのデストラクタ
+		 */
 		~Vertex() = default;
 
 		/**
-		* Vertexクラスの初期化関数
-		* @return 初期化に成功したらtrue
-		*/
+		 * Vertexクラスの初期化関数
+		 * @return 初期化に成功したらtrue
+		 */
 		bool Init();
 
 		/**
-		* Vertexクラスの解放関数
-		*/
+		 * Vertexクラスの解放関数
+		 */
 		void Release();
 
 		/**
-		* 頂点バッファの生成関数
-		* @param[in] _pVertex 頂点バッファに格納する頂点情報
-		* @param[in] _vertexNum 作成するポリゴンの頂点数
-		* @return 初期化に成功したらtrue
-		*/
+		 * 頂点バッファの生成関数
+		 * @param[in] _pVertex 頂点バッファに格納する頂点情報
+		 * @param[in] _vertexNum 作成するポリゴンの頂点数
+		 * @return 初期化に成功したらtrue
+		 */
 		bool CreateVertexBuffer(const VERTEX* _pVertex, int _vertexNum);
 
 		/**
-		* 頂点バッファの解放関数
-		*/
+		 * 頂点バッファの解放関数
+		 */
 		void ReleaseVertexBuffer();
 
 		/**
-		* 頂点バッファにデータを書き込む関数
-		* @param[in] _pVertex バッファに書き込む頂点情報
-		* @return 書き込みに成功したらtrue
-		*/
+		 * 頂点バッファにデータを書き込む関数
+		 * @param[in] _pVertex バッファに書き込む頂点情報
+		 * @return 書き込みに成功したらtrue
+		 */
 		bool WriteVertexBuffer(const VERTEX* _pVertex);
 
 		/**
-		* 定数バッファにデータを書き込む関数
-		* @param[in] _pDrawPos 描画する2Dポリゴンの座標
-		* @param[in] _pScale 描画する2Dポリゴンの拡縮率
-		* @param[in] _angle 描画する2Dポリゴンの傾き
-		* @return 書き込みに成功したらtrue
-		*/
+		 * 定数バッファにデータを書き込む関数
+		 * @param[in] _pDrawPos 描画する2Dポリゴンの座標
+		 * @param[in] _pScale 描画する2Dポリゴンの拡縮率
+		 * @param[in] _angle 描画する2Dポリゴンの傾き
+		 * @return 書き込みに成功したらtrue
+		 */
 		bool WriteConstantBuffer(
 			const VECTOR2* _pDrawPos,
 			const VECTOR2* _pScale = &VECTOR2(1.f, 1.f),
 			float _angle = 0.f);
 
 		/**
-		* Vertexクラスの描画関数
-		*/
+		 * Vertexクラスの描画関数
+		 */
 		void Draw();
 
 		/**
-		* 描画するテクスチャをセットする関数
-		* @param[in] _pTextureResourceView テクスチャのリソースビュー
-		*/
+		 * 描画するテクスチャをセットする関数
+		 * @param[in] _pTextureResourceView テクスチャのリソースビュー
+		 */
 		inline void SetTexture(ID3D11ShaderResourceView* _pTextureResourceView)
 		{
 			m_pTextureResourceView = _pTextureResourceView;
@@ -96,8 +96,8 @@ namespace Lib
 
 	private:
 		/**
-		* シェーダーに渡す定数バッファ
-		*/
+		 * シェーダーに渡す定数バッファ
+		 */
 		struct SHADER_CONSTANT_BUFFER
 		{
 			MATRIX  MatWorld;	//!< ワールド変換行列
@@ -105,69 +105,69 @@ namespace Lib
 		};
 
 		/**
-		* 頂点シェーダーの初期化関数
-		* @return 初期化に成功したらtrue
-		*/
+		 * 頂点シェーダーの初期化関数
+		 * @return 初期化に成功したらtrue
+		 */
 		bool InitVertexShader();
 
 		/**
-		* 頂点入力レイアウトの初期化関数
-		* @return 初期化に成功したらtrue
-		*/
+		 * 頂点入力レイアウトの初期化関数
+		 * @return 初期化に成功したらtrue
+		 */
 		bool InitVertexLayout();
 
 		/**
-		* ピクセルシェーダーの初期化関数
-		* @return 初期化に成功したらtrue
-		*/
+		 * ピクセルシェーダーの初期化関数
+		 * @return 初期化に成功したらtrue
+		 */
 		bool InitPixelShader();
 
 		/**
-		* ブレンドステートの初期化関数
-		* @return 初期化に成功したらtrue
-		*/
+		 * ブレンドステートの初期化関数
+		 * @return 初期化に成功したらtrue
+		 */
 		bool InitBlendState();
 
 		/**
-		* サンプラステートの初期化関数
-		* @return 初期化に成功したらtrue
-		*/
+		 * サンプラステートの初期化関数
+		 * @return 初期化に成功したらtrue
+		 */
 		bool InitSamplerState();
 
 		/**
-		* 定数バッファの初期化関数
-		* @return 初期化に成功したらtrue
-		*/
+		 * 定数バッファの初期化関数
+		 * @return 初期化に成功したらtrue
+		 */
 		bool InitConstantBuffer();
 
 		/**
-		* 頂点シェーダーの解放関数
-		*/
+		 * 頂点シェーダーの解放関数
+		 */
 		void ReleaseVertexShader();
 
 		/**
-		* 頂点入力レイアウトの解放関数
-		*/
+		 * 頂点入力レイアウトの解放関数
+		 */
 		void ReleaseVertexLayout();
 
 		/**
-		* ピクセルシェーダーの解放関数
-		*/
+		 * ピクセルシェーダーの解放関数
+		 */
 		void ReleasePixelShader();
 
 		/**
-		* ブレンドステートの解放関数
-		*/
+		 * ブレンドステートの解放関数
+		 */
 		void ReleaseBlendState();
 
 		/**
-		* サンプラステートの解放関数
-		*/
+		 * サンプラステートの解放関数
+		 */
 		void ReleaseSamplerState();
 
 		/**
-		* 定数バッファの解放関数
-		*/
+		 * 定数バッファの解放関数
+		 */
 		void ReleaseConstantBuffer();
 
 

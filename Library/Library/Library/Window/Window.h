@@ -7,7 +7,6 @@
 #define WINDOW_H
 #include <windows.h>
 #include "..\Singleton.h"
-#define WINAPI_ENTRY int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdShow)
 
 namespace Lib
 {

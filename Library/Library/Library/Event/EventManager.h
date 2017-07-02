@@ -15,6 +15,9 @@
 
 namespace Lib
 {
+	/**
+	 * コールバックのイベントを管理する
+	 */
 	class EventManager
 	{
 		friend Singleton<EventManager>;
@@ -25,6 +28,12 @@ namespace Lib
 		 * @param[in] _pEvent 実行されるクラス
 		 */
 		void AddEvent(std::string _eventName, EventListnerBase* _pEvent);
+
+		/**
+		 * イベントの追加
+		 * @param[in] _eventName イベントの名前
+		 * @param[in] _event 実行される関数
+		 */
 		void AddEvent(std::string _eventName, std::function<void()> _event);
 
 		/**

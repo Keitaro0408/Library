@@ -1,4 +1,9 @@
-﻿#ifndef TEXTUREMANAGER_H
+﻿/**
+ * @file   TextureManager.h
+ * @brief  TextureManagerクラスのヘッダファイル
+ * @author kotani
+ */
+#ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
 #include "..\Singleton.h"
 #include <vector>
@@ -7,6 +12,9 @@
 
 namespace Lib
 {
+	/**
+	 * テクスチャの読み込みとリソースの管理をするクラス
+	 */
 	class TextureManager
 	{
 		friend Singleton<TextureManager>;

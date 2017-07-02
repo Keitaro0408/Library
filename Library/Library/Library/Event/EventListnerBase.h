@@ -1,6 +1,6 @@
 ﻿/**
- * @file   Event.h
- * @brief  Eventクラスのヘッダファイル
+ * @file   EventListnerBase.h
+ * @brief  EventListnerBaseクラスのヘッダファイル
  * @author kotani
  */
 #ifndef EVENT_H
@@ -9,7 +9,9 @@
 namespace Lib
 {
 	class EventManager;
-
+	/**
+	 * クラスとして継承させる場合に使う基底クラス
+	 */
 	class EventListnerBase
 	{
 		friend class EventManager;

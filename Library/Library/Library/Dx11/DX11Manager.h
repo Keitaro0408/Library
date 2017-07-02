@@ -26,6 +26,7 @@ namespace Lib
 		/**
 		 * DX11Managerクラスの初期化関数
 		 * @param[in] _hWnd DX11Managerが対応するウィンドウのハンドル
+		 * @param[in] _windowSize クライアントウィンドウのサイズ
 		 * @return 初期化に成功したらtrue
 		 */
 		bool Init(HWND _hWnd, RECT _windowSize);

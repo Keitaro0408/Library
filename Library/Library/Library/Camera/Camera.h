@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 * @file   Camera.h
-* @brief  CameraƒNƒ‰ƒX‚Ìƒwƒbƒ_ƒtƒ@ƒCƒ‹
+* @brief  Cameraã‚¯ãƒ©ã‚¹ã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 * @author kotani
 */
 #ifndef CAMERA_H
@@ -10,36 +10,36 @@
 namespace Lib
 {
 	/**
-	* ƒJƒƒ‰î•ñ‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+	* ã‚«ãƒ¡ãƒ©æƒ…å ±ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
 	*/
 	class Camera
 	{
 	public:
 		/**
-		* CameraƒNƒ‰ƒX‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		* @param[in] _windowWidth ƒEƒBƒ“ƒhƒE‚Ì•
-		* @param[in] _windowHeight ƒEƒBƒ“ƒhƒE‚Ì‚‚³
-		* @param[in] _nearZ ƒJƒƒ‰‚ÌÅ‹ß“_
-		* @param[in] _farZ ƒJƒƒ‰‚ÌÅ‰““_
+		* Cameraã‚¯ãƒ©ã‚¹ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		* @param[in] _windowWidth ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å¹…
+		* @param[in] _windowHeight ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®é«˜ã•
+		* @param[in] _nearZ ã‚«ãƒ¡ãƒ©ã®æœ€è¿‘ç‚¹
+		* @param[in] _farZ ã‚«ãƒ¡ãƒ©ã®æœ€é ç‚¹
 		*/
 		Camera(float _windowWidth, float _windowHeight, float _nearZ, float _farZ);
 
 		/**
-		* CameraƒNƒ‰ƒX‚ÌƒfƒXƒgƒ‰ƒNƒ^
+		* Cameraã‚¯ãƒ©ã‚¹ã®ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		*/
 		~Camera() = default;
 
 		/**
-		* À•W•ÏŠ·—p‚Ìs—ñ‚ğì¬‚·‚éŠÖ”
-		* @param[in] _eyePos ƒJƒƒ‰‚ÌÀ•W
-		* @param[in] _lookPos ƒJƒƒ‰‚Ì’‹À•W
-		* @param[in] _viewAngle ƒJƒƒ‰‚Ì‹–ìŠp
+		* åº§æ¨™å¤‰æ›ç”¨ã®è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹é–¢æ•°
+		* @param[in] _eyePos ã‚«ãƒ¡ãƒ©ã®åº§æ¨™
+		* @param[in] _lookPos ã‚«ãƒ¡ãƒ©ã®æ³¨è¦–åº§æ¨™
+		* @param[in] _viewAngle ã‚«ãƒ¡ãƒ©ã®è¦–é‡è§’
 		*/
 		void TransformView(VECTOR3 _eyePos, VECTOR3 _lookPos, float _viewAngle);
 
 		/**
-		* CameraƒNƒ‰ƒX‚ª‚Âƒrƒ…[À•W•ÏŠ·s—ñ‚ğæ“¾‚·‚éŠÖ”
-		* @return ƒrƒ…[À•W•ÏŠ·—ps—ñ
+		* Cameraã‚¯ãƒ©ã‚¹ãŒæŒã¤ãƒ“ãƒ¥ãƒ¼åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹é–¢æ•°
+		* @return ãƒ“ãƒ¥ãƒ¼åº§æ¨™å¤‰æ›ç”¨è¡Œåˆ—
 		*/
 		inline MATRIX GetViewMatrix()
 		{
@@ -47,8 +47,8 @@ namespace Lib
 		}
 
 		/**
-		* CameraƒNƒ‰ƒX‚ª‚ÂƒvƒƒWƒFƒNƒVƒ‡ƒ“À•W•ÏŠ·s—ñ‚ğæ“¾‚·‚éŠÖ”
-		* @return ƒvƒƒWƒFƒNƒVƒ‡ƒ“À•W•ÏŠ·—ps—ñ
+		* Cameraã‚¯ãƒ©ã‚¹ãŒæŒã¤ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹é–¢æ•°
+		* @return ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³åº§æ¨™å¤‰æ›ç”¨è¡Œåˆ—
 		*/
 		inline MATRIX GetProjectionMatrix()
 		{

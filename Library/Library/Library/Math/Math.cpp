@@ -1,5 +1,6 @@
 ﻿/**
  * @file   Math.cpp
+ * @brief  計算系ライブラリの実装
  * @author kotani
  */
 #include "Math.h"

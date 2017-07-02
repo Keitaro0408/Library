@@ -5,8 +5,13 @@
  */
 #ifndef APPLICATIONBASE_H
 #define APPLICATIONBASE_H
-#include <Windows.h>
+/**
+ * @mainpage Library使い方
+ * エントリーポイントはApplicationBaseに内蔵されており
+ * 実装し、グローバルで宣言する事でウィンドウが表示される
+ */
 
+#include <Windows.h>
 #ifdef _MSC_VER
 #pragma comment(lib,"winmm.lib")
 #pragma comment(lib,"d3d11.lib")
@@ -24,7 +29,7 @@ namespace Lib
 {
 	/**
 	 * このクラスがメイン
-	 * この抽象クラスを実装し、グローバスで宣言する事でウィンドウが表示される
+	 * この抽象クラスを実装し、グローバルで宣言する事でウィンドウが表示される
 	 */
 	class ApplicationBase
 	{

@@ -1,5 +1,6 @@
 ﻿/**
  * @file   Math.h
+ * @brief  計算系ライブラリのヘッダ
  * @author kotani
  */
 #ifndef MATH_H

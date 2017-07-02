@@ -1,5 +1,5 @@
 ﻿/**
- * @file   Window.h
+ * @file   Window.cpp
  * @brief  Windowクラスの実装
  * @author kotani
  */

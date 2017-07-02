@@ -9,10 +9,10 @@
 #include <vector>
 #include "FbxModel\FbxModel.h"
 #include "../../Singleton.h"
-class FbxLoader;
 
 namespace Lib
 {
+	class FbxLoader;
 	/**
 	*  Fbxファイルを管理するクラス
 	*/

@@ -1,6 +1,6 @@
 ﻿/**
- * @file   VECTOR.cpp
- * @brief  VECTOR構造体の実装
+ * @file   MyVector.cpp
+ * @brief  MyVector構造体の実装
  * @author kotani
  */
 #include "MyVector.h"

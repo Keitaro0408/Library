@@ -1,6 +1,6 @@
-/**
+ï»¿/**
 * @file   Camera.cpp
-* @brief  CameraƒNƒ‰ƒX‚ÌÀ‘•
+* @brief  Cameraã‚¯ãƒ©ã‚¹ã®å®Ÿè£…
 * @author kotani
 */
 #include "Camera.h"
@@ -21,10 +21,10 @@ namespace Lib
 
 	void Camera::TransformView(VECTOR3 _eyePos, VECTOR3 _lookPos, float _viewAngle)
 	{
-		// ƒrƒ…[À•W•ÏŠ·s—ñ‚Ìì¬
+		// ãƒ“ãƒ¥ãƒ¼åº§æ¨™å¤‰æ›è¡Œåˆ—ã®ä½œæˆ
 		Math::MatrixLookAtLH(&m_MatView, &_eyePos, &_lookPos);
 
-		// ƒvƒƒWƒFƒNƒVƒ‡ƒ“À•W•ÏŠ·s—ñ‚Ìì¬
+		// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³åº§æ¨™å¤‰æ›è¡Œåˆ—ã®ä½œæˆ
 		float Aspect = m_WindowWidth / m_WindowHeight;
 		Math::MatrixPerspectiveFovLH(&m_MatProj, static_cast<float>(Math::ToRadian(_viewAngle)), Aspect, m_NearZ, m_FarZ);
 	}

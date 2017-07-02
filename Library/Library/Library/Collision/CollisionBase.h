@@ -1,11 +1,12 @@
 ﻿/**
  * @file   CollisionBase.h
- * @brief  CollisionBaseクラスのヘッダファイル
+ * @brief  CollisionBaseクラスのヘッダファイル(未実装)
  * @author kotani
  */
 #ifndef COLLISIONBASE_H
 #define COLLISIONBASE_H
 #include <string>
+#include "../Math/Math.h"
 
 namespace Lib
 {
@@ -17,8 +18,8 @@ namespace Lib
 
 	struct SQUARE
 	{
-		D3DXVECTOR2 LeftTop;
-		D3DXVECTOR2 RightDown;
+		VECTOR2 LeftTop;
+		VECTOR2 RightDown;
 	};
 
 	class CollisionBase
@@ -35,7 +36,7 @@ namespace Lib
 		}
 
 	protected:
-		D3DXVECTOR2		m_Position;
+		VECTOR2			m_Position;
 		COLLISION_TYPE  m_CollisionType;
 		SQUARE			m_Square;
 		std::string		m_CollisionName; //当たり判定の名前

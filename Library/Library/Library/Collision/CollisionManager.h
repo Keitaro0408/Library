@@ -1,4 +1,9 @@
-﻿#ifndef COLLISIONMANAGER_H 
+﻿/**
+ * @file   CollisionManager.h
+ * @brief  CollisionManagerクラスのヘッダファイル(未実装)
+ * @author kotani
+ */
+#ifndef COLLISIONMANAGER_H 
 #define COLLISIONMANAGER_H
 #include "..\Singleton.h"
 

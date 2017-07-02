@@ -77,8 +77,8 @@ namespace Lib
 
 		/**
 		* GamePadのボタンの状態を取得する
-		* @param[in] id チェックするボタン
-		* @param[in] pad チェックするGamePad
+		* @param[in] _buttonId チェックするボタン
+		* @param[in] _pad チェックするGamePad
 		*/
 		PADSTATE GetButtonState(XINPUT_ID _buttonId, XINPUTPAD _pad);
 

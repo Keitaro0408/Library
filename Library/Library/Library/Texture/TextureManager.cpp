@@ -1,4 +1,9 @@
-﻿#include "TextureManager.h"
+﻿/**
+ * @file   TextureManager.cpp
+ * @brief  TextureManagerクラスの実装
+ * @author kotani
+ */
+#include "TextureManager.h"
 
 Lib::TextureManager::~TextureManager()
 {
