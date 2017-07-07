@@ -18,6 +18,9 @@ namespace Lib
 		VECTOR2(const float *);
 		VECTOR2(float _x, float _y);
 
+		operator float* ();
+		operator const float* () const;
+
 		VECTOR2& operator += (const VECTOR2&);
 		VECTOR2& operator -= (const VECTOR2&);
 		VECTOR2& operator *= (float);
@@ -46,6 +49,9 @@ namespace Lib
 		VECTOR3(const float *);
 		VECTOR3(float _x, float _y, float _z);
 
+		operator float* ();
+		operator const float* () const;
+
 		VECTOR3& operator += (const VECTOR3&);
 		VECTOR3& operator -= (const VECTOR3&);
 		VECTOR3& operator *= (float);
@@ -71,6 +77,9 @@ namespace Lib
 		VECTOR4() {};
 		VECTOR4(const float *);
 		VECTOR4(float _x, float _y, float _z, float _w);
+
+		operator float* ();
+		operator const float* () const;
 
 		VECTOR4& operator += (const VECTOR4&);
 		VECTOR4& operator -= (const VECTOR4&);
@@ -98,6 +107,9 @@ namespace Lib
 		COLOR() {};
 		COLOR(const float *);
 		COLOR(float _r, float _g, float _b, float _a);
+
+		operator float* ();
+		operator const float* () const;
 
 		COLOR& operator += (const COLOR&);
 		COLOR& operator -= (const COLOR&);

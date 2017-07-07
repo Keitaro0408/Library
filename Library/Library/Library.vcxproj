@@ -36,6 +36,7 @@
     <ClCompile Include="Library\Animation\AnimUvController.cpp" />
     <ClCompile Include="Library\XInput\XInput.cpp" />
     <ClCompile Include="Library\Math\MyVector.cpp" />
+    <ClCompile Include="Library\Network\Socket\Socket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Library\Camera\Camera.h" />
@@ -67,6 +68,7 @@
     <ClInclude Include="Library\XInput\XInput.h" />
     <ClInclude Include="Library\Helper\Helper.h" />
     <ClInclude Include="Library\Math\MyVector.h" />
+    <ClInclude Include="Library\Network\Socket\Socket.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65480EA8-8D64-4328-A73F-671C0487AA00}</ProjectGuid>

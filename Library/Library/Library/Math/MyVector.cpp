@@ -23,6 +23,16 @@ namespace Lib
 		y = _y;
 	}
 
+	VECTOR2::operator float*()
+	{
+		return static_cast<float*>(&x);
+	}
+
+	VECTOR2::operator const float*() const
+	{
+		return static_cast<const float*>(&x);
+	}
+
 	VECTOR2& VECTOR2::operator += (const VECTOR2& _obj)
 	{
 		x += _obj.x;
@@ -95,6 +105,16 @@ namespace Lib
 		x = _x;
 		y = _y;
 		z = _z;
+	}
+
+	VECTOR3::operator float*()
+	{
+		return static_cast<float*>(&x);
+	}
+
+	VECTOR3::operator const float*() const
+	{
+		return static_cast<const float*>(&x);
 	}
 
 	VECTOR3& VECTOR3::operator += (const VECTOR3& _obj)
@@ -173,6 +193,16 @@ namespace Lib
 		y = _g;
 		z = _b;
 		w = _a;
+	}
+
+	VECTOR4::operator float*()
+	{
+		return static_cast<float*>(&x);
+	}
+
+	VECTOR4::operator const float*() const
+	{
+		return static_cast<const float*>(&x);
 	}
 
 	VECTOR4& VECTOR4::operator += (const VECTOR4& _obj)
@@ -258,6 +288,16 @@ namespace Lib
 		g = _g;
 		b = _b;
 		a = _a;
+	}
+
+	COLOR::operator float*()
+	{
+		return static_cast<float*>(&r);
+	}
+
+	COLOR::operator const float*() const
+	{
+		return static_cast<const float*>(&r);
 	}
 
 	COLOR& COLOR::operator += (const COLOR& _obj)
