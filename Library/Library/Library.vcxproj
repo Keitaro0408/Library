@@ -49,6 +49,8 @@
     <ClInclude Include="Library\Network\HttpConnect\HttpConnect.h" />
     <ClInclude Include="Library\Animation\AnimFileParser\AnimFileParser.h" />
     <ClInclude Include="Library\DebugTool\DebugTimer.h" />
+    <ClInclude Include="Library\Pointer\UniquePtr.h" />
+    <ClInclude Include="Library\Pointer\UniquePtr_private.h" />
     <ClInclude Include="Library\Shader\ShaderManager.h" />
     <ClInclude Include="Library\Sound\DSoundManager.h" />
     <ClInclude Include="Library\Collision\CollisionManager.h" />
