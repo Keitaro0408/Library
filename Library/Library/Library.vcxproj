@@ -49,12 +49,13 @@
     <ClInclude Include="Library\Network\HttpConnect\HttpConnect.h" />
     <ClInclude Include="Library\Animation\AnimFileParser\AnimFileParser.h" />
     <ClInclude Include="Library\DebugTool\DebugTimer.h" />
-    <ClInclude Include="Library\Pointer\Pointer_private.h" />
-    <ClInclude Include="Library\Pointer\SharedPtr.h" />
-    <ClInclude Include="Library\Pointer\SharedPtr_private.h" />
-    <ClInclude Include="Library\Pointer\UniquePtr.h" />
-    <ClInclude Include="Library\Pointer\UniquePtr_private.h" />
     <ClInclude Include="Library\Shader\ShaderManager.h" />
+    <ClInclude Include="Library\SmartPointer\SharedPtr.h" />
+    <ClInclude Include="Library\SmartPointer\SharedPtr_private.h" />
+    <ClInclude Include="Library\SmartPointer\SmartPointer.h" />
+    <ClInclude Include="Library\SmartPointer\SmartPointer_private.h" />
+    <ClInclude Include="Library\SmartPointer\UniquePtr.h" />
+    <ClInclude Include="Library\SmartPointer\UniquePtr_private.h" />
     <ClInclude Include="Library\Sound\DSoundManager.h" />
     <ClInclude Include="Library\Collision\CollisionManager.h" />
     <ClInclude Include="Library\Collision\CollisionBase.h" />
@@ -74,7 +75,6 @@
     <ClInclude Include="Library\Helper\Helper.h" />
     <ClInclude Include="Library\Math\MyVector.h" />
     <ClInclude Include="Library\Network\Socket\Socket.h" />
-    <ClInclude Include="Library\Pointer\Pointer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65480EA8-8D64-4328-A73F-671C0487AA00}</ProjectGuid>

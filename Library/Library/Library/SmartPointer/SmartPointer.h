@@ -1,10 +1,12 @@
 ﻿/**
- * @file   Pointer.h
- * @brief  Pointerクラスのヘッダファイル
+ * @file   SmartPtr.h
+ * @brief  SmartPtrクラスのヘッダファイル
  * @author kotani
  */
-#ifndef POINTER_H
-#define POINTER_H
+#ifndef SMARTPOINTER_H
+#define SMARTPOINTER_H
+#include "UniquePtr.h"
+#include "SharedPtr.h"
 
 #define EMPTY_POINTER(ptr) \
 		!ptr
@@ -12,14 +14,20 @@
 
 namespace Lib
 {
-	template<typename Type>
-	class Pointer
+
+	template<typename Type, template <typename Type> class Policy = Unique>
+	/**
+	 * スマートポインタのホストクラス
+	 *
+	 * デフォルトではユニークのポリシーが使われる
+	 */
+	class SmartPtr : public Policy<Type>
 	{
 	public:
-		Pointer(Type* _type);
-		Pointer();
+		SmartPtr(Type* _type);
+		SmartPtr();
 
-		virtual ~Pointer();
+		virtual ~SmartPtr();
 
 		/**
 		 * ポインタを取得する
@@ -48,18 +56,18 @@ namespace Lib
 		 */
 		Type* operator->() const;
 
+		/* 暗黙的にアップキャストさせる */
+		SmartPtr& operator = (const Policy<Type>&);
+
 		/**
 		 * 中身が空かチェック
 		 */
 		operator bool() const;
 
-	protected:
-		Type* m_Instance;
-
 	};
 
 
-#include "Pointer_private.h"
+#include "SmartPointer_private.h"
 }
 
 #endif

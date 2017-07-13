@@ -30,14 +30,15 @@ SceneBase(SCENE_GAME)
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
 	SINGLETON_INSTANCE(Lib::DSoundManager).LoadSound("button01a.wav", &m_SoundIndex);
 	//SINGLETON_CREATE(Lib::EventManager);
-	m_Animation = new Lib::AnimUvController();
+	m_Animation.Reset(new Lib::AnimUvController());
+
 	m_Animation->LoadAnimation("Character.anim", "Wait");
 	m_Animation->SetAnimFrame(10);
 
-	m_Vertex = new Lib::Vertex2D(
-		SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
+	m_Vertex.Reset(new Lib::Vertex2D(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext(),
-		SINGLETON_INSTANCE(Lib::Window).GetWindowSize());
+		SINGLETON_INSTANCE(Lib::Window).GetWindowSize()));
+
 	
 	RECT ClientRect;
 	GetClientRect(SINGLETON_INSTANCE(Lib::Window).GetWindowHandle(), &ClientRect);
@@ -59,10 +60,8 @@ SceneBase(SCENE_GAME)
 GameScene::~GameScene()
 {
 	m_Vertex->Release();
-	delete m_Vertex;
 	SINGLETON_INSTANCE(Lib::DSoundManager).ReleaseSound(m_SoundIndex);
 	SINGLETON_INSTANCE(Lib::TextureManager).ReleaseTexture(m_TextureIndex);
-	delete m_Animation;
 }
 
 SceneBase::SceneID GameScene::Update()

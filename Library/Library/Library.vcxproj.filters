@@ -97,7 +97,7 @@
     <Filter Include="Library\NetWork\Socket">
       <UniqueIdentifier>{a0d26662-59c2-42ad-9623-cf5927651ef5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\Pointer">
+    <Filter Include="Library\SmartPointer">
       <UniqueIdentifier>{d8dd37f5-bc49-4b00-acf0-14f5003068da}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -272,23 +272,23 @@
     <ClInclude Include="Library\Network\Socket\Socket.h">
       <Filter>Library\NetWork\Socket</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Pointer\UniquePtr.h">
-      <Filter>Library\Pointer</Filter>
+    <ClInclude Include="Library\SmartPointer\SharedPtr.h">
+      <Filter>Library\SmartPointer</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Pointer\UniquePtr_private.h">
-      <Filter>Library\Pointer</Filter>
+    <ClInclude Include="Library\SmartPointer\SharedPtr_private.h">
+      <Filter>Library\SmartPointer</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Pointer\Pointer.h">
-      <Filter>Library\Pointer</Filter>
+    <ClInclude Include="Library\SmartPointer\SmartPointer.h">
+      <Filter>Library\SmartPointer</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Pointer\Pointer_private.h">
-      <Filter>Library\Pointer</Filter>
+    <ClInclude Include="Library\SmartPointer\SmartPointer_private.h">
+      <Filter>Library\SmartPointer</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Pointer\SharedPtr.h">
-      <Filter>Library\Pointer</Filter>
+    <ClInclude Include="Library\SmartPointer\UniquePtr.h">
+      <Filter>Library\SmartPointer</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Pointer\SharedPtr_private.h">
-      <Filter>Library\Pointer</Filter>
+    <ClInclude Include="Library\SmartPointer\UniquePtr_private.h">
+      <Filter>Library\SmartPointer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

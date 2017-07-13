@@ -2,16 +2,16 @@
 #define SHARED_PTR_PRIVATE_H
 
 template<typename Type>
-SharedPtr<Type>::SharedPtr(Type* _type) :
-Pointer(_type),
+Shared<Type>::Shared(Type* _type) :
 m_RefCount(1),
 m_pRefCount(&m_RefCount),
 m_pMutex(&m_Mutex)
 {
+	m_Instance = _type;
 }
 
 template<typename Type>
-SharedPtr<Type>::SharedPtr() :
+Shared<Type>::Shared() :
 m_RefCount(0),
 m_pRefCount(&m_RefCount),
 m_pMutex(&m_Mutex)
@@ -20,7 +20,7 @@ m_pMutex(&m_Mutex)
 }
 
 template<typename Type>
-SharedPtr<Type>::~SharedPtr()
+Shared<Type>::~Shared()
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	(*m_pRefCount)--;
@@ -31,7 +31,7 @@ SharedPtr<Type>::~SharedPtr()
 	}
 }
 template<typename Type>
-void SharedPtr<Type>::Reset()
+void Shared<Type>::Reset()
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	(*m_pRefCount) = 0;
@@ -40,7 +40,7 @@ void SharedPtr<Type>::Reset()
 }
 
 template<typename Type>
-void SharedPtr<Type>::Reset(Type* _type)
+void Shared<Type>::Reset(Type* _type)
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	(*m_pRefCount)++;
@@ -50,7 +50,7 @@ void SharedPtr<Type>::Reset(Type* _type)
 }
 
 template<typename Type>
-Type* SharedPtr<Type>::Release()
+Type* Shared<Type>::Release()
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	Type* returnVal = m_Instance;
@@ -60,11 +60,13 @@ Type* SharedPtr<Type>::Release()
 }
 
 template<typename Type>
-SharedPtr<Type>& SharedPtr<Type>::operator=(const SharedPtr& _obj)
+Shared<Type>& Shared<Type>::operator=(const Shared& _obj)
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	m_pRefCount = _obj.m_pRefCount;
 	m_pMutex = _obj.m_pMutex;
+
+	/* 違うポインタなら参照カウンタを増やす */
 	if (m_Instance != _obj.m_Instance)
 	{
 		(*m_pRefCount)++;
@@ -74,7 +76,7 @@ SharedPtr<Type>& SharedPtr<Type>::operator=(const SharedPtr& _obj)
 }
 
 template<typename Type>
-SharedPtr<Type>& SharedPtr<Type>::operator=(Pointer<Type>& _obj)
+Shared<Type>& Shared<Type>::operator=(const Unique<Type>& _obj)
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	this->Reset(_obj.Release());
@@ -82,16 +84,16 @@ SharedPtr<Type>& SharedPtr<Type>::operator=(Pointer<Type>& _obj)
 }
 
 template<typename Type>
-Type* SharedPtr<Type>::operator->() const
+Type* Shared<Type>::operator->() const
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	return m_Instance;
 }
 
 template<typename Type>
-std::unique_lock<std::recursive_mutex> SharedPtr<Type>::Locker()
+std::unique_lock<std::recursive_mutex> Shared<Type>::Locker() const
 {
-	return  std::unique_lock<std::recursive_mutex>(*m_pMutex);
+	return std::unique_lock<std::recursive_mutex>(*m_pMutex);
 }
 
 
