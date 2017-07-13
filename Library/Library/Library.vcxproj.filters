@@ -278,5 +278,17 @@
     <ClInclude Include="Library\Pointer\UniquePtr_private.h">
       <Filter>Library\Pointer</Filter>
     </ClInclude>
+    <ClInclude Include="Library\Pointer\Pointer.h">
+      <Filter>Library\Pointer</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Pointer\Pointer_private.h">
+      <Filter>Library\Pointer</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Pointer\SharedPtr.h">
+      <Filter>Library\Pointer</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Pointer\SharedPtr_private.h">
+      <Filter>Library\Pointer</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
