@@ -48,12 +48,17 @@ namespace Lib
 		 * 直接代入の禁止 
 		 */
 		Unique& operator=(const Unique&) = delete;
+		Unique& operator=(Unique<Type>&& _obj)
+		{
+			this->m_Instance = _obj.m_Instance;
+			_obj.Release();
+			return *this;
+		}
 
 	protected:
 		Type* m_Instance;
 
 	};
-
 
 #include "UniquePtr_private.h"
 }

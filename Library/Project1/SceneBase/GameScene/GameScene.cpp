@@ -30,16 +30,17 @@ SceneBase(SCENE_GAME)
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
 	SINGLETON_INSTANCE(Lib::DSoundManager).LoadSound("button01a.wav", &m_SoundIndex);
 	//SINGLETON_CREATE(Lib::EventManager);
-	m_Animation.Reset(new Lib::AnimUvController());
-
+	
+	Lib::SmartPtr<Lib::AnimUvController, Lib::Shared> test;
+	test = Lib::MakeSmartPtr<Lib::AnimUvController, Lib::Shared>();
+	m_Animation = Lib::MakeSmartPtr<Lib::AnimUvController>();
 	m_Animation->LoadAnimation("Character.anim", "Wait");
 	m_Animation->SetAnimFrame(10);
 
-	m_Vertex.Reset(new Lib::Vertex2D(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
+	m_Vertex = Lib::MakeSmartPtr<Lib::Vertex2D>(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext(),
-		SINGLETON_INSTANCE(Lib::Window).GetWindowSize()));
+		SINGLETON_INSTANCE(Lib::Window).GetWindowSize());
 
-	
 	RECT ClientRect;
 	GetClientRect(SINGLETON_INSTANCE(Lib::Window).GetWindowHandle(), &ClientRect);
 	m_Vertex->Init(Lib::VECTOR2(256, 256), m_Animation->GetUV());

@@ -59,6 +59,11 @@ namespace Lib
 		/* 暗黙的にアップキャストさせる */
 		SmartPtr& operator = (const Policy<Type>&);
 
+		Policy<Type>& operator = (Policy<Type>&& _obj)
+		{
+			return Policy<Type>::operator=(static_cast<Policy<Type>&&>(_obj));
+		}
+
 		/**
 		 * 中身が空かチェック
 		 */
@@ -66,8 +71,15 @@ namespace Lib
 
 	};
 
+	template<typename Type, template <typename Type> class Policy = Unique, class... Args>
+	Policy<Type> MakeSmartPtr(Args&&... args)
+	{
+		return Policy<Type>(new Type(std::forward<Args>(args)...));
+	}
+
 
 #include "SmartPointer_private.h"
+
 }
 
 #endif

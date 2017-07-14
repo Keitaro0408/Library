@@ -37,8 +37,15 @@ namespace Lib
 		Type* Release();
 
 		Shared& operator=(const Shared&);
-		Shared& operator=(const Unique<Type>&);
-		
+
+		Shared& operator=(Shared<Type>&& _obj)
+		{
+			(*m_pRefCount)++;
+			this->m_Instance = _obj.m_Instance;
+			_obj.Release();
+			return *this;
+		}
+
 		Type* operator->() const;
 
 	private:
@@ -47,6 +54,7 @@ namespace Lib
 
 		unsigned int m_RefCount;
 		unsigned int* m_pRefCount;
+
 		std::recursive_mutex m_Mutex;
 		std::recursive_mutex* m_pMutex;
 

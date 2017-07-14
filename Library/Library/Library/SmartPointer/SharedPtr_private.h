@@ -54,6 +54,8 @@ Type* Shared<Type>::Release()
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	Type* returnVal = m_Instance;
+	(*m_pRefCount) = 0;
+	m_RefCount = 0;
 	m_Instance = nullptr;
 
 	return returnVal;
@@ -72,14 +74,6 @@ Shared<Type>& Shared<Type>::operator=(const Shared& _obj)
 		(*m_pRefCount)++;
 		m_Instance = _obj.m_Instance;
 	}
-	return *this;
-}
-
-template<typename Type>
-Shared<Type>& Shared<Type>::operator=(const Unique<Type>& _obj)
-{
-	std::unique_lock<std::recursive_mutex> locker = Locker();
-	this->Reset(_obj.Release());
 	return *this;
 }
 
