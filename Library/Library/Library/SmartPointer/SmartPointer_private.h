@@ -35,12 +35,6 @@ void SmartPtr<Type, Policy>::Reset(Type* _type)
 	Policy<Type>::Reset(_type);
 }
 
-template<typename Type, template <typename Type> class Policy>
-Type* SmartPtr<Type, Policy>::Release()
-{
-	return Policy<Type>::Release;
-}
-
 //template<typename Type, template <typename Type> class Policy>
 //Pointer<Type, Policy>& Pointer<Type, Policy>::operator = (const Pointer& _obj)
 //{

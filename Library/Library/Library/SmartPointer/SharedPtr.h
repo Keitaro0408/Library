@@ -15,6 +15,7 @@ namespace Lib
 	{
 	public:
 		Shared(Type* _type);
+		
 		Shared();
 
 		virtual ~Shared();
@@ -30,19 +31,14 @@ namespace Lib
 		 */
 		void Reset(Type* _type);
 
-		/**
-		 * リソースの管理を放棄する
-		 * @return 管理を破棄したポインタ
-		 */
-		Type* Release();
 
 		Shared& operator=(const Shared&);
 
 		Shared& operator=(Shared<Type>&& _obj)
 		{
+			m_pRefCount = _obj.m_pRefCount;
 			(*m_pRefCount)++;
 			this->m_Instance = _obj.m_Instance;
-			_obj.Release();
 			return *this;
 		}
 
@@ -51,8 +47,9 @@ namespace Lib
 	private:
 		/* 同一スレッドからの再帰的なロック取得を許可する(今後普通のmutexにする可能性あり) */
 		std::unique_lock<std::recursive_mutex> Locker() const;
+		void AddRef();
+		void Release();
 
-		unsigned int m_RefCount;
 		unsigned int* m_pRefCount;
 
 		std::recursive_mutex m_Mutex;

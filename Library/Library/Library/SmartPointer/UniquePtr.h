@@ -34,12 +34,6 @@ namespace Lib
 		void Reset(Type* _type);
 
 		/**
-		 * リソースの管理を放棄する
-		 * @return 管理を破棄したポインタ
-		 */
-		Type* Release();
-
-		/**
 		 * メンバにアクセスする
 		 */
 		Type* operator->() const;
@@ -51,7 +45,7 @@ namespace Lib
 		Unique& operator=(Unique<Type>&& _obj)
 		{
 			this->m_Instance = _obj.m_Instance;
-			_obj.Release();
+			_obj.m_Instance = nullptr;
 			return *this;
 		}
 

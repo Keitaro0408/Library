@@ -36,15 +36,6 @@ void Unique<Type>::Reset(Type* _type)
 }
 
 template<typename Type>
-Type* Unique<Type>::Release()
-{
-	Type* returnVal = m_Instance;
-	m_Instance = nullptr;
-
-	return returnVal;
-}
-
-template<typename Type>
 Type* Unique<Type>::operator->() const
 {
 	return m_Instance;

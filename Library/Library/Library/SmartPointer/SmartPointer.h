@@ -46,12 +46,6 @@ namespace Lib
 		virtual void Reset(Type* _type);
 
 		/**
-		 * リソースの管理を放棄する
-		 * @return 管理を破棄したポインタ
-		 */
-		Type* Release();
-
-		/**
 		 * メンバにアクセスする
 		 */
 		Type* operator->() const;
