@@ -180,6 +180,9 @@
     <ClCompile Include="Library\Network\Socket\Socket.cpp">
       <Filter>Library\NetWork\Socket</Filter>
     </ClCompile>
+    <ClCompile Include="Library\SmartPointer\WeakPtr_private.h">
+      <Filter>Library\SmartPointer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Library\Singleton.h">
@@ -288,6 +291,9 @@
       <Filter>Library\SmartPointer</Filter>
     </ClInclude>
     <ClInclude Include="Library\SmartPointer\UniquePtr_private.h">
+      <Filter>Library\SmartPointer</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\SmartPointer\WeakPtr.h">
       <Filter>Library\SmartPointer</Filter>
     </ClInclude>
   </ItemGroup>

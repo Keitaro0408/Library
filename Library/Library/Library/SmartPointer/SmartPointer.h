@@ -7,6 +7,7 @@
 #define SMARTPOINTER_H
 #include "UniquePtr.h"
 #include "SharedPtr.h"
+#include "WeakPtr.h"
 
 #define EMPTY_POINTER(ptr) \
 		!ptr
@@ -33,17 +34,6 @@ namespace Lib
 		 * ポインタを取得する
 		 */
 		const Type* GetPtr();
-
-		/**
-		 * メモリを解放する
-		 */
-		virtual void Reset();
-
-		/**
-		 * メモリを解放した後に引数のポインタを扱う
-		 * @param[in] _type 新しく管理するポインタ
-		 */
-		virtual void Reset(Type* _type);
 
 		/**
 		 * メンバにアクセスする

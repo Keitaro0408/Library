@@ -6,10 +6,12 @@ Shared<Type>::Shared(Type* _type) :
 m_pMutex(&m_Mutex)
 {
 	m_pRefCount = new unsigned int;
-	*m_pRefCount = 0;
-	(*m_pRefCount)++;
+	*m_pRefCount = 1;
 
-	m_Instance = _type;
+	m_pWeakCount = new unsigned int;
+	*m_pWeakCount = 1;
+
+	m_pInstance = _type;
 }
 
 template<typename Type>
@@ -17,7 +19,8 @@ Shared<Type>::Shared() :
 m_pMutex(&m_Mutex)
 {
 	m_pRefCount = nullptr;
-	m_Instance = nullptr;
+	m_pWeakCount = nullptr;
+	m_pInstance = nullptr;
 }
 
 template<typename Type>
@@ -30,27 +33,27 @@ template<typename Type>
 void Shared<Type>::Reset()
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
-	delete m_pRefCount;
-	m_pRefCount = nullptr;
-
-	delete m_Instance;
-	m_Instance = nullptr;
+	SafeDelete(m_pRefCount);
+	SafeDelete(m_pWeakCount);
+	delete m_pInstance;
+	m_pInstance = nullptr;
 }
 
 template<typename Type>
 void Shared<Type>::Reset(Type* _type)
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
-	delete m_pRefCount;
-	m_pRefCount = nullptr;
 
-	delete m_Instance;
-	m_Instance = nullptr;
+	SafeDelete(m_pRefCount);
+	SafeDelete(m_pInstance);
 
 	m_pRefCount = new unsigned int;
-	*m_pRefCount = 0;
-	AddRef();
-	m_Instance = _type;
+	*m_pRefCount = 1;
+
+	m_pWeakCount = new unsigned int;
+	*m_pWeakCount = 1;
+
+	m_pInstance = _type;
 }
 
 
@@ -62,10 +65,11 @@ Shared<Type>& Shared<Type>::operator=(const Shared& _obj)
 	m_pMutex = _obj.m_pMutex;
 
 	/* 違うポインタなら参照カウンタを増やす */
-	if (m_Instance != _obj.m_Instance)
+	if (m_pInstance != _obj.m_pInstance)
 	{
 		AddRef();
-		m_Instance = _obj.m_Instance;
+		++m_pWeakCount;
+		m_pInstance = _obj.m_pInstance;
 	}
 	return *this;
 }
@@ -74,7 +78,7 @@ template<typename Type>
 Type* Shared<Type>::operator->() const
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
-	return m_Instance;
+	return m_pInstance;
 }
 
 template<typename Type>
@@ -98,12 +102,19 @@ void Shared<Type>::Release()
 	if (m_pRefCount != nullptr)
 	{
 		--(*m_pRefCount);
+		--(*m_pWeakCount);
+
 		if (*m_pRefCount == 0)
 		{
-			delete m_Instance;
-			m_Instance = nullptr;
-			delete m_pRefCount;
-			m_pRefCount = nullptr;
+			SafeDelete(m_pInstance);
+			//SafeDelete(m_pRefCount);
+			//SafeDelete(m_pWeakCount);
+		}
+
+		if (*m_pWeakCount == 0)
+		{
+			SafeDelete(m_pWeakCount);
+			SafeDelete(m_pRefCount);
 		}
 	}
 }

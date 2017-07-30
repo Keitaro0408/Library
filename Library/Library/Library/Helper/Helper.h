@@ -17,7 +17,7 @@ namespace Lib
 	inline void SafeDelete(Type*& p)
 	{
 		delete p;
-		p = nullptrptr;
+		p = nullptr;
 	}
 
 	/**
@@ -27,7 +27,7 @@ namespace Lib
 	inline void SafeArrayDelete(Type*& p)
 	{
 		delete[] p;
-		p = nullptrptr;
+		p = nullptr;
 	}
 }
 

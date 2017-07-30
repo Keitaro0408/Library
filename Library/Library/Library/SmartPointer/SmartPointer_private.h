@@ -23,18 +23,6 @@ const Type* SmartPtr<Type, Policy>::GetPtr()
 	return m_Instance;
 }
 
-template<typename Type, template <typename Type> class Policy>
-void SmartPtr<Type, Policy>::Reset()
-{
-	Policy<Type>::Reset();
-}
-
-template<typename Type, template <typename Type> class Policy>
-void SmartPtr<Type, Policy>::Reset(Type* _type)
-{
-	Policy<Type>::Reset(_type);
-}
-
 //template<typename Type, template <typename Type> class Policy>
 //Pointer<Type, Policy>& Pointer<Type, Policy>::operator = (const Pointer& _obj)
 //{

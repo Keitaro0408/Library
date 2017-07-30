@@ -31,11 +31,9 @@ SceneBase(SCENE_GAME)
 	SINGLETON_INSTANCE(Lib::DSoundManager).LoadSound("button01a.wav", &m_SoundIndex);
 	//SINGLETON_CREATE(Lib::EventManager);
 	
-	Lib::SmartPtr<int, Lib::Shared> test;
-	test = Lib::MakeSmartPtr<int, Lib::Shared>();
-
+	Lib::SmartPtr<int, Lib::Weak> test;
 	Lib::SmartPtr<int, Lib::Shared> test1;
-	
+	//test = test1;
 	m_Animation = Lib::MakeSmartPtr<Lib::AnimUvController>();
 	m_Animation->LoadAnimation("Character.anim", "Wait");
 	m_Animation->SetAnimFrame(10);

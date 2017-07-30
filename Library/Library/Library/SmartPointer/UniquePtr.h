@@ -44,13 +44,13 @@ namespace Lib
 		Unique& operator=(const Unique&) = delete;
 		Unique& operator=(Unique<Type>&& _obj)
 		{
-			this->m_Instance = _obj.m_Instance;
-			_obj.m_Instance = nullptr;
+			this->m_pInstance = _obj.m_pInstance;
+			_obj.m_pInstance = nullptr;
 			return *this;
 		}
 
 	protected:
-		Type* m_Instance;
+		Type* m_pInstance;
 
 	};
 

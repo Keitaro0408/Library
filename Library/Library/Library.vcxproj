@@ -37,6 +37,10 @@
     <ClCompile Include="Library\XInput\XInput.cpp" />
     <ClCompile Include="Library\Math\MyVector.cpp" />
     <ClCompile Include="Library\Network\Socket\Socket.cpp" />
+    <ClCompile Include="Library\SmartPointer\WeakPtr_private.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Library\Camera\Camera.h" />
@@ -51,11 +55,17 @@
     <ClInclude Include="Library\DebugTool\DebugTimer.h" />
     <ClInclude Include="Library\Shader\ShaderManager.h" />
     <ClInclude Include="Library\SmartPointer\SharedPtr.h" />
-    <ClInclude Include="Library\SmartPointer\SharedPtr_private.h" />
+    <ClInclude Include="Library\SmartPointer\SharedPtr_private.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Library\SmartPointer\SmartPointer.h" />
-    <ClInclude Include="Library\SmartPointer\SmartPointer_private.h" />
+    <ClInclude Include="Library\SmartPointer\SmartPointer_private.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Library\SmartPointer\UniquePtr.h" />
-    <ClInclude Include="Library\SmartPointer\UniquePtr_private.h" />
+    <ClInclude Include="Library\SmartPointer\UniquePtr_private.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Library\Sound\DSoundManager.h" />
     <ClInclude Include="Library\Collision\CollisionManager.h" />
     <ClInclude Include="Library\Collision\CollisionBase.h" />
@@ -75,6 +85,7 @@
     <ClInclude Include="Library\Helper\Helper.h" />
     <ClInclude Include="Library\Math\MyVector.h" />
     <ClInclude Include="Library\Network\Socket\Socket.h" />
+    <ClInclude Include="Library\SmartPointer\WeakPtr.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65480EA8-8D64-4328-A73F-671C0487AA00}</ProjectGuid>
