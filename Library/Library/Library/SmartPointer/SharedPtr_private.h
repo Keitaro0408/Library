@@ -2,7 +2,8 @@
 #define SHARED_PTR_PRIVATE_H
 
 template<typename Type>
-Shared<Type>::Shared(Type* _type) :
+SharedPtr<Type>::SharedPtr(Type* _type) :
+SmartPtr(_type),
 m_pMutex(&m_Mutex)
 {
 	m_pRefCount = new unsigned int;
@@ -11,11 +12,11 @@ m_pMutex(&m_Mutex)
 	m_pWeakCount = new unsigned int;
 	*m_pWeakCount = 1;
 
-	m_pInstance = _type;
+	//m_pInstance = _type;
 }
 
 template<typename Type>
-Shared<Type>::Shared() :
+SharedPtr<Type>::SharedPtr() :
 m_pMutex(&m_Mutex)
 {
 	m_pRefCount = nullptr;
@@ -24,13 +25,14 @@ m_pMutex(&m_Mutex)
 }
 
 template<typename Type>
-Shared<Type>::~Shared()
+SharedPtr<Type>::~SharedPtr()
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	Release();
 }
+
 template<typename Type>
-void Shared<Type>::Reset()
+void SharedPtr<Type>::Reset()
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	SafeDelete(m_pRefCount);
@@ -40,7 +42,7 @@ void Shared<Type>::Reset()
 }
 
 template<typename Type>
-void Shared<Type>::Reset(Type* _type)
+void SharedPtr<Type>::Reset(Type* _type)
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 
@@ -58,7 +60,7 @@ void Shared<Type>::Reset(Type* _type)
 
 
 template<typename Type>
-Shared<Type>& Shared<Type>::operator=(const Shared& _obj)
+SharedPtr<Type>& SharedPtr<Type>::operator=(const SharedPtr& _obj)
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	m_pRefCount = _obj.m_pRefCount;
@@ -75,20 +77,20 @@ Shared<Type>& Shared<Type>::operator=(const Shared& _obj)
 }
 
 template<typename Type>
-Type* Shared<Type>::operator->() const
+Type* SharedPtr<Type>::operator->() const
 {
 	std::unique_lock<std::recursive_mutex> locker = Locker();
 	return m_pInstance;
 }
 
 template<typename Type>
-std::unique_lock<std::recursive_mutex> Shared<Type>::Locker() const
+std::unique_lock<std::recursive_mutex> SharedPtr<Type>::Locker() const
 {
 	return std::unique_lock<std::recursive_mutex>(*m_pMutex);
 }
 
 template<typename Type>
-void Shared<Type>::AddRef()
+void SharedPtr<Type>::AddRef()
 {
 	if (m_pRefCount != nullptr)
 	{
@@ -97,7 +99,7 @@ void Shared<Type>::AddRef()
 }
 
 template<typename Type>
-void Shared<Type>::Release()
+void SharedPtr<Type>::Release()
 {
 	if (m_pRefCount != nullptr)
 	{

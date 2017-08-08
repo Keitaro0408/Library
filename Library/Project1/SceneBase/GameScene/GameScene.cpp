@@ -13,6 +13,11 @@
 #include <Library\Texture\TextureManager.h>
 #include <Library\DebugTool\DebugTimer.h>
 #include "Library/Event/EventManager.h"
+#include "Library\SmartPointer\WeakPtr.h"
+#include "Library\SmartPointer\UniquePtr.h"
+#include "Library\SmartPointer\SharedPtr.h"
+
+
 
 namespace
 {
@@ -31,14 +36,22 @@ SceneBase(SCENE_GAME)
 	SINGLETON_INSTANCE(Lib::DSoundManager).LoadSound("button01a.wav", &m_SoundIndex);
 	//SINGLETON_CREATE(Lib::EventManager);
 	
-	Lib::SmartPtr<int, Lib::Weak> test;
-	Lib::SmartPtr<int, Lib::Shared> test1;
-	//test = test1;
-	m_Animation = Lib::MakeSmartPtr<Lib::AnimUvController>();
+	Lib::SharedPtr<int> test = Lib::MakeShared<int>(10);
+	*test = 10;
+
+	Lib::WeakPtr<int> test1;
+
+	if (!test1)
+	{
+		int var = 0;
+		var++;
+	}
+
+	m_Animation = Lib::MakeUnique<Lib::AnimUvController>();
 	m_Animation->LoadAnimation("Character.anim", "Wait");
 	m_Animation->SetAnimFrame(10);
-
-	m_Vertex = Lib::MakeSmartPtr<Lib::Vertex2D>(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
+	
+	m_Vertex = Lib::MakeUnique<Lib::Vertex2D>(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext(),
 		SINGLETON_INSTANCE(Lib::Window).GetWindowSize());
 

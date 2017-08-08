@@ -5,21 +5,28 @@
  */
 #ifndef SHARED_PTR_H
 #define SHARED_PTR_H
-#include "UniquePtr.h"
 #include "../Helper/Helper.h"
+#include "SmartPtr.h"
 #include <mutex>
+
+template<typename Type>
+class WeakPtr;
 
 namespace Lib
 {
 	template<typename Type>
-	class Shared
+	/**
+	 * ポインタを共有する際に仕様するスマートポインタ
+	 */
+	class SharedPtr : public SmartPtr<Type>
 	{
+		friend WeakPtr<Type>;
 	public:
-		Shared(Type* _type);
+		SharedPtr(Type* _type);
 		
-		Shared();
+		SharedPtr();
 
-		virtual ~Shared();
+		virtual ~SharedPtr();
 
 		/**
 		 * メモリを解放する
@@ -32,25 +39,19 @@ namespace Lib
 		 */
 		void Reset(Type* _type);
 
+		SharedPtr& operator=(const SharedPtr&);
 
-		Shared& operator=(const Shared&);
-
-		Shared& operator=(Shared<Type>&& _obj)
+		SharedPtr& operator=(SharedPtr<Type>&& _obj)
 		{
 			m_pRefCount = _obj.m_pRefCount;
 			m_pWeakCount = _obj.m_pWeakCount;
 			++(*m_pWeakCount);
 			++(*m_pRefCount);
-			this->m_pInstance = _obj.m_pInstance;
+			m_pInstance = _obj.m_pInstance;
 			return *this;
 		}
 
 		Type* operator->() const;
-
-		Type& operator*()
-		{
-			return *m_pInstance;
-		}
 
 	private:
 		/* 同一スレッドからの再帰的なロック取得を許可する(今後普通のmutexにする可能性あり) */
@@ -73,9 +74,14 @@ namespace Lib
 		std::recursive_mutex m_Mutex;
 		std::recursive_mutex* m_pMutex;
 
-		Type* m_pInstance;
 
 	};
+
+	template<typename Type, class... Args>
+	SharedPtr<Type> MakeShared(Args&&... args)
+	{
+		return SharedPtr<Type>(new Type(std::forward<Args>(args)...));
+	}
 
 #include "SharedPtr_private.h"
 

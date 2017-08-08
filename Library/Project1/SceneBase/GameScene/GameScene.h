@@ -8,7 +8,7 @@
 #include "..\SceneBase.h"
 #include <Library\Vertex2D\Vertex2D.h>
 #include <Library\Animation\AnimUvController.h>
-#include "Library/SmartPointer/SmartPointer.h"
+#include "Library/SmartPointer/UniquePtr.h"
 
 /**
  * ゲームシーンを管理するクラス
@@ -43,8 +43,8 @@ private:
 
 	int m_SoundIndex;
 	int m_TextureIndex;
-	Lib::SmartPtr<Lib::Vertex2D>		 m_Vertex;
-	Lib::SmartPtr<Lib::AnimUvController> m_Animation;
+	Lib::UniquePtr<Lib::Vertex2D>		 m_Vertex;
+	Lib::UniquePtr<Lib::AnimUvController> m_Animation;
 
 };
 

@@ -5,22 +5,22 @@
  */
 #ifndef UNIQUE_PTR_H
 #define UNIQUE_PTR_H
-//#include "Pointer.h"
+#include "SmartPtr.h"
 
 namespace Lib
 {
+	template<typename Type>
 	/**
-	 * 所有権が1つしか持てない様に振る舞うスマートポインタのポリシー
+	 * 所有権が1つしか持てない様に振る舞うスマートポインタ
 	 * カスタムデリータと配列の生成の実装予定
 	 */
-	template<typename Type>
-	class Unique
+	class UniquePtr : public SmartPtr<Type>
 	{
 	public:
-		Unique(Type* _type);
-		Unique();
+		UniquePtr(Type* _type);
+		UniquePtr();
 
-		virtual ~Unique();
+		virtual ~UniquePtr();
 
 		/**
 		 * メモリを解放する
@@ -41,18 +41,22 @@ namespace Lib
 		/**
 		 * 直接代入の禁止 
 		 */
-		Unique& operator=(const Unique&) = delete;
-		Unique& operator=(Unique<Type>&& _obj)
+		UniquePtr& operator=(const UniquePtr&) = delete;
+
+		UniquePtr& operator=(UniquePtr<Type>&& _obj)
 		{
 			this->m_pInstance = _obj.m_pInstance;
 			_obj.m_pInstance = nullptr;
 			return *this;
 		}
 
-	protected:
-		Type* m_pInstance;
-
 	};
+
+	template<typename Type, class... Args>
+	UniquePtr<Type> MakeUnique(Args&&... args)
+	{
+		return UniquePtr<Type>(new Type(std::forward<Args>(args)...));
+	}
 
 #include "UniquePtr_private.h"
 }

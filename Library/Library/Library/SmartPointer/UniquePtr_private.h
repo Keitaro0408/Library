@@ -2,41 +2,41 @@
 #define UNIQUE_PTR_PRIVATE_H
 
 template<typename Type>
-Unique<Type>::Unique(Type* _type)
+UniquePtr<Type>::UniquePtr(Type* _type) :
+SmartPtr(_type)
 {
+}
+
+template<typename Type>
+UniquePtr<Type>::UniquePtr()
+{
+	m_pInstance = nullptr;
+}
+
+template<typename Type>
+UniquePtr<Type>::~UniquePtr()
+{
+	delete m_pInstance;
+	m_pInstance = nullptr;
+}
+
+template<typename Type>
+void UniquePtr<Type>::Reset()
+{
+	delete m_pInstance;
+	m_pInstance = nullptr;
+}
+
+template<typename Type>
+void UniquePtr<Type>::Reset(Type* _type)
+{
+	delete m_pInstance;
+	m_pInstance = nullptr;
 	m_pInstance = _type;
 }
 
 template<typename Type>
-Unique<Type>::Unique()
-{
-	m_pInstance = nullptr;
-}
-
-template<typename Type>
-Unique<Type>::~Unique()
-{
-	delete m_pInstance;
-	m_pInstance = nullptr;
-}
-
-template<typename Type>
-void Unique<Type>::Reset()
-{
-	delete m_pInstance;
-	m_pInstance = nullptr;
-}
-
-template<typename Type>
-void Unique<Type>::Reset(Type* _type)
-{
-	delete m_pInstance;
-	m_pInstance = nullptr;
-	m_pInstance = _type;
-}
-
-template<typename Type>
-Type* Unique<Type>::operator->() const
+Type* UniquePtr<Type>::operator->() const
 {
 	return m_pInstance;
 }

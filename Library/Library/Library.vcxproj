@@ -58,8 +58,8 @@
     <ClInclude Include="Library\SmartPointer\SharedPtr_private.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="Library\SmartPointer\SmartPointer.h" />
-    <ClInclude Include="Library\SmartPointer\SmartPointer_private.h">
+    <ClInclude Include="Library\SmartPointer\SmartPtr.h" />
+    <ClInclude Include="Library\SmartPointer\SmartPtr_private.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Library\SmartPointer\UniquePtr.h" />
