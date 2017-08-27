@@ -16,7 +16,8 @@
 #include "Library\SmartPointer\WeakPtr.h"
 #include "Library\SmartPointer\UniquePtr.h"
 #include "Library\SmartPointer\SharedPtr.h"
-
+#include "Library\ObjectBase\ObjectBase.h"
+#include "Library\TaskManager\TaskManager.h"
 
 
 namespace
@@ -27,9 +28,46 @@ namespace
 	float g_Angle = 0.f;
 }
 
+class Test : Lib::ObjectBase
+{
+public:
+	Test()
+	{
+		draw1 = new Lib::DrawTask();
+		draw = new Lib::DrawTask();
+
+		draw1->SetObject(this);
+		draw->SetObject(this);
+
+		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw1);
+		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw);
+		SINGLETON_INSTANCE(Lib::TaskManager).RemoveTask(draw1);
+	}
+	~Test()
+	{
+		delete draw;
+		delete draw1;
+	}
+
+	void Update() override
+	{
+
+	}
+	void Draw() override
+	{
+
+	}
+
+private:
+	Lib::DrawTask* draw;
+	Lib::DrawTask* draw1;
+
+};
+
 GameScene::GameScene() :
 SceneBase(SCENE_GAME)
 {
+	Test test2;
 	Pos.x = 400.f;
 	Pos.y = 400.f;
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
@@ -40,13 +78,14 @@ SceneBase(SCENE_GAME)
 	*test = 10;
 
 	Lib::WeakPtr<int> test1;
+	test1 = test;
 
 	if (!test1)
 	{
 		int var = 0;
 		var++;
 	}
-
+	SINGLETON_INSTANCE(Lib::TaskManager).AllExecute();
 	m_Animation = Lib::MakeUnique<Lib::AnimUvController>();
 	m_Animation->LoadAnimation("Character.anim", "Wait");
 	m_Animation->SetAnimFrame(10);

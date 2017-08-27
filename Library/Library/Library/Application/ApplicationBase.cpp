@@ -13,6 +13,7 @@
 #include "../Application/ApplicationBase.h"
 #include "../Shader/ShaderManager.h"
 #include "../Event/EventManager.h"
+#include "../TaskManager/TaskManager.h"
 #include "../XInput/XInput.h"
 
 Lib::ApplicationBase* Lib::ApplicationBase::m_pInstance = nullptr;
@@ -77,7 +78,8 @@ namespace Lib
 	{
 		HWND hWnd = SINGLETON_INSTANCE(Lib::Window).GetWindowHandle();
 		SINGLETON_CREATE(Lib::EventManager);
-
+		SINGLETON_CREATE(Lib::TaskManager);
+		
 		SINGLETON_CREATE(Lib::XInput);
 
 		//Directx11関係
@@ -133,6 +135,8 @@ namespace Lib
 		SINGLETON_DELETE(Lib::DX11Manager);
 
 		SINGLETON_DELETE(Lib::XInput);
+
+		SINGLETON_DELETE(Lib::TaskManager);
 
 		SINGLETON_DELETE(Lib::EventManager);
 

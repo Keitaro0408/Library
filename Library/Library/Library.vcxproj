@@ -41,8 +41,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Library\TaskManager\TaskManager.cpp" />
+    <ClCompile Include="Library\TaskManager\TaskBase\TaskBase.cpp" />
+    <ClCompile Include="Library\SceneManager\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\TaskManager\TaskBase\DrawTask\DrawTask.h" />
     <ClInclude Include="Library\Camera\Camera.h" />
     <ClInclude Include="Library\Application\ApplicationBase.h" />
     <ClInclude Include="Library\Fbx\FbxFileManager\FbxFileManager.h" />
@@ -86,6 +90,12 @@
     <ClInclude Include="Library\Math\MyVector.h" />
     <ClInclude Include="Library\Network\Socket\Socket.h" />
     <ClInclude Include="Library\SmartPointer\WeakPtr.h" />
+    <ClInclude Include="Library\TaskManager\TaskManager.h" />
+    <ClInclude Include="Library\TaskManager\TaskBase\TaskBase.h" />
+    <ClInclude Include="Library\ObjectBase\ObjectBase.h" />
+    <ClInclude Include="Library\TaskManager\TaskBase\UpdateTask\UpdateTask.h" />
+    <ClInclude Include="Library\SceneManager\SceneManager.h" />
+    <ClInclude Include="Library\SceneManager\SceneBase\SceneBase.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65480EA8-8D64-4328-A73F-671C0487AA00}</ProjectGuid>
