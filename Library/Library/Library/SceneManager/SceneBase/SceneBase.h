@@ -22,7 +22,7 @@ namespace Lib
 		/**
 		 * デストラクタ
 		 */
-		~SceneBase() = default;
+		virtual ~SceneBase() = default;
 	
 		/**
 		 * 初期化処理
@@ -37,14 +37,9 @@ namespace Lib
 		virtual void Finalize() = 0;
 
 		/**
-		 * 制御処理
+		 * 実行処理
 		 */
-		virtual void Update() = 0;
-
-		/**
-		 * 描画処理
-		 */
-		virtual void Draw() = 0;
+		virtual void Execute() = 0;
 
 		/**
 		 * Sceneの名前の取得

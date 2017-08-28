@@ -17,8 +17,26 @@ namespace Lib
 	bool SceneManager::Execute()
 	{
 		if (m_CurrentSceneName == "") return m_IsGameEnd;
-		Update();
-		Draw();
+		switch (m_State)
+		{
+		case SCENE_CREATE:
+			m_pCurrentScene = m_pSceneList[m_CurrentSceneName];
+			m_pCurrentScene->Initialize();
+			m_State = SCENE_PROC;
+			break;
+		case SCENE_PROC:
+			m_pCurrentScene->Execute();
+			if (m_pCurrentScene->GetSceneName() != m_CurrentSceneName)
+			{
+				m_State = SCENE_RELEASE;
+			}
+			break;
+		case SCENE_RELEASE:
+			m_pCurrentScene->Finalize();
+			m_State = SCENE_CREATE;
+			break;
+		}
+
 		return m_IsGameEnd;
 	}
 
@@ -37,37 +55,6 @@ namespace Lib
 		if (m_pSceneList.find(_sceneName) != m_pSceneList.end())
 		{
 			m_CurrentSceneName = _sceneName;
-		}
-	}
-
-	void SceneManager::Update()
-	{
-		switch (m_State)
-		{
-		case SCENE_CREATE:
-			m_pCurrentScene = m_pSceneList[m_CurrentSceneName];
-			m_pCurrentScene->Initialize();
-			m_State = SCENE_PROC;
-			break;
-		case SCENE_PROC:
-			m_pCurrentScene->Update();
-			if (m_pCurrentScene->GetSceneName() != m_CurrentSceneName)
-			{
-				m_State = SCENE_RELEASE;
-			}
-			break;
-		case SCENE_RELEASE:
-			m_pCurrentScene->Finalize();
-			m_State = SCENE_CREATE;
-			break;
-		}
-	}
-
-	void SceneManager::Draw()
-	{
-		if (m_State == SCENE_PROC)
-		{
-			m_pCurrentScene->Draw();
 		}
 	}
 }

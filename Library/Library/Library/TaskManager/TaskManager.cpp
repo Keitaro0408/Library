@@ -6,6 +6,7 @@
 #include "TaskManager.h"
 #include "TaskBase/UpdateTask/UpdateTask.h"
 #include "TaskBase/DrawTask/DrawTask.h"
+#include "../Dx11/DX11Manager.h"
 
 
 namespace Lib
@@ -18,7 +19,7 @@ namespace Lib
 	{
 	}
 
-	void TaskManager::AddTask(UpdateTask* _updateTask)
+	void TaskManager::AddTask(TaskBase* _updateTask)
 	{
 		m_UpdateTaskList.push_back(_updateTask);
 		m_UpdateTaskList.sort(std::less<>());
@@ -40,10 +41,12 @@ namespace Lib
 			itr->Execute();
 		}
 
+		SINGLETON_INSTANCE(DX11Manager).BeginScene();
 		for (auto itr : m_DrawTaskList)
 		{
 			itr->Execute();
 		}
+		SINGLETON_INSTANCE(DX11Manager).EndScene();
 	}
 
 	void TaskManager::RemoveTask(UpdateTask* _task)

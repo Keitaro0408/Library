@@ -23,7 +23,7 @@
 #pragma comment(lib,"dsound.lib")
 #pragma comment(lib,"strmiids.lib")
 #pragma comment(lib,"xinput.lib")
-#pragma comment(lib,"libfbxsdk-mt.lib")
+//#pragma comment(lib,"libfbxsdk-mt.lib")
 #endif
 
 namespace Lib
