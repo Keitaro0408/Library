@@ -10,7 +10,7 @@
 // Public Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::DXInputDevice::Init(HWND _hWnd)
+bool Lib::DXInputDevice::Initialize(HWND _hWnd)
 {
 	if (m_pDInput8 != nullptr)
 	{
@@ -36,7 +36,7 @@ bool Lib::DXInputDevice::Init(HWND _hWnd)
 	return true;
 }
 
-void Lib::DXInputDevice::Release()
+void Lib::DXInputDevice::Finalize()
 {
 	if (m_pDInput8 != nullptr)
 	{

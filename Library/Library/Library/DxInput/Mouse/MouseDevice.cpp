@@ -23,7 +23,7 @@ m_pDInputDevice8(nullptr)
 // Public Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::MouseDevice::Init(LPDIRECTINPUT8 _pDInput8, HWND _hWnd)
+bool Lib::MouseDevice::Initialize(LPDIRECTINPUT8 _pDInput8, HWND _hWnd)
 {
 	if (m_pDInput8 != nullptr)
 	{
@@ -80,7 +80,7 @@ bool Lib::MouseDevice::Init(LPDIRECTINPUT8 _pDInput8, HWND _hWnd)
 	return true;
 }
 
-void Lib::MouseDevice::Release()
+void Lib::MouseDevice::Finalize()
 {
 	if (m_pDInputDevice8 != nullptr)
 	{

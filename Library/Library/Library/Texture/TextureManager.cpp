@@ -9,7 +9,7 @@ Lib::TextureManager::~TextureManager()
 {
 }
 
-void Lib::TextureManager::Init(ID3D11Device* _pDevice)
+void Lib::TextureManager::Initialize(ID3D11Device* _pDevice)
 {
 	m_pDevice = _pDevice;
 }

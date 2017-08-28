@@ -17,7 +17,7 @@ Lib::DSoundManager::~DSoundManager()
 {
 }
 
-bool Lib::DSoundManager::Init(HWND _hWnd)
+bool Lib::DSoundManager::Initialize(HWND _hWnd)
 {
 	if (m_pDSound8 != nullptr)
 	{
@@ -42,7 +42,7 @@ bool Lib::DSoundManager::Init(HWND _hWnd)
 	return true;
 }
 
-void Lib::DSoundManager::Release()
+void Lib::DSoundManager::Finalize()
 {
 	if (m_pDSound8 != nullptr)
 	{
@@ -74,6 +74,20 @@ void Lib::DSoundManager::SoundOperation(int _index, SOUND_OPERATION _operation)
 	}
 }
 
+void Lib::DSoundManager::SetSoundVolume(int _index, int _ratio)
+{
+	if (_ratio <= 0)
+	{
+		m_pSound[_index]->SetVolume(-10000);
+	}
+	else
+	{
+		int dB = ((int)(log10f((float)_ratio) * 5000.0f) - 10000);
+		m_pSound[_index]->SetVolume(dB);
+	}
+	
+}
+
 bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 {
 	WAVEFORMATEX WaveFormat;
@@ -88,7 +102,7 @@ bool Lib::DSoundManager::LoadSound(LPSTR _pFileName, int* _pIndex)
 
 	DSBUFFERDESC DSBufferDesc;
 	DSBufferDesc.dwSize = sizeof(DSBUFFERDESC);
-	DSBufferDesc.dwFlags = 0;
+	DSBufferDesc.dwFlags = DSBCAPS_CTRLVOLUME;
 	DSBufferDesc.dwBufferBytes = WaveSize;
 	DSBufferDesc.dwReserved = 0;
 	DSBufferDesc.lpwfxFormat = &WaveFormat;

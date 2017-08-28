@@ -5,7 +5,7 @@
  */
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
-#include "..\SceneBase.h"
+#include <Library/SceneManager/SceneBase/SceneBase.h>
 #include <Library\Vertex2D\Vertex2D.h>
 #include <Library\Animation\AnimUvController.h>
 #include "Library/SmartPointer/UniquePtr.h"
@@ -13,7 +13,7 @@
 /**
  * ゲームシーンを管理するクラス
  */
-class GameScene : public SceneBase
+class GameScene : public Lib::SceneBase
 {
 public:
 	/**
@@ -26,11 +26,14 @@ public:
 	 */
 	virtual ~GameScene();
 
+	virtual bool Initialize();
+	virtual void Finalize();
+
 	/**
 	 * GameSceneの制御関数
 	 * @return シーンの遷移先ID
 	 */
-	virtual SceneID Update();
+	virtual void Update();
 
 	/**
 	 * GameSceneの描画関数

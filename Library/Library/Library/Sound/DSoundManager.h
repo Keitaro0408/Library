@@ -38,12 +38,12 @@ namespace Lib
 		 * @param[in] _hWnd ウィンドウハンドル。コンストラクタ内で使う
 		 * @return 成功したらtrue
 		 */
-		bool Init(HWND _hWnd);
+		bool Initialize(HWND _hWnd);
 
 		/**
 		 * DSoundManagerクラスの解放関数
 		 */
-		void Release();
+		void Finalize();
 
 		/**
 		 * 音声の読み込み
@@ -65,6 +65,13 @@ namespace Lib
 		 * @param[in] _operation どのような操作をするか
 		 */
 		void SoundOperation(int _index, SOUND_OPERATION _operation);
+
+		/**
+		 * サウンドの音量調節
+		 * @param[in] _index 操作するサウンドの格納先のインデックス
+		 * @param[in] _ratio 素の音源から何%で再生するか?
+		 */
+		void SetSoundVolume(int _index, int _ratio);
 
 		/**
 		 * サウンドのバッファーを開放する

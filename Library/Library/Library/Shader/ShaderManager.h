@@ -22,7 +22,7 @@ namespace Lib
 		 * 初期化処理
 		 * @param[in] _pDevice シェーダーを読み込むためのDirectX11デバイス
 		 */
-		inline void Init(ID3D11Device* _pDevice)
+		inline void Initialize(ID3D11Device* _pDevice)
 		{
 			m_pDevice = _pDevice;
 		}

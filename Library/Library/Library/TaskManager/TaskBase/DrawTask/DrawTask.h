@@ -1,11 +1,18 @@
-﻿#ifndef DRAWTASK_H
+﻿/**
+ * @file   DrawTask.h
+ * @brief  DrawTaskクラスのヘッダファイル
+ * @author kotani
+ */
+#ifndef DRAWTASK_H
 #define DRAWTASK_H
 
 #include "../TaskBase.h"
-#include "../../../ObjectBase/ObjectBase.h"
 
 namespace Lib
 {
+	/**
+	 * 描画処理のタスククラス
+	 */
 	class DrawTask : public TaskBase
 	{
 	public:
@@ -18,22 +25,17 @@ namespace Lib
 		{}
 
 		/**
-		* デストラクタ
-		*/
+		 * デストラクタ
+		 */
 		virtual ~DrawTask(){};
 
+		/**
+		 * 実行
+		 */
 		void Execute() override
 		{
 			m_pObject->Draw();
 		}
-
-		void SetObject(ObjectBase* _object)
-		{
-			m_pObject = _object;
-		}
-
-	private:
-		ObjectBase* m_pObject;
 
 	};
 }

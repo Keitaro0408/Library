@@ -35,9 +35,7 @@ namespace Lib
 	class ApplicationBase
 	{
 	public:
-		
 		ApplicationBase(LPCTSTR _appName,int _windowWidth, int _windowHeight);
-
 		virtual ~ApplicationBase();
 
 		static inline ApplicationBase* GetInstance()
@@ -51,20 +49,20 @@ namespace Lib
 		 *
 		 * ライブラリで自動に呼ばれる
 		 */
-		virtual void Init() = 0;
+		virtual void Initialize() = 0;
 
 		/**
 		 * 開放処理
 		 *
 		 * ライブラリで自動に呼ばれる
 		 */
-		virtual void Release() = 0;
+		virtual void Finalize() = 0;
 
 		/**
 		 * この関数が毎フレーム呼ばれる
-		 * @return trueが変えると終了する
+		 * @return trueになると終了する
 		 */
-		virtual bool MainLoop() = 0;
+		bool MainLoop();
 
 		int Boot();
 

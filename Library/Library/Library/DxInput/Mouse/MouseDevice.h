@@ -55,12 +55,12 @@ namespace Lib
 		 * @param[in] _hWnd KeyDeviceに対応させるウィンドウハンドル
 		 * @return デバイスの初期化に成功したらtrueが返る
 		 */
-		bool Init(LPDIRECTINPUT8 _pDInput8, HWND _hWnd);
+		bool Initialize(LPDIRECTINPUT8 _pDInput8, HWND _hWnd);
 
 		/**
 		 * 解放関数
 		 */
-		void Release();
+		void Finalize();
 
 		/**
 		 * マウスの状態を更新する

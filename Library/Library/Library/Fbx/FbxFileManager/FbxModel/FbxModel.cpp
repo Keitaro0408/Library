@@ -27,7 +27,7 @@ namespace Lib
 		m_MeshData.push_back(*_pMeshData);
 	}
 
-	bool FbxModel::Init()
+	bool FbxModel::Initialize()
 	{
 		if (!InitIndexBuffer())
 		{

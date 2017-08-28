@@ -15,6 +15,7 @@
 #include "../Event/EventManager.h"
 #include "../TaskManager/TaskManager.h"
 #include "../XInput/XInput.h"
+#include "../SceneManager/SceneManager.h"
 
 Lib::ApplicationBase* Lib::ApplicationBase::m_pInstance = nullptr;
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, INT)
@@ -49,7 +50,7 @@ namespace Lib
 		SINGLETON_INSTANCE(Lib::Window).DispWindow(m_WindowWidth,m_WindowHeight, m_AppName);
 
 		InitLib();
-		Init();
+		Initialize();
 
 		MSG Msg;
 		ZeroMemory(&Msg, sizeof(Msg));
@@ -69,69 +70,76 @@ namespace Lib
 			}
 		}
 		/* 先にサブクラスからデストラクタが実行されるのでここで解放する */
-		Release();
+		Finalize();
 		ReleaseLib();
 		return 0;
 	}
 
+	bool ApplicationBase::MainLoop()
+	{
+		return SINGLETON_INSTANCE(Lib::SceneManager).Execute();
+	}
+
 	void ApplicationBase::InitLib()
 	{
-		HWND hWnd = SINGLETON_INSTANCE(Lib::Window).GetWindowHandle();
+		SINGLETON_CREATE(Lib::SceneManager);
 		SINGLETON_CREATE(Lib::EventManager);
 		SINGLETON_CREATE(Lib::TaskManager);
 		
 		SINGLETON_CREATE(Lib::XInput);
 
+		HWND hWnd = SINGLETON_INSTANCE(Lib::Window).GetWindowHandle();
+
 		//Directx11関係
 		SINGLETON_CREATE(Lib::DX11Manager);
-		SINGLETON_INSTANCE(Lib::DX11Manager).Init(hWnd,
+		SINGLETON_INSTANCE(Lib::DX11Manager).Initialize(hWnd,
 			SINGLETON_INSTANCE(Lib::Window).GetWindowSize());
 
 		SINGLETON_CREATE(Lib::ShaderManager);
-		SINGLETON_INSTANCE(Lib::ShaderManager).Init(
+		SINGLETON_INSTANCE(Lib::ShaderManager).Initialize(
 			SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice());
 
 		//DirectSound関係
 		SINGLETON_CREATE(Lib::DSoundManager);
-		SINGLETON_INSTANCE(Lib::DSoundManager).Init(hWnd);
+		SINGLETON_INSTANCE(Lib::DSoundManager).Initialize(hWnd);
 
 		//テクスチャ
 		SINGLETON_CREATE(Lib::TextureManager);
 		SINGLETON_INSTANCE(Lib::TextureManager).
-			Init(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice());
+			Initialize(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice());
 
 		//DirectInput関係
 		SINGLETON_CREATE(Lib::DXInputDevice);
-		SINGLETON_INSTANCE(Lib::DXInputDevice).Init(hWnd);
+		SINGLETON_INSTANCE(Lib::DXInputDevice).Initialize(hWnd);
 
 		SINGLETON_CREATE(Lib::MouseDevice);
-		SINGLETON_INSTANCE(Lib::MouseDevice).Init(
+		SINGLETON_INSTANCE(Lib::MouseDevice).Initialize(
 			SINGLETON_INSTANCE(Lib::DXInputDevice).GetInputDevice(), hWnd);
 
 		SINGLETON_CREATE(Lib::KeyDevice);
-		SINGLETON_INSTANCE(Lib::KeyDevice).Init(
+		SINGLETON_INSTANCE(Lib::KeyDevice).Initialize(
 			SINGLETON_INSTANCE(Lib::DXInputDevice).GetInputDevice(), hWnd);
 	}
 
 	void ApplicationBase::ReleaseLib()
 	{
-		SINGLETON_INSTANCE(Lib::KeyDevice).Release();
+		SINGLETON_INSTANCE(Lib::KeyDevice).Finalize();
 		SINGLETON_DELETE(Lib::KeyDevice);
 
-		SINGLETON_INSTANCE(Lib::MouseDevice).Release();
+		SINGLETON_INSTANCE(Lib::MouseDevice).Finalize();
 		SINGLETON_DELETE(Lib::MouseDevice);
 
-		SINGLETON_INSTANCE(Lib::DXInputDevice).Release();
+		SINGLETON_INSTANCE(Lib::DXInputDevice).Finalize();
 		SINGLETON_DELETE(Lib::DXInputDevice);
 
 		SINGLETON_DELETE(Lib::TextureManager);
 
-		SINGLETON_INSTANCE(Lib::DSoundManager).Release();
+		SINGLETON_INSTANCE(Lib::DSoundManager).Finalize();
 		SINGLETON_DELETE(Lib::DSoundManager);
 
 		SINGLETON_DELETE(Lib::ShaderManager);
 
-		SINGLETON_INSTANCE(Lib::DX11Manager).Release();
+		SINGLETON_INSTANCE(Lib::DX11Manager).Finalize();
 		SINGLETON_DELETE(Lib::DX11Manager);
 
 		SINGLETON_DELETE(Lib::XInput);
@@ -139,6 +147,8 @@ namespace Lib
 		SINGLETON_DELETE(Lib::TaskManager);
 
 		SINGLETON_DELETE(Lib::EventManager);
+
+		SINGLETON_DELETE(Lib::SceneManager);
 
 		SINGLETON_DELETE(Lib::Window);
 	}

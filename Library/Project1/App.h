@@ -1,7 +1,9 @@
 #ifndef APP_H
 #define APP_H
 #include "Library/Application/ApplicationBase.h"
-#include "SceneManager.h"
+#include "Library\SceneManager\SceneManager.h"
+#include "GameScene\GameScene.h"
+#include "TitleScene\TitleScene.h"
 
 class App : public Lib::ApplicationBase
 {
@@ -11,16 +13,14 @@ public:
 	{};
 	~App() = default;
 
-	bool MainLoop() override;
-
-	void Init() override;
-
-	void Release() override;
+	void Initialize() override;
+	void Finalize() override;
 
 private:
-	SceneManager* m_pSceneManager;
+	TitleScene* m_pTitleScene;
+	GameScene*  m_pGameScene;
 
-};
+} theApp;
 
 
 

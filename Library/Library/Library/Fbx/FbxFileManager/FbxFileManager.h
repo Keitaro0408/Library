@@ -26,12 +26,12 @@ namespace Lib
 		* @param[in] _pDeviceContext 3Dモデルの描画に使用するDirectX11デバイスコンテキスト
 		* @return 初期化が成功したかのフラグ
 		*/
-		bool Init(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext);
+		bool Initialize(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext);
 
 		/**
 		* FbxFileManagerクラスの解放関数
 		*/
-		void Release();
+		void Finalize();
 
 		/**
 		* Fbxモデルを読み込む

@@ -27,7 +27,7 @@ namespace Lib
 	// Public Functions
 	//----------------------------------------------------------------------------------------------------
 
-	bool FbxLoader::Init()
+	bool FbxLoader::Initialize()
 	{
 		if (!InitFbxManager())
 		{

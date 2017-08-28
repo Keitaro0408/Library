@@ -36,12 +36,12 @@ namespace Lib
 		 * @param[in] _pUV テクスチャの4頂点分のUV初期値 テクスチャ座標の指定順番(左上->右上->左下->右下)
 		 * @return 初期化に成功したらtrue
 		 */
-		bool Init(const VECTOR2& _RectSize, const VECTOR2* _pUV);
+		bool Initialize(const VECTOR2& _RectSize, const VECTOR2* _pUV);
 
 		/**
 		 * Vertex2Dクラスの解放関数
 		 */
-		void Release();
+		void Finalize();
 
 		/**
 		 * 2Dの矩形を描画する関数

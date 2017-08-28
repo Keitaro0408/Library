@@ -30,7 +30,7 @@ m_hWnd(nullptr)
 // Public Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::DX11Manager::Init(HWND _hWnd, RECT _windowSize)
+bool Lib::DX11Manager::Initialize(HWND _hWnd, RECT _windowSize)
 {
 	if (m_pDevice != nullptr)
 	{
@@ -59,7 +59,7 @@ bool Lib::DX11Manager::Init(HWND _hWnd, RECT _windowSize)
 	return true;
 }
 
-void Lib::DX11Manager::Release()
+void Lib::DX11Manager::Finalize()
 {
 	ReleaseDisplay();
 	ReleaseDevice();

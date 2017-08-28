@@ -32,7 +32,7 @@ m_ClientHeight(0)
 // Public Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::Vertex::Init()
+bool Lib::Vertex::Initialize()
 {
 	RECT ClientRect;
 	GetClientRect(m_hWnd, &ClientRect);
@@ -87,7 +87,7 @@ bool Lib::Vertex::Init()
 	return true;
 }
 
-void Lib::Vertex::Release()
+void Lib::Vertex::Finalize()
 {
 	ReleaseConstantBuffer();
 	ReleaseSamplerState();

@@ -5,14 +5,14 @@
  */
 #ifndef TITLESCENE_H
 #define TITLESCENE_H
-#include "..\SceneBase.h"
+#include <Library/SceneManager/SceneBase/SceneBase.h>
 #include "Math.h"
 
 
 /**
  * タイトルシーンを管理するクラス
  */
-class TitleScene : public SceneBase
+class TitleScene : public Lib::SceneBase
 {
 public:
 	/**
@@ -25,11 +25,13 @@ public:
 	 */
 	virtual ~TitleScene();
 
+	virtual bool Initialize(){ return true; }
+	virtual void Finalize(){}
+
 	/**
 	 * TitleSceneの制御関数
-	 * @return 遷移先のシーンID
 	 */
-	virtual SceneID Update();
+	virtual void Update();
 
 	/**
 	 * TitleSceneの描画関数

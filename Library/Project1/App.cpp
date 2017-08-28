@@ -1,27 +1,21 @@
 #include "App.h"
 #include "Library/Application/ApplicationBase.h"
 #include "Library/Window/Window.h"
-#include "SceneManager.h"
+#include "Library\Helper\Helper.h"
 
-
-void App::Init()
+void App::Initialize()
 {
-	HWND hWnd = SINGLETON_INSTANCE(Lib::Window).GetWindowHandle();
-	m_pSceneManager = new SceneManager(hWnd);
+	m_pGameScene = new GameScene();
+	m_pTitleScene = new TitleScene();
+
+	SINGLETON_INSTANCE(Lib::SceneManager).AddScene(m_pGameScene);
+	SINGLETON_INSTANCE(Lib::SceneManager).AddScene(m_pTitleScene);
+	SINGLETON_INSTANCE(Lib::SceneManager).ChangeScene("GameScene");
+
 }
 
-void App::Release()
+void App::Finalize()
 {
-	delete m_pSceneManager;
-	m_pSceneManager = nullptr;
+	Lib::SafeDelete(m_pTitleScene);
+	Lib::SafeDelete(m_pGameScene);
 }
-
-bool App::MainLoop()
-{
-	if (m_pSceneManager->Run())
-	{
-		return true;
-	}
-	return false;
-}
-App theApp;

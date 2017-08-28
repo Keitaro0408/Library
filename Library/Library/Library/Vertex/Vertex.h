@@ -41,12 +41,12 @@ namespace Lib
 		 * Vertexクラスの初期化関数
 		 * @return 初期化に成功したらtrue
 		 */
-		bool Init();
+		bool Initialize();
 
 		/**
 		 * Vertexクラスの解放関数
 		 */
-		void Release();
+		void Finalize();
 
 		/**
 		 * 頂点バッファの生成関数

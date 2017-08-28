@@ -36,7 +36,7 @@ public:
 	 * @param[in] _timeOut 通信待機のタイムアウト時間
 	 * @return 成功すればtrue
 	 */
-	bool Init(int _timeOut);
+	bool Initialize(int _timeOut);
 
 private:
 	WSADATA		 m_WsaData;

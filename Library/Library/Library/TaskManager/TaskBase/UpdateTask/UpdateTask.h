@@ -1,11 +1,18 @@
-﻿#ifndef UPDATETASK_H
+﻿/**
+ * @file   UpdateTask.h
+ * @brief  UpdateTaskクラスのヘッダファイル
+ * @author kotani
+ */
+#ifndef UPDATETASK_H
 #define UPDATETASK_H
 
 #include "../TaskBase.h"
-#include "../../../ObjectBase/ObjectBase.h"
 
 namespace Lib
 {
+	/**
+	 * 更新処理のタスククラス
+	 */
 	class UpdateTask : public TaskBase
 	{
 	public:
@@ -22,18 +29,13 @@ namespace Lib
 		 */
 		virtual ~UpdateTask(){};
 
+		/**
+		 * 実行
+		 */
 		void Execute() override
 		{
 			m_pObject->Update();
 		}
-
-		void SetObject(ObjectBase* _object)
-		{
-			m_pObject = _object;
-		}
-
-	private:
-		ObjectBase* m_pObject;
 
 	};
 }

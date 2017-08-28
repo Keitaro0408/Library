@@ -23,7 +23,7 @@ namespace Lib
 		 * 初期化処理
 		 * @param[in] _pDevice Directx11のデバイス
 		 */
-		void Init(ID3D11Device* _pDevice);
+		void Initialize(ID3D11Device* _pDevice);
 
 		/**
 		 * テクスチャの読み込み

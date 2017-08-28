@@ -18,7 +18,7 @@
 #include "Library\SmartPointer\SharedPtr.h"
 #include "Library\ObjectBase\ObjectBase.h"
 #include "Library\TaskManager\TaskManager.h"
-
+#include "Library\SceneManager\SceneManager.h"
 
 namespace
 {
@@ -65,15 +65,22 @@ private:
 };
 
 GameScene::GameScene() :
-SceneBase(SCENE_GAME)
+SceneBase("GameScene")
+{
+}
+
+GameScene::~GameScene()
+{
+}
+
+bool GameScene::Initialize()
 {
 	Test test2;
 	Pos.x = 400.f;
 	Pos.y = 400.f;
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
 	SINGLETON_INSTANCE(Lib::DSoundManager).LoadSound("button01a.wav", &m_SoundIndex);
-	//SINGLETON_CREATE(Lib::EventManager);
-	
+
 	Lib::SharedPtr<int> test = Lib::MakeShared<int>(10);
 	*test = 10;
 
@@ -89,14 +96,14 @@ SceneBase(SCENE_GAME)
 	m_Animation = Lib::MakeUnique<Lib::AnimUvController>();
 	m_Animation->LoadAnimation("Character.anim", "Wait");
 	m_Animation->SetAnimFrame(10);
-	
+
 	m_Vertex = Lib::MakeUnique<Lib::Vertex2D>(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext(),
 		SINGLETON_INSTANCE(Lib::Window).GetWindowSize());
 
 	RECT ClientRect;
 	GetClientRect(SINGLETON_INSTANCE(Lib::Window).GetWindowHandle(), &ClientRect);
-	m_Vertex->Init(Lib::VECTOR2(256, 256), m_Animation->GetUV());
+	m_Vertex->Initialize(Lib::VECTOR2(256, 256), m_Animation->GetUV());
 	m_Vertex->SetTexture(SINGLETON_INSTANCE(Lib::TextureManager).GetTexture(m_TextureIndex));
 
 	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("front", DIK_W);
@@ -109,34 +116,37 @@ SceneBase(SCENE_GAME)
 	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("right", DIK_RIGHTARROW);
 
 	//SINGLETON_INSTANCE(Lib::DirectShowSound).SoundOperation(m_SoundIndex, Lib::SOUND_LOOP);
+	return true;
 }
 
-GameScene::~GameScene()
+void GameScene::Finalize()
 {
-	m_Vertex->Release();
+	m_Vertex->Finalize();
 	SINGLETON_INSTANCE(Lib::DSoundManager).ReleaseSound(m_SoundIndex);
 	SINGLETON_INSTANCE(Lib::TextureManager).ReleaseTexture(m_TextureIndex);
 }
-
-SceneBase::SceneID GameScene::Update()
+int vol = 100;
+void GameScene::Update()
 {
 	SINGLETON_INSTANCE(Lib::KeyDevice).Update();
 
-	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("front",Lib::KEY_ON))
+	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("front",Lib::KEY_PUSH))
 	{
-		Pos += Lib::Math::GetAngleMovePos(2.f, g_Angle - 90.f);
+		SINGLETON_INSTANCE(Lib::DSoundManager).SoundOperation(m_SoundIndex,Lib::DSoundManager::SOUND_PLAY);
+		//Pos += Lib::Math::GetAngleMovePos(2.f, g_Angle - 90.f);
 	}
 	
-	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("left", Lib::KEY_ON))
+	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("left", Lib::KEY_PUSH))
 	{
-		g_Angle -= 2.f;
+		vol -= 10;
+		SINGLETON_INSTANCE(Lib::DSoundManager).SetSoundVolume(m_SoundIndex,vol);
 	}
 
-	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("right", Lib::KEY_ON))
+	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("right", Lib::KEY_PUSH))
 	{
-		g_Angle += 2.f;
+		vol += 10;
+		SINGLETON_INSTANCE(Lib::DSoundManager).SetSoundVolume(m_SoundIndex, vol);
 	}
-	return m_SceneID;
 }
 
 void GameScene::Draw()

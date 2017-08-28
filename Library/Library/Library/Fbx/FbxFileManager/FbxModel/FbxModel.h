@@ -102,7 +102,7 @@ namespace Lib
 		* 追加されたメッシュデータをもとに初期化を行う
 		* @return 初期化に成功したらtrue
 		*/
-		bool Init();
+		bool Initialize();
 
 		/**
 		* モデルデータを解放する

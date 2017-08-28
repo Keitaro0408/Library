@@ -19,7 +19,7 @@ Lib::KeyDevice::KeyDevice()
 // Public Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::KeyDevice::Init(LPDIRECTINPUT8 _pDInput8, HWND _hWnd)
+bool Lib::KeyDevice::Initialize(LPDIRECTINPUT8 _pDInput8, HWND _hWnd)
 {
 	if (m_pDInput8 != nullptr)
 	{
@@ -76,7 +76,7 @@ bool Lib::KeyDevice::Init(LPDIRECTINPUT8 _pDInput8, HWND _hWnd)
 	return true;
 }
 
-void Lib::KeyDevice::Release()
+void Lib::KeyDevice::Finalize()
 {
 	if (m_pDInputDevice8 != nullptr)
 	{

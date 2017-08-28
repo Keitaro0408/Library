@@ -1,6 +1,6 @@
 ﻿/**
  * @file   ObjectBase.h
- * @brief  ObjectBaseクラスのヘッダファイル(未実装)
+ * @brief  ObjectBaseクラスのヘッダファイル
  * @author kotani
  */
 #ifndef OBJECT_BASE_H
@@ -8,6 +8,9 @@
 
 namespace Lib
 {
+	/**
+	 * タスクの実行等に使用されるオブジェクトの基底クラス
+	 */
 	class ObjectBase
 	{
 	public:

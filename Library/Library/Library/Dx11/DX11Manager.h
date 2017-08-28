@@ -29,12 +29,12 @@ namespace Lib
 		 * @param[in] _windowSize クライアントウィンドウのサイズ
 		 * @return 初期化に成功したらtrue
 		 */
-		bool Init(HWND _hWnd, RECT _windowSize);
+		bool Initialize(HWND _hWnd, RECT _windowSize);
 
 		/**
 		 * DX11Managerクラスの解放関数
 		 */
-		void Release();
+		void Finalize();
 
 		/**
 		 * 描画前処理を行う関数

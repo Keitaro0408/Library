@@ -1,4 +1,9 @@
-﻿#ifndef TASKMANAGER_H
+﻿/**
+ * @file   TaskManager.h
+ * @brief  TaskManagerクラスのヘッダファイル
+ * @author kotani
+ */
+#ifndef TASKMANAGER_H
 #define TASKMANAGER_H
 #include <string>
 #include <list>

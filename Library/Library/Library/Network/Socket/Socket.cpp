@@ -16,7 +16,7 @@ Socket::~Socket()
 {
 }
 
-bool Socket::Init(int _timeOut)
+bool Socket::Initialize(int _timeOut)
 {
 	/* 通信のタイムアウト時間の設定 */
 	m_TimeOut.tv_sec = _timeOut;

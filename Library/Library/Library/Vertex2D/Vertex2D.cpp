@@ -35,7 +35,7 @@ namespace Lib
 	// Public Functions
 	//----------------------------------------------------------------------------------------------------
 
-	bool Vertex2D::Init(const VECTOR2& _RectSize, const VECTOR2* _pUV)
+	bool Vertex2D::Initialize(const VECTOR2& _RectSize, const VECTOR2* _pUV)
 	{
 		if (!InitVertexShader())
 		{
@@ -109,7 +109,7 @@ namespace Lib
 		return true;
 	}
 
-	void Vertex2D::Release()
+	void Vertex2D::Finalize()
 	{
 		ReleaseConstantBuffer();
 		ReleaseVertexBuffer();

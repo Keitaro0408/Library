@@ -1,4 +1,9 @@
-﻿#include "TaskBase.h"
+﻿/**
+ * @file   TaskBase.cpp
+ * @brief  TaskBaseクラスの実装
+ * @author kotani
+ */
+#include "TaskBase.h"
 
 namespace Lib
 {

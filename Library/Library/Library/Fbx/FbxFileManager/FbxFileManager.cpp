@@ -29,7 +29,7 @@ m_pFbxLoader(nullptr)
 // Public Functions
 //----------------------------------------------------------------------------------------------------
 
-bool Lib::FbxFileManager::Init(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext)
+bool Lib::FbxFileManager::Initialize(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDeviceContext)
 {
 	FbxFileManager(_pDevice, _pDeviceContext);
 	if (m_pFbxLoader != nullptr)
@@ -39,10 +39,10 @@ bool Lib::FbxFileManager::Init(ID3D11Device* _pDevice, ID3D11DeviceContext* _pDe
 	}
 
 	m_pFbxLoader = new FbxLoader(m_pDevice);
-	return m_pFbxLoader->Init();
+	return m_pFbxLoader->Initialize();
 }
 
-void Lib::FbxFileManager::Release()
+void Lib::FbxFileManager::Finalize()
 {
 	if (m_pFbxLoader == nullptr)
 	{
@@ -66,7 +66,7 @@ bool Lib::FbxFileManager::LoadFbxModel(LPCTSTR _pFileName, int* _pIndex)
 		return false;
 	}
 
-	pModel->Init();
+	pModel->Initialize();
 	*_pIndex = m_pFbxModel.size();
 	m_pFbxModel.push_back(pModel);
 

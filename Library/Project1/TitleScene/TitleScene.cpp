@@ -4,10 +4,10 @@
  * @author kotani
  */
 #include "TitleScene.h"
-
+#include "Library\Dx11\DX11Manager.h"
 
 TitleScene::TitleScene() :
-SceneBase(SCENE_TITLE)
+SceneBase("TitleScene")
 {
 }
 
@@ -15,14 +15,12 @@ TitleScene::~TitleScene()
 {
 }
 
-SceneBase::SceneID TitleScene::Update()
+void TitleScene::Update()
 {
-	SceneID NextSceneID = m_SceneID;
-
-	NextSceneID = SCENE_GAME;
-	return NextSceneID;
 }
 
 void TitleScene::Draw()
 {
+	SINGLETON_INSTANCE(Lib::DX11Manager).BeginScene();
+	SINGLETON_INSTANCE(Lib::DX11Manager).EndScene();
 }

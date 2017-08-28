@@ -1,4 +1,9 @@
-﻿#include "TaskManager.h"
+﻿/**
+ * @file   TaskManager.cpp
+ * @brief  TaskManagerクラスの実装
+ * @author kotani
+ */
+#include "TaskManager.h"
 #include "TaskBase/UpdateTask/UpdateTask.h"
 #include "TaskBase/DrawTask/DrawTask.h"
 
