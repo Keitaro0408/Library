@@ -5,8 +5,8 @@
 
 void App::Initialize()
 {
-	//m_pGameScene = new GameScene();
-	//m_pTitleScene = new TitleScene();
+	m_pGameScene = new GameScene();
+	m_pTitleScene = new TitleScene();
 
 	SINGLETON_INSTANCE(Lib::SceneManager).AddScene(m_pGameScene);
 	SINGLETON_INSTANCE(Lib::SceneManager).AddScene(m_pTitleScene);

@@ -28,15 +28,7 @@ public:
 	virtual bool Initialize(){ return true; }
 	virtual void Finalize(){}
 
-	/**
-	 * TitleSceneの制御関数
-	 */
-	virtual void Update();
-
-	/**
-	 * TitleSceneの描画関数
-	 */
-	virtual void Draw();
+	virtual void Execute();
 
 private:
 	TitleScene(const TitleScene&);

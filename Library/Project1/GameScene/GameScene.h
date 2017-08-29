@@ -29,16 +29,8 @@ public:
 	virtual bool Initialize();
 	virtual void Finalize();
 
-	/**
-	 * GameSceneの制御関数
-	 * @return シーンの遷移先ID
-	 */
-	virtual void Update();
+	virtual void Execute();
 
-	/**
-	 * GameSceneの描画関数
-	 */
-	virtual void Draw();
 
 private:
 	GameScene(const GameScene&);
@@ -46,7 +38,7 @@ private:
 
 	int m_SoundIndex;
 	int m_TextureIndex;
-	Lib::UniquePtr<Lib::Vertex2D>		 m_Vertex;
+	Lib::UniquePtr<Lib::Vertex2D>		  m_Vertex;
 	Lib::UniquePtr<Lib::AnimUvController> m_Animation;
 
 };

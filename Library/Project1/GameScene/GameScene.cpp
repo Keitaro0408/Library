@@ -34,14 +34,13 @@ public:
 	Test()
 	{
 		draw1 = new Lib::DrawTask();
-		draw = new Lib::DrawTask();
+		draw = new Lib::DrawTask(1);
 
 		draw1->SetObject(this);
 		draw->SetObject(this);
 
-		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw1);
 		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw);
-		SINGLETON_INSTANCE(Lib::TaskManager).RemoveTask(draw1);
+		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw1);
 	}
 	~Test()
 	{
@@ -126,7 +125,7 @@ void GameScene::Finalize()
 	SINGLETON_INSTANCE(Lib::TextureManager).ReleaseTexture(m_TextureIndex);
 }
 int vol = 100;
-void GameScene::Update()
+void GameScene::Execute()
 {
 	SINGLETON_INSTANCE(Lib::KeyDevice).Update();
 
@@ -147,10 +146,7 @@ void GameScene::Update()
 		vol += 10;
 		SINGLETON_INSTANCE(Lib::DSoundManager).SetSoundVolume(m_SoundIndex, vol);
 	}
-}
 
-void GameScene::Draw()
-{
 	SINGLETON_INSTANCE(Lib::DX11Manager).BeginScene();
 	g_Timer.Begin();
 	m_Vertex->Draw(Pos, m_Animation->GetUV(), 1.f, Lib::VECTOR2(1.f, 1.f), g_Angle);
@@ -158,4 +154,5 @@ void GameScene::Draw()
 	SINGLETON_INSTANCE(Lib::DX11Manager).EndScene();
 
 	g_Timer.TimerShow();
+
 }

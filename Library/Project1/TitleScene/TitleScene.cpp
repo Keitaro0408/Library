@@ -15,11 +15,7 @@ TitleScene::~TitleScene()
 {
 }
 
-void TitleScene::Update()
-{
-}
-
-void TitleScene::Draw()
+void TitleScene::Execute()
 {
 	SINGLETON_INSTANCE(Lib::DX11Manager).BeginScene();
 	SINGLETON_INSTANCE(Lib::DX11Manager).EndScene();
