@@ -33,14 +33,21 @@ class Test : Lib::ObjectBase
 public:
 	Test()
 	{
-		draw1 = new Lib::DrawTask();
-		draw = new Lib::DrawTask(1);
+		draw = new Lib::DrawTask(3);
+		draw1 = new Lib::DrawTask(4);
+		draw2 = new Lib::DrawTask(2);
+		draw3 = new Lib::DrawTask(7);
 
-		draw1->SetObject(this);
 		draw->SetObject(this);
+		draw1->SetObject(this);
+		draw2->SetObject(this);
+		draw3->SetObject(this);
 
 		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw);
 		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw1);
+		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw2);
+		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw3);
+
 	}
 	~Test()
 	{
@@ -60,7 +67,8 @@ public:
 private:
 	Lib::DrawTask* draw;
 	Lib::DrawTask* draw1;
-
+	Lib::DrawTask* draw2;
+	Lib::DrawTask* draw3;
 };
 
 GameScene::GameScene() :

@@ -57,15 +57,17 @@ namespace Lib
 			m_pObject = _object;
 		}
 
-		inline bool operator > (const TaskBase& _task) const
+		struct TaskCmp
 		{
-			return (m_Priority > _task.m_Priority);
-		}
-
-		inline bool operator < (const TaskBase& _task) const
-		{
-			return (m_Priority < _task.m_Priority);
-		}
+			bool operator()(const TaskBase& _task1, TaskBase& _task2) const
+			{
+				return (_task1.m_Priority < _task2.m_Priority);
+			}
+			bool operator()(TaskBase* _task1, TaskBase* _task2) const
+			{
+				return (_task1->m_Priority < _task2->m_Priority);
+			}
+		};
 
 	protected:
 		ObjectBase* m_pObject;
