@@ -28,7 +28,7 @@ namespace
 	float g_Angle = 0.f;
 }
 
-class Test : Lib::ObjectBase
+class Test : public Lib::ObjectBase
 {
 public:
 	Test()
@@ -49,7 +49,7 @@ public:
 		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw3);
 
 	}
-	~Test()
+	virtual ~Test()
 	{
 		delete draw;
 		delete draw1;
@@ -78,11 +78,15 @@ SceneBase("GameScene")
 
 GameScene::~GameScene()
 {
+	int i = 0;
 }
 
 bool GameScene::Initialize()
 {
-	Test test2;
+	std::vector<Lib::UniquePtr<Lib::ObjectBase>> m_test;
+	m_test.push_back(Lib::UniquePtr<Lib::ObjectBase>());
+	m_test[0] = new Test();
+	m_test[0]->Draw();
 	Pos.x = 400.f;
 	Pos.y = 400.f;
 	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
