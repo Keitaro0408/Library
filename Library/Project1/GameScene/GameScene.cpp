@@ -33,26 +33,9 @@ class Test : public Lib::ObjectBase
 public:
 	Test()
 	{
-		draw = new Lib::DrawTask(3);
-		draw1 = new Lib::DrawTask(4);
-		draw2 = new Lib::DrawTask(2);
-		draw3 = new Lib::DrawTask(7);
-
-		draw->SetObject(this);
-		draw1->SetObject(this);
-		draw2->SetObject(this);
-		draw3->SetObject(this);
-
-		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw);
-		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw1);
-		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw2);
-		SINGLETON_INSTANCE(Lib::TaskManager).AddTask(draw3);
-
 	}
 	virtual ~Test()
 	{
-		delete draw;
-		delete draw1;
 	}
 
 	void Update() override
@@ -65,10 +48,6 @@ public:
 	}
 
 private:
-	Lib::DrawTask* draw;
-	Lib::DrawTask* draw1;
-	Lib::DrawTask* draw2;
-	Lib::DrawTask* draw3;
 };
 
 GameScene::GameScene() :
@@ -78,7 +57,6 @@ SceneBase("GameScene")
 
 GameScene::~GameScene()
 {
-	int i = 0;
 }
 
 bool GameScene::Initialize()
@@ -136,7 +114,9 @@ void GameScene::Finalize()
 	SINGLETON_INSTANCE(Lib::DSoundManager).ReleaseSound(m_SoundIndex);
 	SINGLETON_INSTANCE(Lib::TextureManager).ReleaseTexture(m_TextureIndex);
 }
+
 int vol = 100;
+
 void GameScene::Execute()
 {
 	SINGLETON_INSTANCE(Lib::KeyDevice).Update();

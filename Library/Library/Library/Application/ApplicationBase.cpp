@@ -30,6 +30,7 @@ namespace Lib
 		m_WindowWidth(_windowWidth),
 		m_WindowHeight(_windowHeight)
 	{
+		::ImmDisableIME(NULL);
 		m_pInstance = this;
 	}
 
@@ -82,7 +83,6 @@ namespace Lib
 
 	void ApplicationBase::InitLib()
 	{
-		SINGLETON_CREATE(Lib::SceneManager);
 		SINGLETON_CREATE(Lib::TaskManager);
 		
 		SINGLETON_CREATE(Lib::XInput);
@@ -105,10 +105,30 @@ namespace Lib
 		SINGLETON_CREATE(Lib::KeyDevice);
 		SINGLETON_INSTANCE(Lib::KeyDevice).Initialize(
 			SINGLETON_INSTANCE(Lib::DXInputDevice).GetInputDevice(), hWnd);
+
+		SINGLETON_CREATE(Lib::DSoundManager);
+		SINGLETON_INSTANCE(Lib::DSoundManager).Initialize(hWnd);
+
+		SINGLETON_CREATE(Lib::TextureManager);
+		SINGLETON_INSTANCE(Lib::TextureManager).
+			Initialize(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice());
+
+		SINGLETON_CREATE(Lib::EventManager);
+
+		SINGLETON_CREATE(Lib::SceneManager);
 	}
 
 	void ApplicationBase::ReleaseLib()
 	{
+		SINGLETON_DELETE(Lib::SceneManager);
+
+		SINGLETON_DELETE(Lib::EventManager);
+
+		SINGLETON_DELETE(Lib::TextureManager);
+
+		SINGLETON_INSTANCE(Lib::DSoundManager).Finalize();
+		SINGLETON_DELETE(Lib::DSoundManager);
+
 		SINGLETON_INSTANCE(Lib::KeyDevice).Finalize();
 		SINGLETON_DELETE(Lib::KeyDevice);
 
@@ -124,8 +144,6 @@ namespace Lib
 		SINGLETON_DELETE(Lib::XInput);
 
 		SINGLETON_DELETE(Lib::TaskManager);
-
-		SINGLETON_DELETE(Lib::SceneManager);
 
 		SINGLETON_DELETE(Lib::Window);
 	}

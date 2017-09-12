@@ -2,20 +2,42 @@
 #include "Library/Application/ApplicationBase.h"
 #include "Library/Window/Window.h"
 #include "Library\Helper\Helper.h"
+#include <memory>
+#include <vector>
+#include <assert.h>
+
+class Test
+{
+public:
+	Test()
+	{
+		int test = 0;
+	}
+
+	Test(Test && o)
+	{
+		int test = 0;
+	}
+
+	~Test()
+	{
+		int test = 0;
+	}
+
+	void func()
+	{
+		assert(true);
+	}
+};
 
 void App::Initialize()
 {
-	m_pGameScene = new GameScene();
-	m_pTitleScene = new TitleScene();
+	m_pGameScene = Lib::MakeUnique<GameScene>();
+	m_pTitleScene = Lib::MakeUnique<TitleScene>();
 
-	SINGLETON_INSTANCE(Lib::SceneManager).AddScene(m_pGameScene);
-	SINGLETON_INSTANCE(Lib::SceneManager).AddScene(m_pTitleScene);
 	SINGLETON_INSTANCE(Lib::SceneManager).ChangeScene("GameScene");
-
 }
 
 void App::Finalize()
 {
-	Lib::SafeDelete(m_pTitleScene);
-	Lib::SafeDelete(m_pGameScene);
 }

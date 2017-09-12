@@ -213,6 +213,12 @@
     <ClCompile Include="Library\SceneManager\SceneManager.cpp">
       <Filter>Library\SceneManager</Filter>
     </ClCompile>
+    <ClCompile Include="Library\ObjectBase\ObjectBase.cpp">
+      <Filter>Library\ObjectBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\SceneManager\SceneBase\SceneBase.cpp">
+      <Filter>Library\SceneManager\SceneBase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Library\Singleton.h">

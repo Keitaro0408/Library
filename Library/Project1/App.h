@@ -2,6 +2,7 @@
 #define APP_H
 #include "Library/Application/ApplicationBase.h"
 #include "Library\SceneManager\SceneManager.h"
+#include "Library\SmartPointer\UniquePtr.h"
 #include "GameScene\GameScene.h"
 #include "TitleScene\TitleScene.h"
 
@@ -17,8 +18,8 @@ public:
 	void Finalize() override;
 
 private:
-	TitleScene* m_pTitleScene;
-	GameScene*  m_pGameScene;
+	Lib::UniquePtr<TitleScene> m_pTitleScene;
+	Lib::UniquePtr<Lib::SceneBase> m_pGameScene;
 
 } theApp;
 

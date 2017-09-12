@@ -21,6 +21,7 @@
     <ClCompile Include="Library\Network\HttpConnect\HttpConnect.cpp" />
     <ClCompile Include="Library\Animation\AnimFileParser\AnimFileParser.cpp" />
     <ClCompile Include="Library\DebugTool\DebugTimer.cpp" />
+    <ClCompile Include="Library\SceneManager\SceneBase\SceneBase.cpp" />
     <ClCompile Include="Library\Shader\ShaderManager.cpp" />
     <ClCompile Include="Library\Sound\DSoundManager.cpp" />
     <ClCompile Include="Library\Collision\CollisionManager.cpp" />
@@ -44,6 +45,7 @@
     <ClCompile Include="Library\TaskManager\TaskManager.cpp" />
     <ClCompile Include="Library\TaskManager\TaskBase\TaskBase.cpp" />
     <ClCompile Include="Library\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="Library\ObjectBase\ObjectBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Library\TaskManager\TaskBase\DrawTask\DrawTask.h" />
