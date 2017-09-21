@@ -82,9 +82,6 @@
     <Filter Include="Library\Application">
       <UniqueIdentifier>{96bc6615-a98a-4532-8148-e0ebef8f1b60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\EventManager\EventListnerBase">
-      <UniqueIdentifier>{062ba0ee-4c43-47df-ac3a-8fc33890748c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Library\Helper">
       <UniqueIdentifier>{bf3cc088-5152-4805-827d-a47077d96251}</UniqueIdentifier>
     </Filter>
@@ -120,6 +117,15 @@
     </Filter>
     <Filter Include="Library\SceneManager\SceneBase">
       <UniqueIdentifier>{40e622be-d64a-4fba-adf0-3edd73dbed62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\TaskManager\TaskBase\DrawSetupTask">
+      <UniqueIdentifier>{502fb715-e637-4021-a1f7-d1107d1cf96b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\EventManager\EventBase">
+      <UniqueIdentifier>{062ba0ee-4c43-47df-ac3a-8fc33890748c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Hash">
+      <UniqueIdentifier>{daec8a5a-87a9-41b2-9ca5-11e3d99a4f34}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -290,9 +296,6 @@
     <ClInclude Include="Library\Application\ApplicationBase.h">
       <Filter>Library\Application</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Event\EventListnerBase.h">
-      <Filter>Library\EventManager\EventListnerBase</Filter>
-    </ClInclude>
     <ClInclude Include="Library\Helper\Helper.h">
       <Filter>Library\Helper</Filter>
     </ClInclude>
@@ -352,6 +355,15 @@
     </ClInclude>
     <ClInclude Include="Library\SceneManager\SceneBase\SceneBase.h">
       <Filter>Library\SceneManager\SceneBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TaskManager\TaskBase\DrawSetupTask\DrawSetupTask.h">
+      <Filter>Library\TaskManager\TaskBase\DrawSetupTask</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Event\EventListenerBase.h">
+      <Filter>Library\EventManager\EventBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Event\Event.h">
+      <Filter>Library\EventManager\EventBase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

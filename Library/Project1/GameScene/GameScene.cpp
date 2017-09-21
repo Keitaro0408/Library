@@ -4,6 +4,9 @@
  * @author kotani
  */
 #include "GameScene.h"
+#include "../MainCamera.h"
+#include "House\House.h"
+
 #include "Library/Math/Math.h"
 #include <Library\Window\Window.h>
 #include <Library\Dx11\DX11Manager.h>
@@ -19,37 +22,44 @@
 #include "Library\ObjectBase\ObjectBase.h"
 #include "Library\TaskManager\TaskManager.h"
 #include "Library\SceneManager\SceneManager.h"
+#include "Library\Fbx\FbxFileManager\FbxFileManager.h"
+#include "Library\Helper\Helper.h"
+#include "Library\Shader\ShaderManager.h"
+#include "Library\Event\EventListenerBase.h"
 
+class Test
+{
+	friend class TestListener;
+public:
+	Test(){}
+	~Test(){}
+
+private:
+	int m_val;
+};
+
+class TestListener : public Lib::EventListenerBase
+{
+public:
+	TestListener(Test* _test)
+	{
+		test = _test;
+	}
+	virtual ~TestListener(){}
+
+	virtual void OnEvent(Lib::Event& _event)
+	{
+		test->m_val;
+	}
+private:
+	Test* test;
+
+};
 namespace
 {
 	Lib::DebugTimer g_Timer(120);
-	RECT Rectvar = {0,0,0,0};
-	Lib::VECTOR2 Pos;
-	float g_Angle = 0.f;
+	TestListener* testListener;
 }
-
-class Test : public Lib::ObjectBase
-{
-public:
-	Test()
-	{
-	}
-	virtual ~Test()
-	{
-	}
-
-	void Update() override
-	{
-
-	}
-	void Draw() override
-	{
-
-	}
-
-private:
-};
-
 GameScene::GameScene() :
 SceneBase("GameScene")
 {
@@ -61,61 +71,23 @@ GameScene::~GameScene()
 
 bool GameScene::Initialize()
 {
-	std::vector<Lib::UniquePtr<Lib::ObjectBase>> m_test;
-	m_test.push_back(Lib::UniquePtr<Lib::ObjectBase>());
-	m_test[0] = new Test();
-	m_test[0]->Draw();
-	Pos.x = 400.f;
-	Pos.y = 400.f;
-	SINGLETON_INSTANCE(Lib::TextureManager).Load("Character.png", &m_TextureIndex);
-	SINGLETON_INSTANCE(Lib::DSoundManager).LoadSound("button01a.wav", &m_SoundIndex);
-
-	Lib::SharedPtr<int> test = Lib::MakeShared<int>(10);
-	*test = 10;
-
-	Lib::WeakPtr<int> test1;
-	test1 = test;
-
-	if (!test1)
-	{
-		int var = 0;
-		var++;
-	}
-	SINGLETON_INSTANCE(Lib::TaskManager).AllExecute();
-	m_Animation = Lib::MakeUnique<Lib::AnimUvController>();
-	m_Animation->LoadAnimation("Character.anim", "Wait");
-	m_Animation->SetAnimFrame(10);
-
-	m_Vertex = Lib::MakeUnique<Lib::Vertex2D>(SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
-		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext(),
-		SINGLETON_INSTANCE(Lib::Window).GetWindowSize());
-
-	RECT ClientRect;
-	GetClientRect(SINGLETON_INSTANCE(Lib::Window).GetWindowHandle(), &ClientRect);
-	m_Vertex->Initialize(Lib::VECTOR2(256, 256), m_Animation->GetUV());
-	m_Vertex->SetTexture(SINGLETON_INSTANCE(Lib::TextureManager).GetTexture(m_TextureIndex));
-
-	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("front", DIK_W);
-	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("front", DIK_UPARROW);
-
-	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("left", DIK_A);
-	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("left", DIK_LEFTARROW);
-
-	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("right", DIK_D);
-	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("right", DIK_RIGHTARROW);
-
-	//SINGLETON_INSTANCE(Lib::DirectShowSound).SoundOperation(m_SoundIndex, Lib::SOUND_LOOP);
+	m_pCamera = new MainCamera;
+	SINGLETON_CREATE(Lib::FbxFileManager);
+	SINGLETON_INSTANCE(Lib::FbxFileManager).Initialize(
+		SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
+		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext());
+	m_pHouse = Lib::MakeUnique<House>();
+	SINGLETON_INSTANCE(Lib::EventManager).AddListener(testListener);
 	return true;
 }
 
 void GameScene::Finalize()
 {
-	m_Vertex->Finalize();
-	SINGLETON_INSTANCE(Lib::DSoundManager).ReleaseSound(m_SoundIndex);
-	SINGLETON_INSTANCE(Lib::TextureManager).ReleaseTexture(m_TextureIndex);
+	m_pHouse.Reset();
+	m_pCamera.Reset();
+	SINGLETON_INSTANCE(Lib::FbxFileManager).Finalize();
+	SINGLETON_DELETE(Lib::FbxFileManager);
 }
-
-int vol = 100;
 
 void GameScene::Execute()
 {
@@ -124,27 +96,13 @@ void GameScene::Execute()
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("front",Lib::KEY_PUSH))
 	{
 		SINGLETON_INSTANCE(Lib::DSoundManager).SoundOperation(m_SoundIndex,Lib::DSoundManager::SOUND_PLAY);
-		//Pos += Lib::Math::GetAngleMovePos(2.f, g_Angle - 90.f);
 	}
 	
-	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("left", Lib::KEY_PUSH))
-	{
-		vol -= 10;
-		SINGLETON_INSTANCE(Lib::DSoundManager).SetSoundVolume(m_SoundIndex,vol);
-	}
-
-	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("right", Lib::KEY_PUSH))
-	{
-		vol += 10;
-		SINGLETON_INSTANCE(Lib::DSoundManager).SetSoundVolume(m_SoundIndex, vol);
-	}
-
 	SINGLETON_INSTANCE(Lib::DX11Manager).BeginScene();
 	g_Timer.Begin();
-	m_Vertex->Draw(Pos, m_Animation->GetUV(), 1.f, Lib::VECTOR2(1.f, 1.f), g_Angle);
+	SINGLETON_INSTANCE(Lib::TaskManager).AllExecute();
 	g_Timer.End();
 	SINGLETON_INSTANCE(Lib::DX11Manager).EndScene();
 
 	g_Timer.TimerShow();
-
 }

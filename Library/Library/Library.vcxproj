@@ -48,6 +48,8 @@
     <ClCompile Include="Library\ObjectBase\ObjectBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\Event\EventListenerBase.h" />
+    <ClInclude Include="Library\TaskManager\TaskBase\DrawSetupTask\DrawSetupTask.h" />
     <ClInclude Include="Library\TaskManager\TaskBase\DrawTask\DrawTask.h" />
     <ClInclude Include="Library\Camera\Camera.h" />
     <ClInclude Include="Library\Application\ApplicationBase.h" />
@@ -77,7 +79,7 @@
     <ClInclude Include="Library\Collision\CollisionBase.h" />
     <ClInclude Include="Library\DxInput\DXInputDevice.h" />
     <ClInclude Include="Library\Dx11\DX11Manager.h" />
-    <ClInclude Include="Library\Event\EventListnerBase.h" />
+    <ClInclude Include="Library\Event\Event.h" />
     <ClInclude Include="Library\Event\EventManager.h" />
     <ClInclude Include="Library\DxInput\KeyBoard\KeyDevice.h" />
     <ClInclude Include="Library\Vertex2D\Vertex2D.h" />

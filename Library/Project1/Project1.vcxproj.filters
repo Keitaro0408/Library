@@ -22,6 +22,12 @@
     <Filter Include="ソース ファイル\TitleScene">
       <UniqueIdentifier>{45b05f27-4f03-4944-a4c1-b1ae482c0553}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GameScene\Ground">
+      <UniqueIdentifier>{79a6fd21-330d-4373-b945-d3cc38e2a5e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameScene\House">
+      <UniqueIdentifier>{b4a1fc0b-f3e8-4a3c-9fd6-5193b92af3bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp">
@@ -32,6 +38,15 @@
     </ClCompile>
     <ClCompile Include="GameScene\GameScene.cpp">
       <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MainCamera.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\House\House.cpp">
+      <Filter>ソース ファイル\GameScene\House</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Ground\Ground.cpp">
+      <Filter>ソース ファイル\GameScene\Ground</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,5 +59,19 @@
     <ClInclude Include="GameScene\GameScene.h">
       <Filter>ソース ファイル\GameScene</Filter>
     </ClInclude>
+    <ClInclude Include="MainCamera.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\House\House.h">
+      <Filter>ソース ファイル\GameScene\House</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Ground\Ground.h">
+      <Filter>ソース ファイル\GameScene\Ground</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="test.hlsl">
+      <Filter>ソース ファイル</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

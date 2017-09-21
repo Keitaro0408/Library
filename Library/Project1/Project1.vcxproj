@@ -50,7 +50,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Debug;$(DXSDK_DIR)\Lib\x86;C:\Program Files\Autodesk\FBX\FBX SDK\2016.1\lib\vs2013\x86\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Library.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Library.lib;libfbxsdk-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -73,12 +73,27 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="GameScene\GameScene.cpp" />
+    <ClCompile Include="GameScene\Ground\Ground.cpp" />
+    <ClCompile Include="GameScene\House\House.cpp" />
+    <ClCompile Include="MainCamera.cpp" />
     <ClCompile Include="TitleScene\TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="GameScene\GameScene.h" />
+    <ClInclude Include="GameScene\Ground\Ground.h" />
+    <ClInclude Include="GameScene\House\House.h" />
+    <ClInclude Include="MainCamera.h" />
     <ClInclude Include="TitleScene\TitleScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="test.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

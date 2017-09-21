@@ -10,6 +10,9 @@
 #include <Library\Animation\AnimUvController.h>
 #include "Library/SmartPointer/UniquePtr.h"
 
+class MainCamera;
+class House;
+
 /**
  * ゲームシーンを管理するクラス
  */
@@ -36,10 +39,11 @@ private:
 	GameScene(const GameScene&);
 	void operator=(const GameScene&);
 
-	int m_SoundIndex;
-	int m_TextureIndex;
-	Lib::UniquePtr<Lib::Vertex2D>		  m_Vertex;
-	Lib::UniquePtr<Lib::AnimUvController> m_Animation;
+	int						   m_SoundIndex;
+	int						   m_TextureIndex;
+	Lib::UniquePtr<MainCamera> m_pCamera;
+	Lib::UniquePtr<House>      m_pHouse;
+
 
 };
 
