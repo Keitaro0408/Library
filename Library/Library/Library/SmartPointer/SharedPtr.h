@@ -54,9 +54,6 @@ namespace Lib
 		Type* operator->() const;
 
 	private:
-		/* 同一スレッドからの再帰的なロック取得を許可する(今後普通のmutexにする可能性あり) */
-		std::unique_lock<std::recursive_mutex> Locker() const;
-
 		/**
 		 * 参照カウンタ増加
 		 */
@@ -70,10 +67,6 @@ namespace Lib
 
 		unsigned int* m_pRefCount;
 		unsigned int* m_pWeakCount;
-
-		std::recursive_mutex m_Mutex;
-		std::recursive_mutex* m_pMutex;
-
 
 	};
 

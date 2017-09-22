@@ -3,8 +3,7 @@
 
 template<typename Type>
 SharedPtr<Type>::SharedPtr(Type* _type) :
-SmartPtr(_type),
-m_pMutex(&m_Mutex)
+SmartPtr(_type)
 {
 	m_pRefCount = new unsigned int;
 	*m_pRefCount = 1;
@@ -14,8 +13,7 @@ m_pMutex(&m_Mutex)
 }
 
 template<typename Type>
-SharedPtr<Type>::SharedPtr() :
-m_pMutex(&m_Mutex)
+SharedPtr<Type>::SharedPtr()
 {
 	m_pRefCount = nullptr;
 	m_pWeakCount = nullptr;
@@ -25,14 +23,12 @@ m_pMutex(&m_Mutex)
 template<typename Type>
 SharedPtr<Type>::~SharedPtr()
 {
-	std::unique_lock<std::recursive_mutex> locker = Locker();
 	Release();
 }
 
 template<typename Type>
 void SharedPtr<Type>::Reset()
 {
-	std::unique_lock<std::recursive_mutex> locker = Locker();
 	SafeDelete(m_pRefCount);
 	SafeDelete(m_pWeakCount);
 	if (m_pInstance != nullptr)
@@ -45,8 +41,6 @@ void SharedPtr<Type>::Reset()
 template<typename Type>
 void SharedPtr<Type>::Reset(Type* _type)
 {
-	std::unique_lock<std::recursive_mutex> locker = Locker();
-
 	SafeDelete(m_pRefCount);
 	if (m_pInstance != nullptr)
 	{
@@ -69,9 +63,7 @@ void SharedPtr<Type>::Reset(Type* _type)
 template<typename Type>
 SharedPtr<Type>& SharedPtr<Type>::operator=(const SharedPtr& _obj)
 {
-	std::unique_lock<std::recursive_mutex> locker = Locker();
 	m_pRefCount = _obj.m_pRefCount;
-	m_pMutex = _obj.m_pMutex;
 
 	/* 違うポインタなら参照カウンタを増やす */
 	if (m_pInstance != _obj.m_pInstance)
@@ -86,14 +78,7 @@ SharedPtr<Type>& SharedPtr<Type>::operator=(const SharedPtr& _obj)
 template<typename Type>
 Type* SharedPtr<Type>::operator->() const
 {
-	std::unique_lock<std::recursive_mutex> locker = Locker();
 	return m_pInstance;
-}
-
-template<typename Type>
-std::unique_lock<std::recursive_mutex> SharedPtr<Type>::Locker() const
-{
-	return std::unique_lock<std::recursive_mutex>(*m_pMutex);
 }
 
 template<typename Type>

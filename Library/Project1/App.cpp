@@ -40,6 +40,4 @@ void App::Initialize()
 
 void App::Finalize()
 {
-	m_pTitleScene->Finalize();
-	m_pGameScene->Finalize();
 }
