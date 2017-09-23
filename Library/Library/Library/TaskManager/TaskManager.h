@@ -49,7 +49,6 @@ namespace Lib
 		std::list<DrawSetupTask*> m_DrawSetupTaskList; //!< 描画前処理
 		std::list<UpdateTask*>	  m_UpdateTaskList;
 		std::list<DrawTask*>	  m_DrawTaskList;
-
 	};
 }
 

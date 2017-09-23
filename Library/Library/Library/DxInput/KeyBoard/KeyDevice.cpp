@@ -127,7 +127,7 @@ void Lib::KeyDevice::Update()
 	}
 }
 
-void Lib::KeyDevice::KeyCheckEntry(std::string _keyName, int _dik)
+void Lib::KeyDevice::KeyCheckEntry(LPSTR _keyName, int _dik)
 {
 	KEYDATA keyData;
 	keyData.DIKeyState = _dik;
@@ -135,7 +135,7 @@ void Lib::KeyDevice::KeyCheckEntry(std::string _keyName, int _dik)
 	m_SetKeyState[_keyName].push_back(keyData);
 }
 
-bool Lib::KeyDevice::AllMatchKeyCheck(std::string _keyName, KEYSTATE _keyState)
+bool Lib::KeyDevice::AllMatchKeyCheck(LPSTR _keyName, KEYSTATE _keyState)
 {
 	for (auto itr = m_SetKeyState[_keyName].begin(); itr != m_SetKeyState[_keyName].end(); itr++)
 	{
@@ -147,7 +147,7 @@ bool Lib::KeyDevice::AllMatchKeyCheck(std::string _keyName, KEYSTATE _keyState)
 	return true;
 }
 
-bool Lib::KeyDevice::AnyMatchKeyCheck(std::string _keyName, KEYSTATE _keyState)
+bool Lib::KeyDevice::AnyMatchKeyCheck(LPSTR _keyName, KEYSTATE _keyState)
 {
 	for (auto itr = m_SetKeyState[_keyName].begin(); itr != m_SetKeyState[_keyName].end(); itr++)
 	{

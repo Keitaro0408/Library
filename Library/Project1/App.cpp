@@ -6,30 +6,6 @@
 #include <vector>
 #include <assert.h>
 
-class Test
-{
-public:
-	Test()
-	{
-		int test = 0;
-	}
-
-	Test(Test && o)
-	{
-		int test = 0;
-	}
-
-	~Test()
-	{
-		int test = 0;
-	}
-
-	void func()
-	{
-		assert(true);
-	}
-};
-
 void App::Initialize()
 {
 	m_pGameScene = Lib::MakeUnique<GameScene>();

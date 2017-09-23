@@ -6,6 +6,7 @@
 #include "GameScene.h"
 #include "../MainCamera.h"
 #include "House\House.h"
+#include "Ground\Ground.h"
 
 #include "Library/Math/Math.h"
 #include <Library\Window\Window.h>
@@ -77,12 +78,14 @@ bool GameScene::Initialize()
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext());
 	m_pHouse = Lib::MakeUnique<House>();
+	m_pGround = Lib::MakeUnique<Ground>();
 	SINGLETON_INSTANCE(Lib::EventManager).AddListener(testListener);
 	return true;
 }
 
 void GameScene::Finalize()
 {
+	m_pGround.Reset();
 	m_pHouse.Reset();
 	m_pCamera.Reset();
 	SINGLETON_INSTANCE(Lib::FbxFileManager).Finalize();
@@ -98,6 +101,7 @@ void GameScene::Execute()
 		SINGLETON_INSTANCE(Lib::DSoundManager).SoundOperation(m_SoundIndex,Lib::DSoundManager::SOUND_PLAY);
 	}
 	
+	SINGLETON_INSTANCE(Lib::DX11Manager).SetDepthStencilTest(true);
 	SINGLETON_INSTANCE(Lib::DX11Manager).BeginScene();
 	g_Timer.Begin();
 	SINGLETON_INSTANCE(Lib::TaskManager).AllExecute();

@@ -246,7 +246,7 @@ namespace Lib
 				default:
 					/// 不明なモードは空データで対応
 
-					MessageBox(NULL, TEXT("リファレンスモード不明です\n空データを作成して対応します"), TEXT("エラー"), MB_ICONSTOP);
+					OutputDebugString(TEXT("リファレンスモード不明です\n空データを作成して対応します\n"));
 
 					pNormalData[NormalIndex].pNormalVec = new Lib::VECTOR3[_pMeshData->pVertexData->PolygonVertexNum];
 					for (int i = 0; i < _pMeshData->pVertexData->PolygonVertexNum; i++)
@@ -259,7 +259,7 @@ namespace Lib
 				}
 				break;
 			case FbxGeometryElement::eByControlPoint:
-				MessageBox(NULL, TEXT("マッピングモードeByControlPointに対応していません\n空データを作成して対応します"), TEXT("エラー"), MB_ICONSTOP);
+				OutputDebugString(TEXT("マッピングモードeByControlPointに対応していません\n空データを作成して対応します\n"));
 
 				pNormalData[NormalIndex].pNormalVec = new Lib::VECTOR3[_pMeshData->pVertexData->PolygonVertexNum];
 				for (int i = 0; i < _pMeshData->pVertexData->PolygonVertexNum; i++)
@@ -270,7 +270,7 @@ namespace Lib
 				}
 				break;
 			default:
-				MessageBox(NULL, TEXT("マッピングモードが不明です\n空データを作成して対応します"), TEXT("エラー"), MB_ICONSTOP);
+				OutputDebugString(TEXT("マッピングモードが不明です\n空データを作成して対応します\n"));
 
 				pNormalData[NormalIndex].pNormalVec = new Lib::VECTOR3[_pMeshData->pVertexData->PolygonVertexNum];
 				for (int i = 0; i < _pMeshData->pVertexData->PolygonVertexNum; i++)

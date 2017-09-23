@@ -10,11 +10,10 @@
 #include <functional>
 #include "..\Singleton.h"
 #include "Event.h"
+#include "EventListenerBase.h"
 
 namespace Lib
 {
-	class EventListenerBase;
-
 	/**
 	 * コールバックのイベントを管理する
 	 */
@@ -35,7 +34,7 @@ namespace Lib
 		void SendEvent(Event& _pEvent);
 
 		/**
-		 * キューにイベントをセットする
+		 * キューにイベントを追加する
 		 * @param[in] _pEvent イベントクラス
 		 */
 		void AddQueueEvent(Event* _pEvent);

@@ -12,6 +12,7 @@
 
 class MainCamera;
 class House;
+class Ground;
 
 /**
  * ゲームシーンを管理するクラス
@@ -43,6 +44,7 @@ private:
 	int						   m_TextureIndex;
 	Lib::UniquePtr<MainCamera> m_pCamera;
 	Lib::UniquePtr<House>      m_pHouse;
+	Lib::UniquePtr<Ground>	   m_pGround;
 
 
 };

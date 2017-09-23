@@ -6,7 +6,7 @@
 #ifndef KEYDEVICE_H
 #define KEYDEVICE_H
 #include <dinput.h>	
-#include <map>
+#include <unordered_map>
 #include <string>
 #include <list>
 #include "..\..\Singleton.h"
@@ -57,7 +57,7 @@ namespace Lib
 		 * @param[in] _dik チェックしたいキーのDIK
 		 * @param[in] _keyName 登録するキーの名前
 		 */
-		void KeyCheckEntry(std::string _keyName, int _dik);
+		void KeyCheckEntry(LPSTR _keyName, int _dik);
 
 		/**
 		 * 登録したキーの全ての状態をチェック(すべて一致)
@@ -65,7 +65,7 @@ namespace Lib
 		 * @param[in] _keyState チェックする状態
 		 * @return 全ての登録されたキーの状態が同じならtrueを返す
 		 */
-		bool AllMatchKeyCheck(std::string _keyName, KEYSTATE _keyState);
+		bool AllMatchKeyCheck(LPSTR _keyName, KEYSTATE _keyState);
 
 		/**
 		 * 登録したキーの全ての状態をチェック(一つでも一致)
@@ -73,7 +73,7 @@ namespace Lib
 		 * @param[in] _keyState チェックする状態
 		 * @return 一つでも登録されたキーの状態が同じならtrueを返す
 		 */
-		bool AnyMatchKeyCheck(std::string _keyName, KEYSTATE _keyState);
+		bool AnyMatchKeyCheck(LPSTR _keyName, KEYSTATE _keyState);
 
 	private:
 		/**
@@ -91,7 +91,7 @@ namespace Lib
 		LPDIRECTINPUTDEVICE8					   m_pDInputDevice8;
 		BYTE									   m_pDIKeyState[256];
 		BYTE									   m_pOldDIKeyState[256];
-		std::map<std::string, std::list<KEYDATA> > m_SetKeyState;
+		std::unordered_map<LPSTR, std::list<KEYDATA> > m_SetKeyState;
 
 	};
 }

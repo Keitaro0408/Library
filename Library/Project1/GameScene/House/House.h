@@ -1,3 +1,5 @@
+#ifndef HOUSE_H
+#define HOUSE_H
 #include "Library\Dx11\DX11Manager.h"
 #include "Library\Math\Math.h"
 #include "Library\ObjectBase\ObjectBase.h"
@@ -46,3 +48,5 @@ private:
 
 };
 
+
+#endif

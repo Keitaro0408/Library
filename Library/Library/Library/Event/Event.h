@@ -5,18 +5,20 @@
  */
 #ifndef EVENT_H
 #define EVENT_H
+#include <Windows.h>
 #include <functional>
-#include <map>
+#include <unordered_map>
+#include "../Helper/Helper.h"
 
 namespace Lib
 {
 	struct Event
 	{
-		typedef size_t StringId;
 		Event(char* _eventName)
 		{
-			eventName = std::hash<char*>()(_eventName);
+			eventNameId = STRING_ID(_eventName);
 		}
+
 		union Data
 		{
 			int   m_Int;
@@ -24,8 +26,8 @@ namespace Lib
 			bool  m_Bool;
 		};
 
-		std::map<StringId, Data> eventData; //!< 格納されているデータ
-		StringId eventName; //!< イベントのハッシュ
+		std::unordered_map<LPSTR, Data> eventData; //!< 格納されているデータ
+		StringId eventNameId; //!< イベントのID
 
 	};
 }

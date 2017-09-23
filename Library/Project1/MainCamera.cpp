@@ -12,10 +12,9 @@ const float MainCamera::m_ViewAngle = static_cast<float>(Lib::Math::ToRadian(50)
 
 
 MainCamera::MainCamera() :
-m_Pos(Lib::VECTOR3(0.5f, 0.f, -100.f)),
+m_Pos(Lib::VECTOR3(0.0f, 1000.f, -1000.f)),
 m_LookPoint(Lib::VECTOR3(0.f, 0.f, 0.f))
 {
-	RECT ClientRect;
 	m_pCamera = new Lib::Camera(1280.f, 720.f, m_NearPoint, m_FarPoint);
 
 	InitConstantBuffer();

@@ -8,7 +8,7 @@ House::House()
 {
 	m_Scale = Lib::VECTOR3(1, 1, 1);
 	m_Rotate = Lib::VECTOR3(0, 0, 0);
-	m_Pos = Lib::VECTOR3(0, 0, 100);
+	m_Pos = Lib::VECTOR3(0, 0, 0);
 
 	if (!SINGLETON_INSTANCE(Lib::ShaderManager).LoadVertexShader(
 		TEXT("test.hlsl"),
@@ -101,13 +101,13 @@ bool House::WriteConstantBuffer()
 	{
 		Lib::MATRIX MatWorld, MatTranslate, MatRotateX, MatRotateY;
 		Lib::Math::MatrixIdentity(&MatWorld);
-		Lib::Math::MatrixScaling(&MatWorld, m_Scale.x, m_Scale.y, m_Scale.z);
-		Lib::Math::MatrixRotationX(&MatRotateX, m_Rotate.x);
-		MatWorld *= MatRotateX;
-		Lib::Math::MatrixRotationY(&MatRotateY, m_Rotate.y);
-		MatWorld *= MatRotateY;
-		Lib::Math::MatrixTranslation(&MatTranslate, m_Pos.x, m_Pos.y, m_Pos.z);
-		MatWorld *= MatTranslate;
+		//Lib::Math::MatrixScaling(&MatWorld, m_Scale.x, m_Scale.y, m_Scale.z);
+		//Lib::Math::MatrixRotationX(&MatRotateX, m_Rotate.x);
+		//MatWorld *= MatRotateX;
+		//Lib::Math::MatrixRotationY(&MatRotateY, m_Rotate.y);
+		//MatWorld *= MatRotateY;
+		//Lib::Math::MatrixTranslation(&MatTranslate, m_Pos.x, m_Pos.y, m_Pos.z);
+		//MatWorld *= MatTranslate;
 		CONSTANT_BUFFER ConstantBuffer;
 		ConstantBuffer.World = MatWorld;
 		Lib::Math::MatrixTranspose(&ConstantBuffer.World);

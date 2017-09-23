@@ -6,6 +6,7 @@
 #ifndef EVENT_LISTENER_BASE
 #define EVENT_LISTENER_BASE
 #include "Event.h"
+#include "../Helper/Helper.h"
 
 namespace Lib
 {
@@ -17,7 +18,6 @@ namespace Lib
 		virtual ~EventListenerBase(){}
 
 	protected:
-		typedef size_t StringId;
 		virtual void OnEvent(Event& _event) = 0;
 
 	};
