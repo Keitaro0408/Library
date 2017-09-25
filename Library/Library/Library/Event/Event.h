@@ -5,7 +5,6 @@
  */
 #ifndef EVENT_H
 #define EVENT_H
-#include <Windows.h>
 #include <functional>
 #include <unordered_map>
 #include "../Helper/Helper.h"
@@ -26,7 +25,7 @@ namespace Lib
 			bool  m_Bool;
 		};
 
-		std::unordered_map<LPSTR, Data> eventData; //!< 格納されているデータ
+		std::unordered_map<char*, Data> eventData; //!< 格納されているデータ
 		StringId eventNameId; //!< イベントのID
 
 	};

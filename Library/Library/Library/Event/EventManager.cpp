@@ -26,23 +26,23 @@ namespace Lib
 		}
 	}
 
-	void EventManager::AddQueueEvent(Event* _pEvent)
+	void EventManager::AddEventList(Event* _pEvent)
 	{
-		m_pEventQueueList.push_back(*_pEvent);
+		m_pEventList.push_back(*_pEvent);
 	}
 
 	void EventManager::Execute()
 	{
-		std::list<Event>::iterator eventItr = m_pEventQueueList.begin();
+		std::list<Event>::iterator eventItr = m_pEventList.begin();
 
-		for (auto itr : m_pEventQueueList)
+		for (auto itr : m_pEventList)
 		{
 			for (auto itr2 : m_pEventListenerBase)
 			{
 				itr2->OnEvent(itr);
 			}
 		}
-		m_pEventQueueList.clear();
+		m_pEventList.clear();
 	}
 
 	void EventManager::AllEventClear()

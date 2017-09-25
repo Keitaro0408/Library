@@ -34,13 +34,13 @@ namespace Lib
 		void SendEvent(Event& _pEvent);
 
 		/**
-		 * キューにイベントを追加する
+		 * リストにイベントを追加する
 		 * @param[in] _pEvent イベントクラス
 		 */
-		void AddQueueEvent(Event* _pEvent);
+		void AddEventList(Event* _pEvent);
 
 		/**
-		 * キューに登録しているイベントを実行して、キューを削除する。
+		 * リストに登録しているイベントを実行して、リストを削除する。
 		 */
 		void Execute();
 
@@ -54,7 +54,7 @@ namespace Lib
 		~EventManager(){};
 
 		std::list<EventListenerBase*> m_pEventListenerBase;
-		std::list<Event>			  m_pEventQueueList;
+		std::list<Event>			  m_pEventList;
 	};
 }
 

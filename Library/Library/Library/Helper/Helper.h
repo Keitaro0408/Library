@@ -6,12 +6,13 @@
 #ifndef HELPER_H
 #define HELPER_H
 #include <functional>
+#include <string>
 /* コピー禁止マクロ */
 #define NON_COPYABLE(Class) Class(const Class &); \
                         void operator=(const Class &)
 
 /* 文字列をハッシュ値に変換する(最終的には自分で作りたい) */
-#define STRING_ID(str) std::hash<char*>()(str)
+#define STRING_ID(str) std::hash<std::string>()(str)
 typedef size_t StringId;
 
 namespace Lib
