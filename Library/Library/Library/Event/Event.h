@@ -15,7 +15,7 @@ namespace Lib
 	{
 		Event(char* _eventName)
 		{
-			eventNameId = STRING_ID(_eventName);
+			eventName = _eventName;
 		}
 
 		union Data
@@ -26,8 +26,7 @@ namespace Lib
 		};
 
 		std::unordered_map<char*, Data> eventData; //!< 格納されているデータ
-		StringId eventNameId; //!< イベントのID
-
+		std::string eventName; //!< イベントの名前
 	};
 }
 

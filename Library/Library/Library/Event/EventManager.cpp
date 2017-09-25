@@ -13,14 +13,14 @@ namespace Lib
 // Public Functions
 //----------------------------------------------------------------------------------------------------
 
-	void EventManager::AddListener(EventListenerBase* _pEventListnerBaseList)
+	void EventManager::AddListener(EventListenerBase* _pEventListnerBaseList, LPSTR _category)
 	{
-		m_pEventListenerBase.push_back(_pEventListnerBaseList);
+		m_pEventListenerBase[_category].push_back(_pEventListnerBaseList);
 	}
 	
-	void EventManager::SendEvent(Event& _pEvent)
+	void EventManager::SendEvent(Event& _pEvent, LPSTR _category)
 	{
-		for (auto itr : m_pEventListenerBase)
+		for (auto itr : m_pEventListenerBase[_category])
 		{
 			itr->OnEvent(_pEvent);
 		}
@@ -31,13 +31,13 @@ namespace Lib
 		m_pEventList.push_back(*_pEvent);
 	}
 
-	void EventManager::Execute()
+	void EventManager::Execute(LPSTR _category)
 	{
 		std::list<Event>::iterator eventItr = m_pEventList.begin();
 
 		for (auto itr : m_pEventList)
 		{
-			for (auto itr2 : m_pEventListenerBase)
+			for (auto itr2 : m_pEventListenerBase[_category])
 			{
 				itr2->OnEvent(itr);
 			}

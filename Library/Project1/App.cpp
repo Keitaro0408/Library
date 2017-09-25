@@ -2,6 +2,7 @@
 #include "Library/Application/ApplicationBase.h"
 #include "Library/Window/Window.h"
 #include "Library\Helper\Helper.h"
+#include "Library\DxInput\KeyBoard\KeyDevice.h"
 #include <memory>
 #include <vector>
 #include <assert.h>
@@ -10,7 +11,7 @@ void App::Initialize()
 {
 	m_pGameScene = Lib::MakeUnique<GameScene>();
 	m_pTitleScene = Lib::MakeUnique<TitleScene>();
-
+	SINGLETON_INSTANCE(Lib::KeyDevice).KeyCheckEntry("front",DIK_W);
 	SINGLETON_INSTANCE(Lib::SceneManager).ChangeScene("GameScene");
 }
 

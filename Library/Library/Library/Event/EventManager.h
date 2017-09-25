@@ -7,7 +7,9 @@
 #define EVENTMANAGER_H
 
 #include <list>
+#include <unordered_map>
 #include <functional>
+#include <Windows.h>
 #include "..\Singleton.h"
 #include "Event.h"
 #include "EventListenerBase.h"
@@ -24,14 +26,16 @@ namespace Lib
 		/**
 		 * イベントの追加
 		 * @param[in] _pEventListnerBaseList イベント待受クラス
+		 * @param[in] _category 登録するイベントのカテゴリ
 		 */
-		void AddListener(EventListenerBase* _pEventListenerBaseList);
+		void AddListener(EventListenerBase* _pEventListenerBaseList, LPSTR _category);
 
 		/**
 		 * イベントを送信する
 		 * @param[in] _pEvent イベントクラス
+		 * @param[in] _category 送信するイベントのカテゴリ
 		 */
-		void SendEvent(Event& _pEvent);
+		void SendEvent(Event& _pEvent, LPSTR _category);
 
 		/**
 		 * リストにイベントを追加する
@@ -41,8 +45,9 @@ namespace Lib
 
 		/**
 		 * リストに登録しているイベントを実行して、リストを削除する。
+		 * @param[in] _category 実行するイベントのカテゴリ
 		 */
-		void Execute();
+		void Execute(LPSTR _category);
 
 		/**
 		 * 登録されている全てのイベントをリストから削除する
@@ -53,7 +58,8 @@ namespace Lib
 		EventManager(){};
 		~EventManager(){};
 
-		std::list<EventListenerBase*> m_pEventListenerBase;
+		std::unordered_map<char*, std::list<EventListenerBase*>> m_pEventListenerBase;
+		 
 		std::list<Event>			  m_pEventList;
 	};
 }

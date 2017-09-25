@@ -79,7 +79,7 @@ bool GameScene::Initialize()
 		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext());
 	m_pHouse = Lib::MakeUnique<House>();
 	m_pGround = Lib::MakeUnique<Ground>();
-	SINGLETON_INSTANCE(Lib::EventManager).AddListener(testListener);
+	SINGLETON_INSTANCE(Lib::EventManager).AddListener(testListener,"test");
 	return true;
 }
 
@@ -98,7 +98,8 @@ void GameScene::Execute()
 
 	if (SINGLETON_INSTANCE(Lib::KeyDevice).AnyMatchKeyCheck("front",Lib::KEY_PUSH))
 	{
-		SINGLETON_INSTANCE(Lib::DSoundManager).SoundOperation(m_SoundIndex,Lib::DSoundManager::SOUND_PLAY);
+		int test = 0;
+		//SINGLETON_INSTANCE(Lib::DSoundManager).SoundOperation(m_SoundIndex,Lib::DSoundManager::SOUND_PLAY);
 	}
 	
 	SINGLETON_INSTANCE(Lib::DX11Manager).SetDepthStencilTest(true);
