@@ -23,6 +23,7 @@ namespace Lib
 	template <class Type>
 	inline void SafeDelete(Type*& p)
 	{
+		static_assert(sizeof(Type),"incomplete type delete");
 		delete p;
 		p = nullptr;
 	}
@@ -33,6 +34,7 @@ namespace Lib
 	template <class Type>
 	inline void SafeArrayDelete(Type*& p)
 	{
+		static_assert(sizeof(Type), "incomplete type delete");
 		delete[] p;
 		p = nullptr;
 	}
