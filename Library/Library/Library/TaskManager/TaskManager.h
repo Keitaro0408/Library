@@ -42,6 +42,11 @@ namespace Lib
 		 */
 		void AllExecute();
 
+		/**
+		 * 全てのタスクを削除する
+		 */
+		void AllRemove();
+
 	private:
 		TaskManager();
 		~TaskManager();

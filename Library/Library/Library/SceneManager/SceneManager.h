@@ -34,6 +34,10 @@ namespace Lib
 		 */
 		void RemoveScene(std::string _sceneName);
 
+		void AllRemoveScene()
+		{
+			m_pSceneList.clear();
+		}
 
 		/**
 		 * Sceneの変更

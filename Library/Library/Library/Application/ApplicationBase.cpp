@@ -73,6 +73,8 @@ namespace Lib
 			}
 		}
 		/* 先にサブクラスからデストラクタが実行されるのでここで解放する */
+		SINGLETON_INSTANCE(Lib::SceneManager).AllRemoveScene();
+		SINGLETON_DELETE(Lib::SceneManager);
 		Finalize();
 		ReleaseLib();
 		return 0;
@@ -138,7 +140,6 @@ namespace Lib
 
 	void ApplicationBase::ReleaseLib()
 	{
-		SINGLETON_DELETE(Lib::SceneManager);
 
 		SINGLETON_DELETE(Lib::EventManager);
 

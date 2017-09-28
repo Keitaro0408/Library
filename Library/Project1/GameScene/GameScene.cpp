@@ -73,10 +73,6 @@ GameScene::~GameScene()
 bool GameScene::Initialize()
 {
 	m_pCamera = new MainCamera;
-	SINGLETON_CREATE(Lib::FbxFileManager);
-	SINGLETON_INSTANCE(Lib::FbxFileManager).Initialize(
-		SINGLETON_INSTANCE(Lib::DX11Manager).GetDevice(),
-		SINGLETON_INSTANCE(Lib::DX11Manager).GetDeviceContext());
 	m_pHouse = Lib::MakeUnique<House>();
 	m_pGround = Lib::MakeUnique<Ground>();
 	SINGLETON_INSTANCE(Lib::EventManager).AddListener(testListener,"test");
@@ -85,11 +81,7 @@ bool GameScene::Initialize()
 
 void GameScene::Finalize()
 {
-	m_pGround.Reset();
-	m_pHouse.Reset();
-	m_pCamera.Reset();
-	SINGLETON_INSTANCE(Lib::FbxFileManager).Finalize();
-	SINGLETON_DELETE(Lib::FbxFileManager);
+	SINGLETON_INSTANCE(Lib::TaskManager).AllRemove();
 }
 
 void GameScene::Execute()

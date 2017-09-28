@@ -95,4 +95,12 @@ namespace Lib
 			}
 		}
 	}
+
+	void TaskManager::AllRemove()
+	{
+		m_UpdateTaskList.clear();
+		m_DrawSetupTaskList.clear();
+		m_DrawTaskList.clear();
+	}
+
 }

@@ -25,13 +25,8 @@ namespace Lib
 
 	void ObjectBase::FinalizeTask()
 	{
-		SINGLETON_INSTANCE(Lib::TaskManager).RemoveTask(m_pDrawTask);
 		Lib::SafeDelete(m_pDrawTask);
-
-		SINGLETON_INSTANCE(Lib::TaskManager).RemoveTask(m_pDrawSetupTask);
 		Lib::SafeDelete(m_pDrawSetupTask);
-
-		SINGLETON_INSTANCE(Lib::TaskManager).RemoveTask(m_pUpdateTask);
 		Lib::SafeDelete(m_pUpdateTask);
 	}
 }

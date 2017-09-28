@@ -85,9 +85,6 @@
     <Filter Include="Library\Helper">
       <UniqueIdentifier>{bf3cc088-5152-4805-827d-a47077d96251}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\Camera">
-      <UniqueIdentifier>{1649674e-fa40-4d2c-a951-5fb5a75d2331}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Library\Shader">
       <UniqueIdentifier>{9d01b329-9638-4ac4-a56f-feca0d5b657f}</UniqueIdentifier>
     </Filter>
@@ -126,6 +123,9 @@
     </Filter>
     <Filter Include="Library\Hash">
       <UniqueIdentifier>{daec8a5a-87a9-41b2-9ca5-11e3d99a4f34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Camera">
+      <UniqueIdentifier>{1649674e-fa40-4d2c-a951-5fb5a75d2331}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
